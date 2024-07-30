@@ -1,0 +1,45 @@
+{
+  "name": "Paweł Stopczyński | FullStack Developer",
+  "short_name": "Paweł Stopczyński",
+  "icons": [
+    {
+      "src": "/static/favicons/android-chrome-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/static/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/favicons/maskable-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#fb6409",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "/",
+  "id": "/",
+  "scope": "/",
+  "orientation": "any",
+  "lang": "en",
+  "description": "FullStack Developer with technology stack: React, Symfony, Angular, PHP",
+  "categories": ["education"],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "dir": "auto",
+  "screenshots": [
+    {
+      "src": "/static/favicons/screenshot.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg"
+    }
+  ],
+  "display_override": ["window-controls-overlay"]
+}

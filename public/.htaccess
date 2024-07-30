@@ -1,0 +1,21 @@
+RewriteEngine On
+
+
+RewriteCond %{HTTP_HOST} ^threep\.space [NC]
+RewriteRule ^(createit|mediart|ventus)$ https://threep.space/portfolio/latest [NE,L,R=302]
+
+#
+RewriteCond %{HTTP_HOST} ^cv\.threep\.space [NC]
+RewriteRule ^(.*)$ https://threep.space/portfolio [NE,L,R=302]
+
+#
+RewriteCond %{HTTP_HOST} ^me-([a-z]+)\.threep\.space [NC]
+RewriteRule ^([a-z]?)$ https://threep.space/portfolio/latest [NE,L,R=302]
+
+#
+RewriteCond %{HTTP_HOST} ^me\.threep\.space [NC]
+RewriteRule ^(.*)?$ https://threep.space/portfolio/%1 [NE,L,R=302]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html [L,QSA]

@@ -1,0 +1,110 @@
+{
+	"txt": {
+		"about": "Hi",
+		"skills": "SKills",
+		"latest": "Latest",
+		"all": "All",
+		"portfolio": "Portfolio",
+		"get_cv": "Get CV",
+		"design": "Design",
+		"copyright": "Copyright {{year}} - Paweł Stopczyński"
+	},
+	"welcome": {
+		"first_line": "Hi, it's me, Paweł",
+		"second_line": "and I'm here"
+	},
+	"seo": {
+		"hub": {
+			"title": "Hi there!",
+			"description": ""
+		},
+		"not_found": {
+			"title": "Ups, page not found",
+			"description": "This page does not exists, sorry"
+		},
+		"portfolio": {
+			"title": "Paweł Stopczyński - Technologies & Portfolio",
+			"description": "FullStack Developer with technology stack: React, Symfony, Angular, PHP"
+		}
+	},
+	"cat": {
+		"profile": "See PurPur's Profile",
+		"name": "PurPur"
+	},
+	"about": {
+		"welcome": "Hi there \uD83D\uDC4B it's me, Paweł",
+		"role": "Fullstack Developer",
+		"name": "Paweł Stopczyński",
+		"first": "My programming journey started back in high school when I realized that HTML alone wasn't sufficient while creating a Guest Book. At first, I learned about PHP by making websites for\n                my school's teachers. Eventually, I got into frameworks,\n                starting with Code Igniter and later Symfony. But all along, I\n                could see that this approach wasn't flawless.",
+		"second": "That's when I got the opportunity to work on a React project, and a few years later, on one with Angular. In both cases, I joined the project without prior knowledge of the framework. In\n                the near future, I plan to learn Vue, and further down the line,\n                I aim to explore Python by creating a more complex project.",
+		"hobby": "After hours, I'm an almost professional photographer, I ride a bike, I dance Cuban salsa, and sometimes I play the guitar. When it rains, I take care of plants and seek attention from my cat"
+	},
+	"technologies": {
+		"latest": "Latest",
+		"all": "All",
+		"angular": "Angular",
+		"react": "React",
+		"symfony": "Symfony",
+		"code_igniter": "Code Igniter",
+		"js_ts": "JavaScript/TypeScript",
+		"php_mysql": "PHP/MySQL",
+		"scrum": "SCRUM",
+		"seo": "SEO",
+		"python": "Python/C#/C++",
+		"linux_bash": "Linux/Bash",
+		"rest": "Others",
+		"ts": "TypeScript",
+		"storybook": "Storybook",
+		"material": "Material UI",
+		"jest": "JEST",
+		"js": "JavaScript",
+		"scss": "SCSS",
+		"mysql": "MySQL",
+		"prime": "PrimeNG",
+		"lemp": "LEMP",
+		"lamp": "LAMP",
+		"bash": "Bash",
+		"redux": "Redux",
+		"webpack": "Webpack",
+		"bootstrap": "Bootstrap",
+		"socket": "Socket",
+		"php": "PHP",
+		"cpp": "C++",
+		"csharp": "C#",
+		"css": "CSS",
+		"jquery": "jQuery",
+		"photoshop": "Photoshop",
+		"styled": "Styled Components",
+		"html": "HTML",
+		"tailwind": "Tailwind CSS",
+		"centos": "CentOS 8"
+	},
+	"urls": {
+		"preview": "Web",
+		"storybook": "Storybook",
+		"ui": "UI",
+		"docs": "Docs",
+		"multimedia": "Media",
+		"github_backend": "GitHub",
+		"github_front": "GitHub",
+		"archive": "Web Archive",
+		"github": "GitHub"
+	},
+	"stages": {
+		"angular": "Angular has shown me that best practices from Symfony can also be applied to frontend programming.",
+		"react": "Discovering React has redefined my understanding of programming quality and clean code.",
+		"scrum": "I first encountered SCRUM when learning Angular, but I became a true fan when I saw what our team achieved together.",
+		"symfony": "Discovering Symfony made me rethink the idea of \"Why use a framework when I can do it myself.\" While I could manage, the efficiency and quality provided by Symfony are unmatched."
+	},
+	"skills": {
+		"angular": "Worked in a SCRUM team for 2 years as the Lead Frontend Developer.",
+		"react": "Developed 12 websites, e-commerce platforms, and booking portals.",
+		"code_igniter": "Completed over 30 projects, including product systems, e-commerce sites, and business websites.",
+		"js_ts": "Experience with React, Angular, Webpack, and strong typing with TypeScript.",
+		"php_mysql": "Countless lines of code written in pure PHP and subsequently in various newly discovered frameworks.",
+		"seo": "Configuration issues, but also writing code rules for SEO.",
+		"linux_bash": "Configured and managed VPS servers, created scripts for multiple projects, and developed an installer for CentOS.",
+		"symfony": "Finished 7 custom software solutions while maintaining constant client communication.",
+		"python": "Single attempts to work with Python, mainly for hobby work with microcircuits ESP32/ESP8266."
+	}
+}

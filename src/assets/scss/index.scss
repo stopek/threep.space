@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+body {
+	overflow-x: hidden;
+	background: black;
+	overflow-y: scroll;
+}
+
+body,
+html {
+	min-height: 100vh;
+	margin: 0;
+	width: 100%;
+}
+
+#root {
+	display: grid;
+	min-height: 100vh;
+}
+
+* {
+	cursor: none !important;
+}
