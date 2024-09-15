@@ -35,7 +35,7 @@ export const Page = ({
 	const { t } = useTranslation();
 	const location = useLocation();
 
-	let { title, description } = translate(t, seo);
+	const { title, description } = translate(t, seo);
 
 	useEffect(() => {
 		ReactGA.send({

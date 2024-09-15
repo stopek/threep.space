@@ -17,14 +17,14 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				async lazy() {
-					let { HubContainer } = await import("../../containers/HubContainer");
+					const { HubContainer } = await import("../../containers/HubContainer");
 					return { Component: HubContainer };
 				},
 			},
 			{
 				path: "/portfolio/:filterId?",
 				async lazy() {
-					let { PortfolioContainer } = await import(
+					const { PortfolioContainer } = await import(
 						"../../containers/PortfolioContainer"
 					);
 					return { Component: PortfolioContainer };

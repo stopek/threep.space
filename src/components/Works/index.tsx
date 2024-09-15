@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Grid } from "@mui/material";
 
 const filterWorks = (filter: string) => {
-	let list = works_list.sort((a, b) => (a?.order && b?.order ? b?.order - a?.order : 0));
+	const list = works_list.sort((a, b) => (a?.order && b?.order ? b?.order - a?.order : 0));
 
 	if (filter === "latest") {
 		return list.filter(w => w?.last);

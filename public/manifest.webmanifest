@@ -1,43 +1,43 @@
 {
-  "name": "Paweł Stopczyński | FullStack Developer",
-  "short_name": "Paweł Stopczyński",
-  "icons": [
-    {
-      "src": "/static/favicons/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/static/favicons/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/static/favicons/maskable-icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    }
-  ],
-  "theme_color": "#872e4e",
-  "background_color": "#872e4e",
-  "display": "standalone",
-  "start_url": "/",
-  "id": "/",
-  "scope": "/",
-  "orientation": "any",
-  "lang": "en",
-  "description": "FullStack Developer with technology stack: React, Symfony, Angular, PHP",
-  "categories": ["education"],
-  "prefer_related_applications": false,
-  "related_applications": [],
-  "dir": "auto",
-  "screenshots": [
-    {
-      "src": "/static/favicons/screenshot.jpg",
-      "sizes": "1280x720",
-      "type": "image/jpeg"
-    }
-  ],
-  "display_override": ["window-controls-overlay"]
+	"name": "Paweł Stopczyński | FullStack Developer",
+	"short_name": "Paweł Stopczyński",
+	"icons": [
+		{
+			"src": "/static/favicons/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/static/favicons/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "/static/favicons/maskable-icon.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	],
+	"theme_color": "#872e4e",
+	"background_color": "#872e4e",
+	"display": "standalone",
+	"start_url": "/",
+	"id": "/",
+	"scope": "/",
+	"orientation": "any",
+	"lang": "en",
+	"description": "FullStack Developer with technology stack: React, Symfony, Angular, PHP",
+	"categories": ["education"],
+	"prefer_related_applications": false,
+	"related_applications": [],
+	"dir": "auto",
+	"screenshots": [
+		{
+			"src": "/static/favicons/screenshot.jpg",
+			"sizes": "1280x720",
+			"type": "image/jpeg"
+		}
+	],
+	"display_override": ["window-controls-overlay"]
 }

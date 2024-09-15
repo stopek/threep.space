@@ -7,7 +7,8 @@ body {
 
 	-webkit-overflow-scrolling: touch;
 	&.dot-scroll {
-		&, * {
+		&,
+		* {
 			cursor: none !important;
 		}
 	}
@@ -19,13 +20,21 @@ body {
 }
 
 /* hide page scrollbar */
-html { scrollbar-width: none; } /* Firefox */
-body { -ms-overflow-style: none; } /* IE and Edge */
-body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
+html {
+	scrollbar-width: none;
+} /* Firefox */
+body {
+	-ms-overflow-style: none;
+} /* IE and Edge */
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-button {
+	display: none;
+} /* Chrome */
 /* end hide page scrollbar */
 
 body,
-html, #root {
+html,
+#root {
 	margin: 0;
 	width: 100%;
 	min-height: 100svh;
