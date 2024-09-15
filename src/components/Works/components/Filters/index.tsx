@@ -35,7 +35,7 @@ export const Filters = () => {
 		});
 	}, []);
 
-	const changeFilter = (value: string, init?: boolean) => {
+	const changeFilter = useCallback((value: string, init?: boolean) => {
 		scrollToDiv("portfolio");
 		navigate("/portfolio/" + value);
 		handleSetValue(value);
@@ -51,7 +51,7 @@ export const Filters = () => {
 		}
 
 		tap();
-	};
+	}, []);
 
 	useEffect(() => {
 		if (filterId) {
@@ -62,7 +62,7 @@ export const Filters = () => {
 
 			changeFilter(filterId, true);
 		}
-	}, []);
+	}, [filterId, changeFilter]);
 
 	return (
 		<>

@@ -1,5 +1,12 @@
 import "./style.scss";
-import React, { useState, useRef, useEffect, MutableRefObject, ReactNode } from "react";
+import React, {
+	useState,
+	useRef,
+	useEffect,
+	MutableRefObject,
+	ReactNode,
+	useCallback,
+} from "react";
 
 import { useNavigate } from "react-router-dom";
 import Link from "@mui/material/Link";
@@ -75,42 +82,31 @@ const Dial = ({ children }: IDial) => {
 		setScale(newScale);
 	};
 
-	const openMenu = () => {
+	const openMenu = useCallback(() => {
 		const elem = elemRef.current;
 		if (!elem) return;
 
 		document.body.classList.add("disable-scroll");
+
 		// elem.style.setProperty("--translate-x", `${offsetX}px`);
 		elem.style.setProperty("--translate-y", `-${offsetY}px`);
 		elem.style.setProperty("--scale", scale.toString());
-	};
+	}, [offsetY, scale]);
 
-	const closeMenu = () => {
+	const closeMenu = useCallback(() => {
 		const elem = elemRef.current;
 		if (!elem) return;
 
 		document.body.classList.remove("disable-scroll");
+
 		elem.style.setProperty("--scale", "1");
 		elem.style.setProperty("--translate-x", "0");
 		elem.style.setProperty("--translate-y", "0");
 
 		setOpen(false);
-	};
-
-	const toggleMenu = () => setOpen(prevOpen => !prevOpen);
-
-	useEffect(() => {
-		calculateValues();
-		window.addEventListener("resize", calculateValues);
-
-		return () => {
-			window.removeEventListener("resize", calculateValues);
-		};
 	}, []);
 
-	useEffect(() => {
-		open ? openMenu() : closeMenu();
-	}, [open, offsetX, offsetY, scale]);
+	const toggleMenu = () => setOpen(prevOpen => !prevOpen);
 
 	const onClick = (target: IMenuItem) => {
 		tap();
@@ -129,6 +125,19 @@ const Dial = ({ children }: IDial) => {
 			return;
 		}
 	};
+
+	useEffect(() => {
+		calculateValues();
+		window.addEventListener("resize", calculateValues);
+
+		return () => {
+			window.removeEventListener("resize", calculateValues);
+		};
+	}, []);
+
+	useEffect(() => {
+		open ? openMenu() : closeMenu();
+	}, [open, offsetX, offsetY, scale, openMenu, closeMenu]);
 
 	return (
 		<>
