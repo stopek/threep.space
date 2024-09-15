@@ -174,7 +174,7 @@ export default function Preview({ children, src }: IPreview) {
 
 				<iframe
 					key={currentSrc}
-					title=""
+					title={`preview ${template}`}
 					src={`https://inside.threep.space${currentSrc}/${template}`}
 					style={{
 						width: "100%",

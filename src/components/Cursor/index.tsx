@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef } from "react";
+import { MutableRefObject, useCallback, useEffect, useRef } from "react";
 import { CursorDot, CursorDotOutline } from "./styled";
 import useDeviceDetection from "../../hooks/useDeviceDetection";
 
@@ -20,42 +20,7 @@ const Cursor = () => {
 
 	const requestRef: MutableRefObject<number | null> = useRef(null);
 
-	const clean = () => {
-		document.body.classList.remove("dot-scroll");
-
-		document.removeEventListener("mousedown", mouseOverEvent);
-		document.removeEventListener("mouseup", mouseOutEvent);
-		document.removeEventListener("mousemove", mouseMoveEvent);
-		document.removeEventListener("mouseenter", mouseEnterEvent);
-		document.removeEventListener("mouseleave", mouseLeaveEvent);
-
-		if (requestRef.current) {
-			cancelAnimationFrame(requestRef.current);
-		}
-	};
-
-	useEffect(() => {
-		if (device !== "desktop") {
-			clean();
-			return;
-		}
-
-		document.body.classList.add("dot-scroll");
-
-		document.addEventListener("mousedown", mouseOverEvent);
-		document.addEventListener("mouseup", mouseOutEvent);
-		document.addEventListener("mousemove", mouseMoveEvent);
-		document.addEventListener("mouseenter", mouseEnterEvent);
-		document.addEventListener("mouseleave", mouseLeaveEvent);
-
-		animateDotOutline();
-
-		return () => {
-			clean();
-		};
-	}, [device]);
-
-	const toggleCursorVisibility = () => {
+	const toggleCursorVisibility = useCallback(() => {
 		if (cursorVisible.current) {
 			if (dot.current) {
 				dot.current.style.opacity = "1";
@@ -75,9 +40,9 @@ const Cursor = () => {
 		if (dotOutline.current) {
 			dotOutline.current.style.opacity = "0";
 		}
-	};
+	}, []);
 
-	const toggleCursorSize = () => {
+	const toggleCursorSize = useCallback(() => {
 		if (cursorEnlarged.current) {
 			if (dot.current) {
 				dot.current.style.transform = "translate(-50%, -50%) scale(0.75)";
@@ -97,44 +62,47 @@ const Cursor = () => {
 		if (dotOutline.current) {
 			dotOutline.current.style.transform = "translate(-50%, -50%) scale(0.75)";
 		}
-	};
+	}, []);
 
-	const mouseOverEvent = () => {
+	const mouseOverEvent = useCallback(() => {
 		cursorEnlarged.current = true;
 		toggleCursorSize();
-	};
+	}, [toggleCursorSize]);
 
-	const mouseOutEvent = () => {
+	const mouseOutEvent = useCallback(() => {
 		cursorEnlarged.current = false;
 		toggleCursorSize();
-	};
+	}, [toggleCursorSize]);
 
-	const mouseEnterEvent = () => {
+	const mouseEnterEvent = useCallback(() => {
 		cursorVisible.current = true;
 		toggleCursorVisibility();
-	};
+	}, [toggleCursorVisibility]);
 
-	const mouseLeaveEvent = () => {
+	const mouseLeaveEvent = useCallback(() => {
 		cursorVisible.current = false;
 		toggleCursorVisibility();
-	};
+	}, [toggleCursorVisibility]);
 
-	const mouseMoveEvent = (e: any) => {
-		if (!dot.current) {
-			return;
-		}
+	const mouseMoveEvent = useCallback(
+		(e: any) => {
+			if (!dot.current) {
+				return;
+			}
 
-		cursorVisible.current = true;
-		toggleCursorVisibility();
+			cursorVisible.current = true;
+			toggleCursorVisibility();
 
-		endX.current = e.pageX;
-		endY.current = e.pageY;
+			endX.current = e.pageX;
+			endY.current = e.pageY;
 
-		dot.current.style.top = endY.current + "px";
-		dot.current.style.left = endX.current + "px";
-	};
+			dot.current.style.top = endY.current + "px";
+			dot.current.style.left = endX.current + "px";
+		},
+		[toggleCursorVisibility],
+	);
 
-	const animateDotOutline = () => {
+	const animateDotOutlineRef = useRef<() => void>(() => {
 		_x.current += (endX.current - _x.current) / delay;
 		_y.current += (endY.current - _y.current) / delay;
 
@@ -143,8 +111,51 @@ const Cursor = () => {
 			dotOutline.current.style.left = _x.current + "px";
 		}
 
-		requestRef.current = requestAnimationFrame(animateDotOutline);
-	};
+		requestRef.current = requestAnimationFrame(animateDotOutlineRef.current);
+	});
+
+	const clean = useCallback(() => {
+		document.body.classList.remove("dot-scroll");
+
+		document.removeEventListener("mousedown", mouseOverEvent);
+		document.removeEventListener("mouseup", mouseOutEvent);
+		document.removeEventListener("mousemove", mouseMoveEvent);
+		document.removeEventListener("mouseenter", mouseEnterEvent);
+		document.removeEventListener("mouseleave", mouseLeaveEvent);
+
+		if (requestRef.current) {
+			cancelAnimationFrame(requestRef.current);
+		}
+	}, [mouseOverEvent, mouseOutEvent, mouseMoveEvent, mouseEnterEvent, mouseLeaveEvent]);
+
+	useEffect(() => {
+		if (device !== "desktop") {
+			clean();
+			return;
+		}
+
+		document.body.classList.add("dot-scroll");
+
+		document.addEventListener("mousedown", mouseOverEvent);
+		document.addEventListener("mouseup", mouseOutEvent);
+		document.addEventListener("mousemove", mouseMoveEvent);
+		document.addEventListener("mouseenter", mouseEnterEvent);
+		document.addEventListener("mouseleave", mouseLeaveEvent);
+
+		animateDotOutlineRef.current();
+
+		return () => {
+			clean();
+		};
+	}, [
+		device,
+		clean,
+		mouseOverEvent,
+		mouseOutEvent,
+		mouseMoveEvent,
+		mouseEnterEvent,
+		mouseLeaveEvent,
+	]);
 
 	if (device !== "desktop") {
 		return null;
