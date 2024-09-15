@@ -1,3 +1,4 @@
+import React from "react";
 import { HeaderTitle } from "../HeaderTitle";
 import { Filters } from "./components/Filters";
 import { Work } from "./components/Work";

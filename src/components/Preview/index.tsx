@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ReactNode, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -154,8 +154,10 @@ export default function Preview({ children, src }: IPreview) {
 									label="Template"
 									onChange={handleChangeTemplate}
 								>
-									{simpleProjects[currentSrc].map(template => (
-										<MenuItem value={template}>{template}</MenuItem>
+									{simpleProjects[currentSrc].map((template, x) => (
+										<MenuItem key={x} value={template}>
+											{template}
+										</MenuItem>
 									))}
 								</Select>
 							</FormControl>

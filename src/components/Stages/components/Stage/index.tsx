@@ -1,3 +1,4 @@
+import React from "react";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -6,10 +7,9 @@ import { useTranslation } from "react-i18next";
 export interface IStage {
 	icon: string;
 	name: string;
-	description: string;
 }
 
-export const Stage = ({ icon, name, description }: IStage) => {
+export const Stage = ({ icon, name }: IStage) => {
 	const { t } = useTranslation();
 
 	return (

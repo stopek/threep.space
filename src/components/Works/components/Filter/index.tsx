@@ -1,3 +1,4 @@
+import React from "react";
 import { Chip } from "@mui/material";
 import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";

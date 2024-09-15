@@ -1,3 +1,4 @@
+import React from "react";
 import { Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
 

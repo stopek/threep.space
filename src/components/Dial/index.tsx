@@ -136,7 +136,12 @@ const Dial = ({ children }: IDial) => {
 	}, []);
 
 	useEffect(() => {
-		open ? openMenu() : closeMenu();
+		if (open) {
+			openMenu();
+			return;
+		}
+
+		closeMenu();
 	}, [open, offsetX, offsetY, scale, openMenu, closeMenu]);
 
 	return (

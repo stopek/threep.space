@@ -1,3 +1,4 @@
+import React from "react";
 import { MutableRefObject, useCallback, useEffect, useRef } from "react";
 import { CursorDot, CursorDotOutline } from "./styled";
 import useDeviceDetection from "../../hooks/useDeviceDetection";

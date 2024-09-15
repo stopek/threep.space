@@ -1,3 +1,4 @@
+import React from "react";
 import { HeaderTitle } from "../HeaderTitle";
 import { Skill } from "./components/Skill";
 import { Grid } from "@mui/material";

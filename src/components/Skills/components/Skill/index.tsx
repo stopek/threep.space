@@ -1,3 +1,4 @@
+import React from "react";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";

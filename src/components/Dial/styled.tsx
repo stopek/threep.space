@@ -2,7 +2,7 @@ import { alpha, styled } from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
-export const CvButton = styled(Button)(({ theme }) => ({
+export const CvButton = styled(Button)(() => ({
 	borderRadius: 130,
 	padding: "5px 50px",
 }));

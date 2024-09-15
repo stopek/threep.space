@@ -1,3 +1,4 @@
+import React from "react";
 import { HeaderTitle } from "../HeaderTitle";
 import { Stage } from "./components/Stage";
 import { Grid } from "@mui/material";

@@ -86,26 +86,18 @@ export const stages_list: IStage[] = [
 	{
 		name: "angular",
 		icon: "/static/stages/angular.png",
-		description:
-			"My first contact with Angular, which showed that it would be an interesting challenge to understand it completely.",
 	},
 	{
 		name: "scrum",
 		icon: "/static/stages/scrum.png",
-		description:
-			"I had my first contact with it when I started learning Angular. However, I became its fan only when I saw what we really created as a team.",
 	},
 	{
 		name: "react",
 		icon: "/static/stages/react.png",
-		description:
-			"My first contact with React, which changed my definition of quality in frontend development.",
 	},
 	{
 		name: "symfony",
 		icon: "/static/stages/symfony.png",
-		description:
-			"The first big application written according to client requirements in Symfony.",
 	},
 ];
 
