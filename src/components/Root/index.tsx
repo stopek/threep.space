@@ -1,26 +1,58 @@
-import React, { StrictMode } from "react";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
-import { Provider } from "react-redux";
-import { store } from "../../store";
 import { Layout } from "../Layout/Layout";
-import { Routes } from "../Routes/Routes";
-import ReactGA from "react-ga4";
+import { ThemeProvider } from "@mui/material/styles";
+import { dark, light } from "../../theme";
+import CssBaseline from "@mui/material/CssBaseline";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from "react";
+import { useSettings } from "../../store/settings";
+import { NotFoundContainer } from "../../containers/NotFoundContainer";
+import { Loader } from "../Loader";
 
-const ga = process.env.REACT_APP_GA;
-if (ga) {
-	ReactGA.initialize(ga);
-}
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <Layout />,
+		children: [
+			{
+				index: true,
+				async lazy() {
+					let { HubContainer } = await import("../../containers/HubContainer");
+					return { Component: HubContainer };
+				},
+			},
+			{
+				path: "/portfolio/:filterId?",
+				async lazy() {
+					let { PortfolioContainer } = await import(
+						"../../containers/PortfolioContainer"
+					);
+					return { Component: PortfolioContainer };
+				},
+			},
+			{
+				path: "*",
+				element: <NotFoundContainer />,
+			},
+		],
+	},
+]);
 
-const Root = () => (
-	<StrictMode>
+const Root = () => {
+	const { settings } = useSettings();
+
+	return (
 		<ErrorBoundary>
-			<Provider store={store}>
-				<Layout>
-					<Routes />
-				</Layout>
-			</Provider>
+			<ThemeProvider theme={settings.theme === "dark" ? dark : light}>
+				<CssBaseline />
+				<RouterProvider
+					router={router}
+					future={{ v7_startTransition: true }}
+					fallbackElement={<Loader />}
+				/>
+			</ThemeProvider>
 		</ErrorBoundary>
-	</StrictMode>
-);
+	);
+};
 
 export default Root;

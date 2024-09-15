@@ -25,3 +25,4 @@ yarn-error.log*
 
 /simple
 /public/static/works/
+/custom/

@@ -14,17 +14,6 @@ import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
 
-type TInside =
-	| "preview"
-	| "storybook"
-	| "ui"
-	| "docs"
-	| "multimedia"
-	| "github_backend"
-	| "github_front"
-	| "archive"
-	| "github";
-
 type PartialRecord<K extends keyof any, T> = {
 	[P in K]?: T;
 };
@@ -44,8 +33,9 @@ export interface IWork {
 	stack: IStackItem["name"][];
 	order?: number;
 	slug: string;
-	inside?: PartialRecord<TInside, string>;
+	inside?: PartialRecord<Type.TInsideUrls, string>;
 	last?: boolean;
+	old?: boolean;
 	urls?: boolean;
 }
 
@@ -66,6 +56,10 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 	}),
 }));
 
+const ProjectName = ({ name }: { name: string }) => {
+	return <span>{name}</span>;
+};
+
 export const Work = ({ name, image, description, about, stack = [], inside = {} }: IWork) => {
 	const { t } = useTranslation();
 	const [expanded, setExpanded] = React.useState(false);
@@ -84,18 +78,13 @@ export const Work = ({ name, image, description, about, stack = [], inside = {} 
 					justifyContent="space-between"
 					maxWidth="70%"
 					position="relative"
+					sx={{ maxWidth: { sm: "70%" } }}
 				>
 					<CardHeader
 						sx={{
 							"& .MuiTypography-root": { fontSize: "1.4rem", fontWeight: 700 },
-							small: {
-								fontSize: "0.9rem",
-								lineHeight: 0.4,
-								display: "block",
-								fontWeight: 100,
-							},
 						}}
-						title={name}
+						title={<ProjectName name={name} />}
 						subheader={<CStack list={stack} />}
 					/>
 
@@ -112,13 +101,9 @@ export const Work = ({ name, image, description, about, stack = [], inside = {} 
 					)}
 				</Box>
 
-				<Divider style={{ maxWidth: "70%" }} />
+				<Divider sx={{ maxWidth: { sm: "70%" } }} />
 
 				<CardContent>
-					<Description variant="body2" color="text.secondary">
-						<span dangerouslySetInnerHTML={{ __html: description.en }}></span>
-					</Description>
-
 					{about?.en && (
 						<Collapse in={expanded} timeout="auto">
 							<Description variant="body2" color="text.secondary">
@@ -126,6 +111,10 @@ export const Work = ({ name, image, description, about, stack = [], inside = {} 
 							</Description>
 						</Collapse>
 					)}
+
+					<Description variant="body2" color="text.secondary">
+						<span dangerouslySetInnerHTML={{ __html: description.en }}></span>
+					</Description>
 
 					{Object.values(inside).length > 0 && (
 						<Stack
@@ -135,27 +124,25 @@ export const Work = ({ name, image, description, about, stack = [], inside = {} 
 							spacing={1}
 							mt={1}
 						>
-							{Object.entries(inside)
-								.filter(([k1]) => !["multimedia", "docs"].includes(k1))
-								.map(([k, v]) =>
-									v.includes("inside.") ? (
-										<Preview src={v} key={k}>
-											{t(`urls.${k}`)}
-										</Preview>
-									) : (
-										<Button
-											key={k}
-											variant="contained"
-											color="primary"
-											href={v}
-											endIcon={<TurnSlightRightIcon />}
-											target="_blank"
-											sx={{ borderRadius: 15 }}
-										>
-											{t(`urls.${k}`)}
-										</Button>
-									),
-								)}
+							{Object.entries(inside).map(([k, v]) =>
+								v.startsWith("/simple") ? (
+									<Preview src={v} key={k}>
+										{t(`urls.${k}`)}
+									</Preview>
+								) : (
+									<Button
+										key={k}
+										variant="contained"
+										color="primary"
+										href={v}
+										endIcon={<TurnSlightRightIcon />}
+										target="_blank"
+										sx={{ borderRadius: 15 }}
+									>
+										{t(`urls.${k}`)}
+									</Button>
+								),
+							)}
 						</Stack>
 					)}
 				</CardContent>

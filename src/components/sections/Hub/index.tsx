@@ -3,8 +3,8 @@ import HubTitles from "../../../components/HubTitles";
 import { HubMenu } from "../../HubMenu";
 import Box from "@mui/material/Box";
 import React from "react";
-import { Divider, styled } from "@mui/material";
-import { Footer } from "../../Footer";
+import { styled } from "@mui/material";
+import Footer from "../../Footer";
 
 const FooterContainer = styled(Box)`
 	position: absolute;
@@ -15,21 +15,18 @@ const FooterContainer = styled(Box)`
 	gap: 5px;
 	display: flex;
 	flex-direction: column;
+	top: auto;
 `;
 
 const Hub = () => (
-	<Box
-		display="flex"
-		alignItems="center"
-		justifyContent="center"
-		flexDirection="column"
-		height="100vh"
-	>
-		<ProfilePicture size={100} />
+	<Box display="flex" alignItems="center" flexDirection="column">
+		<Box display="flex" flexDirection="column" alignItems="center">
+			<ProfilePicture size={100} />
 
-		<HubTitles />
+			<HubTitles />
 
-		<HubMenu size="medium" />
+			<HubMenu size="medium" />
+		</Box>
 
 		<FooterContainer>
 			<Footer />

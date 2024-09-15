@@ -17,6 +17,7 @@ export const About = () => {
 			mt={2}
 			mb={2}
 			minHeight="50vh"
+			id="about"
 		>
 			<Grid item py={5}>
 				<ProfilePicture size={200} />

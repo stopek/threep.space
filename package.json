@@ -7,10 +7,11 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fontsource/mulish": "^5.0.18",
-    "@fontsource/roboto": "^5.0.13",
     "@mui/icons-material": "^5.15.21",
     "@mui/material": "^5.15.21",
     "@mui/x-charts": "^7.8.0",
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1",
     "@reduxjs/toolkit": "^2.2.6",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -19,7 +20,6 @@
     "@types/node": "^16.18.101",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "compass": "^0.1.1",
     "css-loader": "^7.1.2",
     "i18next": "^23.11.5",
     "i18next-browser-languagedetector": "^8.0.0",
@@ -36,6 +36,7 @@
     "sass": "^1.77.6",
     "sass-loader": "^14.2.1",
     "typescript": "^4.9.5",
+    "use-sound": "^4.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

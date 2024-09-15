@@ -20,16 +20,17 @@ export type TMenuItem =
 	| (IBaseMenuItem & { to: string; url?: never });
 
 export const HubMenu = ({ size = "inherit", onClick }: IHubMenu) => {
-	const { play } = useSound();
+	const { tap } = useSound();
 
-	const onButtonClick = () =>
-		play("tap")?.then(() => {
-			if (onClick) {
-				onClick();
-			}
+	const onButtonClick = () => {
+		tap();
 
-			window.scrollTo(0, 0);
-		});
+		if (onClick) {
+			onClick();
+		}
+
+		window.scrollTo(0, 0);
+	};
 
 	return (
 		<BottomNavigation
@@ -38,41 +39,37 @@ export const HubMenu = ({ size = "inherit", onClick }: IHubMenu) => {
 				display: "flex",
 				flexWrap: "wrap",
 				mt: 2,
-				gap: 3,
+				gap: 1,
 			}}
 			showLabels
 		>
 			{hub_urls.map(({ label, Icon, url, to }, key) =>
 				url ? (
 					<BottomNavigationAction
+						key={key}
 						label={label}
 						value={label}
 						style={{
 							display: "flex",
-							width: 80,
-							height: 80,
 							flex: 0,
-							borderRadius: "50%",
 						}}
-						icon={<Icon fontSize="medium" />}
+						icon={<Icon fontSize={size} />}
 						onClick={onButtonClick}
 						href={url}
 						target="_blank"
 					/>
 				) : to ? (
 					<BottomNavigationAction
+						key={key}
 						component={Link}
 						to={to}
 						label={label}
 						value={label}
 						style={{
 							display: "flex",
-							width: 80,
-							height: 80,
 							flex: 0,
-							borderRadius: "50%",
 						}}
-						icon={<Icon fontSize="medium" />}
+						icon={<Icon fontSize={size} />}
 						onClick={onButtonClick}
 					/>
 				) : (

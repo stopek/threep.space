@@ -1,13 +1,11 @@
 import { ISkill } from "./components/Skills/components/Skill";
 import { IWork } from "./components/Works/components/Work";
-import { IStackItem } from "./components/Works/components/StackItem";
 import { IStage } from "./components/Stages/components/Stage";
 import { IKnowItem } from "./components/Knowledge/components/KnowItem";
 import { IDesignItem } from "./components/Design/components/DesignItem";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
-import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import { TMenuItem } from "./components/HubMenu";
 
@@ -45,16 +43,6 @@ export const skillsData: ISkill[] = [
 	{
 		name: "python",
 		percentage: 25,
-	},
-];
-
-export const technologies_list: IStackItem[] = [
-	{
-		name: "react",
-		url: "https://google.com",
-	},
-	{
-		name: "angular",
 	},
 ];
 
@@ -172,8 +160,8 @@ export const works_list: IWork[] = [
 		},
 		category: ["react", "createit"],
 		inside: {
-			preview: "https://inside.threep.space/simple/mertegra",
-			storybook: "https://inside.threep.space/simple/mertegra-storybook",
+			preview: "/simple/mertegra",
+			storybook: "/simple/mertegra-storybook",
 		},
 		image: "/static/works/mertegra.jpg",
 		slug: "mertegta",
@@ -316,10 +304,25 @@ export const works_list: IWork[] = [
 		image: "/static/works/createit.jpg",
 		slug: "createit-recruitment-task",
 		inside: {
-			preview: "https://inside.threep.space/simple/taskcreateit",
+			preview: "/simple/taskcreateit",
 			github: "https://github.com/stopek/task-create-it",
 		},
 		last: true,
+	},
+	{
+		order: 4,
+		name: "SalonObuwniczy - footwear store",
+		description: {
+			pl: "",
+			en: 'The "Salon Obuwniczy" project is an online store of a company selling footwear. My role involved working on an existing tool/store created by another company, developing the store, and making improvements.',
+		},
+		category: ["rest", "ventus"],
+		stack: ["php", "mysql", "css", "html", "legacy"],
+		image: "/static/works/salonobuwniczy.jpg",
+		slug: "salon-obuwniczy",
+		inside: {
+			preview: "https://www.salonobuwniczy.pl",
+		},
 	},
 	{
 		about: { pl: "", en: "" },
@@ -334,7 +337,7 @@ export const works_list: IWork[] = [
 		image: "/static/works/szablony.jpg",
 		slug: "szablony-htmlcssjs",
 		inside: {
-			preview: "https://inside.threep.space/simple/bioline",
+			preview: "/simple/bioline",
 			github: "https://github.com/stopek/html-projects",
 		},
 	},
@@ -588,13 +591,13 @@ export const works_list: IWork[] = [
 	{
 		about: {
 			pl: "<strong>Główne funkcje:</strong><ol><li>Przeglądanie i wyszukiwanie wydarzeń</li><li>Panel zalogowanego organizatora i klienta</li><li>Płatności z podziałem na pakiety</li><li>Rezerwacje, kalendarze</li><li>Rejestracja, logowanie</li></ol>",
-			en: "<ol><li>Browsing and searching events</li><li>Logged-in organizer and client panel</li><li>Payments divided into packages</li><li>Reservations, calendars</li><li>Registration, login</li></ol>",
+			en: "<strong>Features:</strong><ol><li>Browsing and searching events</li><li>Logged-in organizer and client panel</li><li>Payments divided into packages</li><li>Reservations, calendars</li><li>Registration, login</li></ol>",
 		},
 		order: 5,
-		name: "Besist",
+		name: "Besist - internet entertainment hub",
 		description: {
-			pl: "<em>Internetowe centrum rozrywki</em><strong>Rola w projekcie:</strong><ol><li>Praca w zespole składającym się z 3 osób</li><li>Utworzenie portalu zgodnie z dostarczonym UI</li><li>Poprawki błędów</li></ol>",
-			en: "<strong>Main features:</strong><strong>Role in the project:</strong><ol><li>Worked in a team of 3 people</li><li>Created the portal based on provided UI designs</li><li>Bug fixes</li></ol>",
+			pl: "<strong>Rola w projekcie:</strong><ol><li>Praca w zespole składającym się z 3 osób</li><li>Utworzenie portalu zgodnie z dostarczonym UI</li><li>Poprawki błędów</li></ol>",
+			en: "<strong>Role in the project:</strong><ol><li>Worked in a team of 3 people</li><li>Created the portal based on provided UI designs</li><li>Bug fixes</li></ol>",
 		},
 		category: ["react", "ventus"],
 		stack: ["react", "js"],
@@ -629,7 +632,7 @@ export const works_list: IWork[] = [
 			en: "<em>Financial portal offering financial loans</em><strong>Role in the project:</strong><ol><li>Development of the existing platform</li><li>Implementation of changes according to business guidelines</li><li>Direct client communication</li><li>Code refactoring and fixes</li></ol>",
 		},
 		category: ["code_igniter", "mediart"],
-		stack: ["code_igniter", "mysql", "php", "html", "js"],
+		stack: ["code_igniter", "mysql", "php", "html", "js", "legacy"],
 		image: "/static/works/platformafinansowa.jpg",
 		slug: "platforma-finansowa",
 		inside: {
@@ -645,7 +648,7 @@ export const works_list: IWork[] = [
 			en: "<em>RastSC wholesale store</em><strong>Role in the project:</strong><ol><li>Created a refreshed version of the store based on provided UI</li><li>Refactored existing codebase</li></ol>",
 		},
 		category: ["code_igniter", "mediart"],
-		stack: ["code_igniter", "html", "css", "js", "jquery", "centos", "php", "mysql"],
+		stack: ["code_igniter", "html", "css", "js", "php", "mysql", "legacy"],
 		image: "/static/works/rastsc.jpg",
 		slug: "rastsc",
 		inside: {
@@ -655,7 +658,7 @@ export const works_list: IWork[] = [
 	{
 		about: {
 			pl: "<strong>Funkcjonalności:</strong><ol><li>Zarządzanie profilem organizacji</li><li>Łączenie użytkownika z organizacją</li><li>Płatności online</li><li>Lista oraz wyszukiwarka organizacji</li><li>Rejestracja, logowanie</li></ol>",
-			en: "<strong>Functionalities:</strong><ol><li>Organization profile management</li><li>User linking with organizations</li><li>Online payments</li><li>List and search functionality for organizations</li><li>Registration, login</li></ol>",
+			en: "<strong>Features:</strong><ol><li>Organization profile management</li><li>User linking with organizations</li><li>Online payments</li><li>List and search functionality for organizations</li><li>Registration, login</li></ol>",
 		},
 		order: 5,
 		stack: ["react", "js", "ts", "styled", "scss", "html"],
@@ -753,7 +756,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "freelancer"],
 		stack: ["code_igniter", "php", "mysql", "scss", "html"],
-		image: "/static/works/sellie.png",
+		image: "/static/works/sellie.jpg",
 		slug: "sellie",
 		inside: {
 			preview: "https://sellie.pl/",
@@ -780,8 +783,8 @@ export const works_list: IWork[] = [
 			en: "<em>Portal for sellers offering their products with cashback</em><strong>Role in the project:</strong><ol><li>Supporting the team, implementing fixes</li><li>Creating new user interfaces and landing pages</li></ol>",
 		},
 		category: ["rest", "ventus"],
-		stack: ["php", "css", "html"],
-		image: "/static/works/wirtu.png",
+		stack: ["php", "css", "html", "legacy"],
+		image: "/static/works/wirtu.jpg",
 		slug: "wirtu",
 		inside: {
 			archive: "https://web.archive.org/web/20161031073805/https://wirtu.pl/",
@@ -799,7 +802,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["rest", "freelancer"],
 		stack: ["csharp", "php", "mysql", "html", "css"],
-		image: "/static/works/infokiosk.png",
+		image: "/static/works/infokiosk.jpg",
 
 		slug: "infokiosk",
 	},
@@ -811,11 +814,11 @@ export const works_list: IWork[] = [
 		name: "PESARENA - Soccer League",
 		description: {
 			pl: "<em>Portal dla graczy Pro Evolution Soccer<strong>Sentymentalny projekt tworzony i rozwijany na przełomie 2008-2014</strong></em><strong>Rola w projekcie:</strong><ol><li>Tworzenie i rozwijanie portalu przez 2 lata</li><li>Kontakt z organizatorami i graczami, wdrażanie feedbacku i nowych pomysłów</li></ol>",
-			en: "<em>Portal for Pro Evolution Soccer players<strong>A sentimental project developed between 2008-2014</strong></em><strong>Role in the project:</strong><ol><li>Creating and developing the portal for 2 years</li><li>Communicating with organizers and players, implementing feedback and new ideas</li></ol>",
+			en: "<em>Portal for Pro Evolution Soccer players<small>A sentimental project developed between 2008-2014</small></em><strong>Role in the project:</strong><ol><li>Creating and developing the portal for 2 years</li><li>Communicating with organizers and players, implementing feedback and new ideas</li></ol>",
 		},
 		category: ["rest", "freelancer"],
 		stack: ["php", "html", "css", "photoshop"],
-		image: "/static/works/pesarena.png",
+		image: "/static/works/pesarena.jpg",
 		slug: "pesarena",
 		inside: {
 			archive: "https://web.archive.org/web/20140210082337/http://pesarena.pl/",
@@ -831,7 +834,7 @@ export const works_list: IWork[] = [
 			en: "<em>Game installed on slot machines</em><strong>Role in the project:</strong><ol><li>Debugging and fixing errors</li><li>Implementing changes</li><li>Performance optimization</li></ol>",
 		},
 		category: ["react", "createit"],
-		stack: ["react", "webpack", "js"],
+		stack: ["react", "webpack", "js", "legacy"],
 		image: "/static/works/nagm.jpg",
 		slug: "nagm-automat-z-grami-losujcymi",
 	},
@@ -844,9 +847,223 @@ export const works_list: IWork[] = [
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "scss", "js"],
 		slug: "mediart",
-		image: "/static/works/mediart.png",
+		image: "/static/works/mediart.jpg",
 		inside: {
 			archive: "https://web.archive.org/web/20210404052103/https://www.mediart.pl/",
+		},
+	},
+
+	// -- old --------------------------------
+	{
+		order: 0,
+		old: true,
+		name: "Zs2 Rypin",
+		description: {
+			pl: "Jest to strona główna technikum, do którego uczęszczałem. Projekt ten był jednym z pierwszych jakie wykonałem i do tej pory nie uległ zmianom.",
+			en: "Is the main page of the technical school attended by the author. This project was one of the first ones he executed, and it has remained unchanged to this day.",
+		},
+		category: ["freelancer"],
+		stack: ["php", "html", "css"],
+		slug: "zs2rypin",
+		image: "/static/works/zs2rypin.jpg",
+		inside: {
+			preview: "https://zs2rypin.pl",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		stack: ["code_igniter", "html", "scss", "js", "php", "mysql", "jquery"],
+		name: "Hotel Słoneczny Młyn",
+		description: {
+			pl: 'Projekt "Sloneczny.eu" to klasyczna strona hotelowa, stworzona dla hotelu o spersonalizowanym wyglądzie. Strona zawiera podstawowe informacje o hotelu oraz oferowane usługi. Moja rola w projekcie polegała na utworzeniu systemu w oparciu o dostarczoną dokumentację oraz projekt graficzny.',
+			en: 'The "Sloneczny.eu" project is a classic hotel website, created for a hotel with a personalized appearance. The website contains basic information about the hotel and the services offered. My role in the project was to create a system based on the provided documentation and graphic design.',
+		},
+		category: ["code_igniter", "mediart"],
+		slug: "hotel-soneczny-myn",
+		inside: {
+			archive: "https://web.archive.org/web/20220419180236/https://www.sloneczny.eu/",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		name: "Psychological tests tool for UKW",
+		description: {
+			pl: 'Projekt "BBCLAB TESTS" to platforma do przeprowadzania spersonalizowanych badań przez instytut psychologii. Projekt dostępny jedynie na GitHub’ie. Moja rola w projekcie polegała na ustaleniu wymagań z klientem i utworzeniu systemu do przeprowadzania, gromadzenia i analizowania wyników badań ankietowych.',
+			en: 'The "BBCLAB TESTS" project is a platform for conducting personalized research by the psychology institute. The project is available only on GitHub. My role in the project was to determine requirements with the client and create a system for conducting, collecting, and analyzing survey results.',
+		},
+		category: ["code_igniter", "mediart"],
+		stack: ["code_igniter", "php", "scss", "mysql", "html"],
+		slug: "testy-psychologiczne-dla-ukw",
+	},
+	{
+		order: 0,
+		old: true,
+		name: "Spare",
+		description: {
+			pl: 'Projekt "Spare.com.pl" to sklep dla firmy produkującej wózki widłowe oraz podobne. Moja rola w projekcie polegała na ustaleniu wymagań z klientem i utworzeniu systemu zgodnie z dostarczonym projektem graficznym.',
+			en: 'The "Spare.com.pl" project is a store for a company producing forklifts and similar products. My role in the project was to determine requirements with the client and create the system according to the provided graphic design.',
+		},
+		category: ["code_igniter", "mediart"],
+		stack: ["code_igniter", "html", "css", "js", "jquery", "centos", "php", "mysql"],
+		slug: "spare",
+		image: "/static/works/spare.jpg",
+		inside: {
+			archive: "https://web.archive.org/web/20231128143016/https://www.spare.com.pl/",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		name: "Abler",
+		description: {
+			pl: 'Projekt "Abler.pl" to standardowa strona reklamowa ze sklepem połączona z ERP Symfonia. Moja rola w projekcie polegała na modyfikacji istniejącego systemu oraz poprawianiu błędów.',
+			en: 'The "Abler.pl" project is a standard advertising website with a store connected to ERP Symfonia. My role in the project involved modifying the existing system and fixing bugs.',
+		},
+		category: ["code_igniter", "mediart"],
+		stack: ["code_igniter", "html", "scss", "js", "jquery", "php", "mysql"],
+		slug: "abler",
+		image: "/static/works/abler.jpg",
+		inside: {
+			archive: "https://web.archive.org/web/20220124160051/https://www.abler.pl/",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		name: "Prymus",
+		description: {
+			pl: 'Projekt "Prymus24.pl" to strona hurtowni z częściami RTV/AGD, zintegrowana z ERP Subiekt’a. Moja rola w projekcie polegała na wymianie interfejsu użytkownika przy zachowaniu aktualnych funkcjonalności.',
+			en: 'The "Prymus24.pl" project is a wholesaler website for electronic and household appliances parts, integrated with ERP Subiekt. My role in the project was to update the user interface while maintaining the current functionality.',
+		},
+		category: ["code_igniter", "mediart"],
+		stack: ["code_igniter", "html", "css", "js", "jquery", "php", "mysql"],
+		slug: "prymus-dzia-klimatyzacji",
+		image: "/static/works/prymus.jpg",
+		inside: {
+			archive: "https://web.archive.org/web/20220522135600/https://www.prymus24.pl/",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		name: "Studio3d",
+		description: {
+			pl: 'Projekt "Studio3d.com.pl" to sklep firmy sprzedającej grawerowane statuetki. Moja rola w projekcie polegała na wprowadzaniu zmian, rozbudowie sklepu oraz poprawach błędów.',
+			en: 'The "Studio3d.com.pl" project is a store for a company selling engraved figurines. My role in the project was to implement changes, expand the store, and fix errors.',
+		},
+		category: ["code_igniter", "mediart"],
+		stack: ["code_igniter", "html", "css", "php", "mysql"],
+		slug: "studio3d",
+		image: "/static/works/studio3d.jpg",
+		inside: {
+			preview: "https://www.studio3d.com.pl/",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		stack: ["code_igniter", "html", "css", "js", "jquery", "centos", "php", "mysql"],
+		name: "Salonik dla Pupila",
+		description: {
+			pl: 'Projekt "Salonik-dla-pupila.pl" to strona sklepu z produktami dla kotów/psów, połączona z ERP Subiekt’a. Moja rola w projekcie polegała na wymianie interfejsu użytkownika przy zachowaniu aktualnych funkcjonalności.',
+			en: 'The "Salonik-dla-pupila.pl" project is a website for a store selling products for cats/dogs, integrated with ERP Subiekt. My role in the project was to update the user interface while maintaining the current functionality.',
+		},
+		category: ["code_igniter", "mediart"],
+		slug: "salonik-dla-pupila",
+		image: "/static/works/salonikdlapupila.jpg",
+		inside: {
+			preview: "https://www.salonik-dla-pupila.pl",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		stack: ["code_igniter", "html", "css", "js", "jquery", "centos", "php", "mysql"],
+		name: "Muzeum Mydła i Historii Brudu",
+		description: {
+			pl: 'Projekt "Muzeum Mydła" to strona internetowa Bydgoskiego Muzeum Mydła, zaprojektowana zgodnie z wytycznymi klienta. Jest to klasyczna strona z możliwością rezerwacji biletów na wizytę. System rezerwacji biletów zosta...',
+			en: 'The "Soap Museum" project is a website for the Bydgoszcz Soap Museum, designed according to the client\'s guidelines. It is a classic website with the option to book tickets for a visit. The ticket booking system was...',
+		},
+		category: ["code_igniter", "mediart"],
+		image: "/static/works/muzeummydla.jpg",
+		slug: "muzeum-myda-i-historii-brudu",
+		inside: {
+			archive: "https://web.archive.org/web/20220425162720/https://muzeummydla.pl/",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		name: "UniShop",
+		description: {
+			pl: "UniShop to największy projekt, nad którym pracowałem po godzinach przez ponad rok. Projekt ten był w stylu RedCart, umożliwiając użytkownikom tworzenie i zarządzanie swoimi sklepami na jednym serwerze. Wewnątrz znajdowało się kilka osobnych paneli do zarządzania na różnych poziomach, skrypty tworzące subdomeny itp. Projekt jest dostępny tylko prywatnie na GitHub.",
+			en: "UniShop is the largest project I worked on after hours for over a year. This project was similar to RedCart, allowing users to create and manage their shops on one server. Inside, there were several separate management panels at different levels, scripts creating subdomains, etc. The project is only available privately on GitHub.",
+		},
+		category: ["symfony", "freelancer"],
+		stack: ["symfony", "php", "html", "mysql", "css", "centos", "lemp", "bash"],
+		slug: "unishop",
+	},
+	{
+		order: 0,
+		old: true,
+		name: "Bozka",
+		description: {
+			pl: 'Projekt "Bozka.eu" to strona Pani z miłym głosem, która sprzedawała kapelusze. Moja rola w projekcie polegała na pracy nad istniejącym systemem, naprawie błędów oraz wprowadzaniu modyfikacji.',
+			en: 'The "Bozka.eu" project is a website of a lady with a nice voice who sold hats. My role in the project involved working on the existing system, fixing bugs, and making modifications.',
+		},
+		category: ["code_igniter", "mediart"],
+		stack: ["code_igniter", "html", "scss", "css", "js", "jquery", "php", "mysql"],
+		slug: "bozka",
+		image: "/static/works/bozkaeu.jpg",
+		inside: {
+			archive: "https://web.archive.org/web/20211228084657/https://www.bozka.eu/",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		name: "Amb Perfumy",
+		description: {
+			pl: 'Projekt "Amb Perfumy" to sklep internetowy firmy zajmującej się sprzedażą perfum. Podobnie jak w przypadku "Amb Zabawki", moja rola polegała na utworzeniu sklepu opartego o CMS Shoper oraz na wprowadzaniu modyfikacji na tym CMS.',
+			en: 'The "Amb Perfumy" project is an online store of a company selling perfumes. Similar to the "Amb Zabawki" project, my role involved creating a store based on the Shoper CMS and making modifications to this CMS.',
+		},
+		category: ["php", "ventus"],
+		stack: ["php", "mysql", "css", "html", "centos"],
+		slug: "amb-perfumy",
+		image: "/static/works/ambperfumy.jpg",
+		inside: {
+			preview: "https://www.ambperfumy.pl/",
+		},
+	},
+	{
+		order: 0,
+		old: true,
+		name: "Amb Zabawki",
+		description: {
+			pl: 'Projekt "Amb Zabawki" to sklep internetowy firmy zajmującej się sprzedażą zabawek. Moja rola polegała na utworzeniu sklepu opartego o CMS Shoper oraz na wprowadzaniu modyfikacji na tym CMS.',
+			en: 'The "Amb Zabawki" project is an online store of a company selling toys. My role involved creating a store based on the Shoper CMS and making modifications to this CMS.',
+		},
+		category: ["php", "ventus"],
+		stack: ["php", "mysql", "css", "html", "centos"],
+		slug: "amb-zabawki",
+		image: "/static/works/ambzabawki.jpg",
+		inside: {
+			preview: "https://www.ambzabawki.pl/",
+		},
+	},
+	{
+		name: "Satellcad",
+		description: {
+			pl: 'Projekt "Satellcad.pl" to strona firmy sprzedającej akcesoria geodezyjne oraz budowlane. Moja rola w projekcie polegała na ustaleniu wymagań z klientem i utworzeniu systemu zgodnie z dostarczonym projektem graficznym.',
+			en: 'The "Satellcad.pl" project is a website for a company selling geodetic and construction accessories. My role in the project was to determine requirements with the client and create the system according to the provided graphic design.',
+		},
+		category: ["code_igniter", "mediart"],
+		stack: ["code_igniter", "html", "scss", "css", "js", "jquery", "php", "mysql"],
+		slug: "satellcad",
+		inside: {
+			archive: "https://web.archive.org/web/20220519042431/https://satellcad.pl/",
 		},
 	},
 ];
@@ -867,11 +1084,11 @@ export const hub_urls: TMenuItem[] = [
 		Icon: BusinessCenterIcon,
 		label: "Portfolio",
 	},
-	{
-		url: "https://stopekpawel.myportfolio.com",
-		Icon: LinkedCameraIcon,
-		label: "Photography",
-	},
+	// {
+	// 	url: "https://stopekpawel.myportfolio.com",
+	// 	Icon: LinkedCameraIcon,
+	// 	label: "Photography",
+	// },
 	{
 		url: "https://www.facebook.com/pawel.stopek",
 		Icon: FacebookIcon,

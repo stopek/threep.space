@@ -9,13 +9,26 @@ import "@fontsource/mulish/400.css";
 import "@fontsource/mulish/500.css";
 import "@fontsource/mulish/700.css";
 import "@fontsource/mulish/900.css";
+
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import Root from "./components/Root";
 
 import "./i18n";
+import { store } from "./store";
+import { Provider } from "react-redux";
+import ReactGA from "react-ga4";
+
+const ga = process.env.REACT_APP_GA;
+if (ga) {
+	ReactGA.initialize(ga);
+}
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
-root.render(<Root />);
+root.render(
+	<Provider store={store}>
+		<Root />
+	</Provider>,
+);
 
 // If you want your app to work offline and load faster, you can change unregister() to register()
 // below. Note this comes with some pitfalls. Learn more about service workers: https://cra.link/PWA

@@ -1,7 +1,10 @@
 import { MutableRefObject, useEffect, useRef } from "react";
 import { CursorDot, CursorDotOutline } from "./styled";
+import useDeviceDetection from "../../hooks/useDeviceDetection";
 
 const Cursor = () => {
+	const device = useDeviceDetection();
+
 	const delay = 15;
 
 	const dot: MutableRefObject<HTMLDivElement | null> = useRef(null);
@@ -17,7 +20,28 @@ const Cursor = () => {
 
 	const requestRef: MutableRefObject<number | null> = useRef(null);
 
+	const clean = () => {
+		document.body.classList.remove("dot-scroll");
+
+		document.removeEventListener("mousedown", mouseOverEvent);
+		document.removeEventListener("mouseup", mouseOutEvent);
+		document.removeEventListener("mousemove", mouseMoveEvent);
+		document.removeEventListener("mouseenter", mouseEnterEvent);
+		document.removeEventListener("mouseleave", mouseLeaveEvent);
+
+		if (requestRef.current) {
+			cancelAnimationFrame(requestRef.current);
+		}
+	};
+
 	useEffect(() => {
+		if (device !== "desktop") {
+			clean();
+			return;
+		}
+
+		document.body.classList.add("dot-scroll");
+
 		document.addEventListener("mousedown", mouseOverEvent);
 		document.addEventListener("mouseup", mouseOutEvent);
 		document.addEventListener("mousemove", mouseMoveEvent);
@@ -27,17 +51,9 @@ const Cursor = () => {
 		animateDotOutline();
 
 		return () => {
-			document.removeEventListener("mousedown", mouseOverEvent);
-			document.removeEventListener("mouseup", mouseOutEvent);
-			document.removeEventListener("mousemove", mouseMoveEvent);
-			document.removeEventListener("mouseenter", mouseEnterEvent);
-			document.removeEventListener("mouseleave", mouseLeaveEvent);
-
-			if (requestRef.current) {
-				cancelAnimationFrame(requestRef.current);
-			}
+			clean();
 		};
-	}, []);
+	}, [device]);
 
 	const toggleCursorVisibility = () => {
 		if (cursorVisible.current) {
@@ -129,6 +145,10 @@ const Cursor = () => {
 
 		requestRef.current = requestAnimationFrame(animateDotOutline);
 	};
+
+	if (device !== "desktop") {
+		return null;
+	}
 
 	return (
 		<>

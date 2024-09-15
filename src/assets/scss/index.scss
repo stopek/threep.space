@@ -3,21 +3,36 @@
 body {
 	overflow-x: hidden;
 	background: black;
-	overflow-y: scroll;
+	overflow-y: auto;
+
+	-webkit-overflow-scrolling: touch;
+	&.dot-scroll {
+		&, * {
+			cursor: none !important;
+		}
+	}
+
+	&.disable-scroll {
+		overflow-y: hidden;
+		height: 100% !important;
+	}
 }
 
+/* hide page scrollbar */
+html { scrollbar-width: none; } /* Firefox */
+body { -ms-overflow-style: none; } /* IE and Edge */
+body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
+/* end hide page scrollbar */
+
 body,
-html {
-	min-height: 100vh;
+html, #root {
 	margin: 0;
 	width: 100%;
+	min-height: 100svh;
 }
 
 #root {
-	display: grid;
-	min-height: 100vh;
-}
-
-* {
-	cursor: none !important;
+	flex-direction: column;
+	justify-content: center;
+	display: flex;
 }

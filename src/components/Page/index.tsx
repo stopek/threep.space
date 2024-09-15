@@ -1,14 +1,11 @@
 import React, { PropsWithChildren, ReactNode, useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Dial from "../Dial";
-import { ThemeButton } from "../ThemeButton";
 import ReactGA from "react-ga4";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import { styled } from "@mui/material";
 
 interface IPage {
 	elements?: ReactNode;
@@ -21,13 +18,6 @@ interface IPage {
 		full?: boolean;
 	};
 }
-
-const FullSize = styled(Box)`
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	position: absolute;
-`;
 
 const translate = (t: TFunction, seo: IPage["seo"]): IPage["seo"] => ({
 	...seo,
@@ -53,17 +43,12 @@ export const Page = ({
 			page: location.pathname,
 			title,
 		});
-	}, [location]);
+	}, [location, title]);
+
+	const containedPage = container ? <Container maxWidth="xl">{children}</Container> : children;
 
 	return (
 		<HelmetProvider>
-			{!disableNav && (
-				<>
-					<Dial />
-					<ThemeButton />
-				</>
-			)}
-
 			<Helmet>
 				<meta name="description" content={description} />
 				<title>{title}</title>
@@ -77,11 +62,7 @@ export const Page = ({
 				{elements}
 			</Helmet>
 
-			{container ? (
-				<Container maxWidth="xl">{children}</Container>
-			) : (
-				<FullSize>{children}</FullSize>
-			)}
+			{!disableNav ? <Dial>{containedPage}</Dial> : <>{containedPage}</>}
 		</HelmetProvider>
 	);
 };

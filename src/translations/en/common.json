@@ -4,10 +4,15 @@
 		"skills": "SKills",
 		"latest": "Latest",
 		"all": "All",
-		"portfolio": "Portfolio",
+		"portfolio": "Works",
 		"get_cv": "Get CV",
 		"design": "Design",
-		"copyright": "Copyright {{year}} - Paweł Stopczyński"
+		"copyright": "Copyright {{year}} - Paweł Stopczyński",
+		"old": "Archive",
+		"home": "Home",
+		"go_homepage": "Ho to homepage",
+		"my_projects": "Works",
+		"about_me": "About me"
 	},
 	"welcome": {
 		"first_line": "Hi, it's me, Paweł",
@@ -40,6 +45,7 @@
 		"hobby": "After hours, I'm an almost professional photographer, I ride a bike, I dance Cuban salsa, and sometimes I play the guitar. When it rains, I take care of plants and seek attention from my cat"
 	},
 	"technologies": {
+		"old": "Archive",
 		"latest": "Latest",
 		"all": "All",
 		"angular": "Angular",
@@ -77,7 +83,8 @@
 		"styled": "Styled Components",
 		"html": "HTML",
 		"tailwind": "Tailwind CSS",
-		"centos": "CentOS 8"
+		"centos": "CentOS 8",
+		"legacy": "Legacy Code"
 	},
 	"urls": {
 		"preview": "Web",
@@ -85,8 +92,8 @@
 		"ui": "UI",
 		"docs": "Docs",
 		"multimedia": "Media",
-		"github_backend": "GitHub",
-		"github_front": "GitHub",
+		"github_backend": "GitHub (backend)",
+		"github_front": "GitHub (frontend)",
 		"archive": "Web Archive",
 		"github": "GitHub"
 	},

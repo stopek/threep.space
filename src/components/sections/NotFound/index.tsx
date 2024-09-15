@@ -28,7 +28,7 @@ const NotFound = () => {
 					disableElevation
 					sx={{ borderRadius: 10 }}
 				>
-					Go to homepage
+					{t("txt.go_homepage")}
 				</Button>
 			</Box>
 		</Box>

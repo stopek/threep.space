@@ -9,7 +9,7 @@ import useSound from "../../hooks/useSound";
 const StyledButton = styled(Button)`
 	position: fixed;
 	right: 20px;
-	top: 80px;
+	top: 20px;
 	z-index: 10;
 	padding: 8px;
 	min-width: auto;
@@ -17,18 +17,25 @@ const StyledButton = styled(Button)`
 
 export const ThemeButton = () => {
 	const { handleSetTheme, settings } = useSettings();
-	const { play } = useSound();
+	const { on, off } = useSound();
 
 	const isDark = () => settings.theme === "dark";
-	const currentSet = () => handleSetTheme(isDark() ? "light" : "dark");
+	const toggleTheme = () => handleSetTheme(isDark() ? "light" : "dark");
 
 	return (
 		<StyledButton
 			aria-label="change theme"
 			color="inherit"
 			sx={{ borderRadius: "50%" }}
-			variant="outlined"
-			onClick={() => play(isDark() ? "on" : "off")?.then(currentSet)}
+			onClick={() => {
+				if (isDark()) {
+					on();
+				} else {
+					off();
+				}
+
+				toggleTheme();
+			}}
 		>
 			{isDark() ? (
 				<Brightness3Icon fontSize="small" />

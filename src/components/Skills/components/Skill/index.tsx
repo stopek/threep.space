@@ -1,10 +1,9 @@
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 
 export interface ISkill {
-	name: string;
+	name: Type.TSkill;
 	percentage: number;
 }
 
@@ -12,7 +11,7 @@ export const Skill = ({ name, percentage }: ISkill) => {
 	const { t } = useTranslation();
 
 	return (
-		<Box display="flex" gap={2} flexDirection="column" alignItems="center">
+		<>
 			<Gauge
 				height={100}
 				value={percentage}
@@ -37,6 +36,6 @@ export const Skill = ({ name, percentage }: ISkill) => {
 			<Typography variant="body2" textAlign="center">
 				{t(`skills.${name}`)}
 			</Typography>
-		</Box>
+		</>
 	);
 };

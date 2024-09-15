@@ -1,6 +1,7 @@
 import { styled } from "@mui/material";
+import Box from "@mui/material/Box";
 
-export const Container = styled("div")`
+export const Container = styled(Box)`
 	filter: blur(100px);
 	pointer-events: none;
 	position: fixed;

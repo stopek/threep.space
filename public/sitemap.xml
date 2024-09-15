@@ -5,10 +5,42 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://threep.space</loc>
-        <lastmod>2024-07-29</lastmod>
+        <lastmod>2024-09-14</lastmod>
     </url>
     <url>
-        <loc>https://threep.space</loc>
-        <lastmod>2024-07-29</lastmod>
+        <loc>https://threep.space/portfolio</loc>
+        <lastmod>2024-09-14</lastmod>
+    </url>
+    <url>
+        <loc>https://threep.space/portfolio/latest</loc>
+        <lastmod>2024-09-14</lastmod>
+    </url>
+    <url>
+        <loc>https://threep.space/portfolio/react</loc>
+        <lastmod>2024-09-14</lastmod>
+    </url>
+    <url>
+        <loc>https://threep.space/portfolio/angular</loc>
+        <lastmod>2024-09-14</lastmod>
+    </url>
+    <url>
+        <loc>https://threep.space/portfolio/symfony</loc>
+        <lastmod>2024-09-14</lastmod>
+    </url>
+    <url>
+        <loc>https://threep.space/portfolio/code_igniter</loc>
+        <lastmod>2024-09-14</lastmod>
+    </url>
+    <url>
+        <loc>https://threep.space/portfolio/rest</loc>
+        <lastmod>2024-09-14</lastmod>
+    </url>
+    <url>
+        <loc>https://threep.space/portfolio/all</loc>
+        <lastmod>2024-09-14</lastmod>
+    </url>
+    <url>
+        <loc>https://threep.space/portfolio/old</loc>
+        <lastmod>2024-09-14</lastmod>
     </url>
 </urlset>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ReactNode, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import AppBar from "@mui/material/AppBar";
@@ -8,8 +9,8 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import { ReactNode } from "react";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 const Transition = React.forwardRef(function Transition(
 	props: TransitionProps & {
@@ -25,19 +26,82 @@ interface IPreview {
 	src: string;
 }
 
+const simpleProjects: Record<string, string[]> = {
+	"/simple/bank-torun": ["index"],
+	"/simple/bioline": [
+		"index",
+		"cart",
+		"product_cart",
+		"products",
+		"products_ingredients",
+		"text",
+	],
+	"/simple/dominplus": ["index"],
+	"/simple/grant-studio": ["index", "about-us", "contact", "offer", "realized", "realized-step"],
+	"/simple/kwiaciarnia": [
+		"index",
+		"koszyk",
+		"podstrona_dodatki",
+		"podstrona_dodatki_karta",
+		"podstrona_kwiaty",
+		"podstrona_kwiaty_karta",
+		"podstrona_textowa",
+		"podstrona_wyszukiwania",
+	],
+	"/simple/melimelo": ["index"],
+	"/simple/poltrade": [
+		"about_us",
+		"contact",
+		"index",
+		"menu_with_tabs",
+		"offer",
+		"offer_text",
+		"realized",
+		"use_text",
+		"use_image",
+	],
+	"/simple/pozyczkafm": [
+		"index",
+		"index-calculator",
+		"wnioski_kredytowe-01-weryfikacja",
+		"wnioski_kredytowe-02-niepowodzenie",
+		"wnioski_kredytowe-03-pozytywna",
+		"wnioski_kredytowe-FAQ",
+		"wnioski_kredytowe-kontakt",
+		"wnioski_kredytowe-pozyczka",
+		"wnioski_kredytowe-wniosek",
+		"wnioski_kredytowe-wymogi",
+	],
+	"/simple/pozyczkowo": [
+		"index",
+		"index-calculator",
+		"wnioski_kredytowe-FAQ",
+		"wnioski_kredytowe-kontakt",
+		"wnioski_kredytowe-pozyczka",
+		"wnioski_kredytowe-wniosek",
+		"wnioski_kredytowe-wymogi",
+	],
+	"/simple/salon": ["index"],
+};
+
+const getNameFromSource = (src: string) => {
+	const split = src.split("/");
+	return split[split.length - 1];
+};
+
 export default function Preview({ children, src }: IPreview) {
 	const [open, setOpen] = React.useState(false);
+	const [currentSrc, setCurrentSrc] = useState<string>(src);
+	const [template, setTemplate] = useState<string>("index");
 
-	const split = src.split("/");
-	const name = split[split.length - 1];
-	const path = src;
+	const name = getNameFromSource(currentSrc);
 
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
-
-	const handleClose = () => {
-		setOpen(false);
+	const handleClickOpen = () => setOpen(true);
+	const handleChangeTemplate = (event: SelectChangeEvent) => setTemplate(event.target.value);
+	const handleClose = () => setOpen(false);
+	const handleChange = (event: SelectChangeEvent) => {
+		setCurrentSrc(event.target.value);
+		setTemplate("index");
 	};
 
 	return (
@@ -51,12 +115,52 @@ export default function Preview({ children, src }: IPreview) {
 			>
 				{children}
 			</Button>
+
 			<Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
 				<AppBar sx={{ position: "relative" }}>
 					<Toolbar>
-						<Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+						<Typography sx={{ ml: 2, flex: 4 }} variant="h6" component="div">
 							{name}
 						</Typography>
+
+						<FormControl sx={{ ml: 2, flex: 2, m: 1, minWidth: 120 }}>
+							<InputLabel id="demo-simple-select-helper-label">Project</InputLabel>
+							<Select
+								labelId="demo-simple-select-helper-label"
+								id="demo-simple-select-helper"
+								value={currentSrc}
+								label="Project"
+								onChange={handleChange}
+							>
+								{Object.keys(simpleProjects).map((simple, k) => {
+									return (
+										<MenuItem value={simple} key={k}>
+											{getNameFromSource(simple)}
+										</MenuItem>
+									);
+								})}
+							</Select>
+						</FormControl>
+
+						{currentSrc && simpleProjects[currentSrc] && (
+							<FormControl sx={{ ml: 2, flex: 2, m: 1 }}>
+								<InputLabel id="demo-simple-select-helper-label2">
+									Template
+								</InputLabel>
+								<Select
+									labelId="demo-simple-select-helper-label2"
+									id="demo-simple-select-helper2"
+									value={template}
+									label="Template"
+									onChange={handleChangeTemplate}
+								>
+									{simpleProjects[currentSrc].map(template => (
+										<MenuItem value={template}>{template}</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						)}
+
 						<IconButton
 							edge="end"
 							color="inherit"
@@ -69,12 +173,14 @@ export default function Preview({ children, src }: IPreview) {
 				</AppBar>
 
 				<iframe
-					key={path}
-					src={path}
+					key={currentSrc}
+					title=""
+					src={`https://inside.threep.space${currentSrc}/${template}`}
 					style={{
 						width: "100%",
 						height: "100%",
 						border: 0,
+						background: "white",
 					}}
 				/>
 			</Dialog>

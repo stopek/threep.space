@@ -6,7 +6,7 @@ import { Stages } from "../../components/Stages";
 import { Works } from "../../components/Works";
 import React from "react";
 import { Page } from "../../components/Page";
-import FooterSection from "../../components/sections/FooterSection";
+import Footer from "../../components/Footer";
 
 export const PortfolioContainer = () => (
 	<Page
@@ -22,7 +22,6 @@ export const PortfolioContainer = () => (
 		<Stages />
 		<Design />
 		<Works />
-
-		<FooterSection />
+		<Footer />
 	</Page>
 );

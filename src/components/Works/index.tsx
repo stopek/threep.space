@@ -12,6 +12,8 @@ const filterWorks = (filter: string) => {
 
 	if (filter === "latest") {
 		return list.filter(w => w?.last);
+	} else if (filter === "old") {
+		return list.filter(w => w?.old);
 	} else if (filter !== "all") {
 		return list.filter(w => w.category?.includes(filter));
 	}

@@ -1,7 +1,8 @@
 import { Container, Content, Spinner } from "./styled";
+import { BoxProps } from "@mui/material";
 
-export const Background = () => (
-	<Container>
+export const Background = (props: BoxProps) => (
+	<Container {...props}>
 		<Content>
 			<Spinner />
 		</Content>

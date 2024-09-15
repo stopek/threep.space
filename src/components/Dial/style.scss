@@ -1,160 +1,279 @@
-// ---------------------------
-// Vars & Helper Functions
-// ---------------------------
-
-// calculate a circle's circumference based on radius
-@function circumference($r) {
-	$pi: 3.141592653;
-	@return 2 * $pi * $r;
+:root {
+  --offset-value: 20;
+  --btn-size: 60;
+  --green: #fb6400;
 }
 
-.viewport {
-	margin: 0 auto;
-	overflow: hidden;
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: background-color 3.15s linear;
-	z-index: 10;
-	width: 0;
-	height: 0;
-
-	&.open {
-		width: 100%;
-		height: 100%;
-	}
+.wrapper {
+  position: relative;
 }
 
-.nav {
-	&__toggle {
-		display: inline-block;
-		position: fixed;
-		padding: 0;
-		border: 0;
-		background: transparent;
-		outline: 0;
-		right: 15px;
-		top: 15px;
-		cursor: pointer;
-		border-radius: 50%;
-		transition: background-color 0.15s linear;
-		z-index: 6000;
-
-		&:hover,
-		&:focus {
-			background-color: rgba(0, 0, 0, 0.5);
-		}
-	}
+.bg {
+  transform-origin: center center;
+  transition: transform .3s;
+  transform: translate(var(--translate-x), var(--translate-y)) scale(var(--scale));
+  will-change: transform;
+  pointer-events: none;
 }
 
-// ---------------------------
-// SVG Menu Icon
-// ---------------------------
-
-.menuicon {
-	display: block;
-	cursor: pointer;
-
-	transform: rotate(0deg);
-	transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-	&__bar,
-	&__circle {
-		fill: none;
-		stroke: currentColor;
-		stroke-width: 3;
-		stroke-linecap: round;
-	}
-
-	&__bar {
-		transform: rotate(0deg);
-		transform-origin: 50% 50%;
-		transition: transform 0.25s ease-in-out;
-	}
-
-	&__circle {
-		transition: stroke-dashoffset 0.3s linear 0.1s;
-		stroke-dashoffset: circumference(23); // 23 is the <circle>'s radius
-		stroke-dasharray: circumference(23);
-	}
+.btn {
+  position: fixed;
+  height: calc(var(--btn-size) * 1px);
+  width: calc(var(--btn-size) * 1px);
+  bottom: calc((var(--offset-value)) * 1px);
+  left: calc(50% - (var(--btn-size) / 2 * 1px));
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0;
+  padding: 0 15px;
+  border: none;
+  z-index: 100;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.splash {
-	position: absolute;
-	top: 40px;
-	right: 40px;
-	width: 1px;
-	height: 1px;
-	z-index: -40;
-
-	&::after {
-		content: "";
-		display: block;
-		position: absolute;
-		border-radius: 50%;
-
-		width: 284vmax;
-		height: 284vmax;
-		top: -142vmax;
-		left: -142vmax;
-
-		transform: scale(0);
-		transform-origin: 50% 50%;
-		transition: transform 0.5s cubic-bezier(0.755, 0.05, 0.855, 0.06);
-
-		// will-change tells the browser we plan to
-		// animate this property in the near future
-		will-change: transform;
-	}
+#toggle-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform .3s;
 }
 
-// ---------------------------
-// Active State
-// ---------------------------
+#toggle-btn span {
+  position: relative;
+  width: 100%;
+}
 
-.nav:target,
-.nav--open {
-	//scale the background circle to full size
-	> .splash::after {
-		transform: scale(1);
-	}
+#toggle-btn span {
+  margin-top: -4px;
+}
 
-	//animate the menu icon
-	.menuicon {
-		transform: rotate(180deg);
+#toggle-btn span + span {
+  margin-top: 8px;
+}
 
-		&__circle {
-			stroke-dashoffset: 0;
-		}
+#toggle-btn span:before,
+#toggle-btn span:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  background: currentColor;
+  opacity: 1;
+  height: 100%;
+  width: 50%;
+  height: 4px;
+  transition: .25s cubic-bezier(.6, 0, .3, 1);
+  transform-origin: center center;
+}
 
-		&__bar:nth-child(1),
-		&__bar:nth-child(4) {
-			opacity: 0;
-		}
+#toggle-btn span:before {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
 
-		&__bar:nth-child(2) {
-			transform: rotate(45deg);
-		}
+#toggle-btn span:after {
+  right: 0;
+  border-radius: 0 3px 3px 0;
+}
 
-		&__bar:nth-child(3) {
-			transform: rotate(-45deg);
-		}
-	}
+#toggle-btn.shown span:nth-of-type(1):before {
+  transform: translate3d(3px, 3.5px, 0) rotate(45deg);
+}
 
-	//show the nav items
-	.nav {
-		&__menu {
-			visibility: visible;
-		}
+#toggle-btn.shown span:nth-of-type(1):after {
+  transform: translate3d(-3px, 3.5px, 0) rotate(-45deg);
+}
 
-		&__item {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
+#toggle-btn.shown span:nth-of-type(3):before {
+  transform: translate3d(3px, -3.5px, 0) rotate(-45deg);
+}
+
+#toggle-btn.shown span:nth-of-type(3):after {
+  transform: translate3d(-3px, -3.5px, 0) rotate(45deg);
+}
+
+#toggle-btn.shown span:nth-of-type(2):before,
+#toggle-btn.shown span:nth-of-type(2):after {
+  opacity: 0.0001;
+}
+
+#toggle-btn.shown span:nth-of-type(2):before {
+  transform: translateX(-200%);
+}
+
+#toggle-btn.shown span:nth-of-type(2):after {
+  transform: translateX(200%);
+}
+
+#toggle-btn.shown:before {
+  transform: scale(.6);
+  transition: .2s;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  10% {
+    transform: scale(1);
+    opacity: .4;
+  }
+
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+#toggle-btn:before {
+  content: '';
+  transition: .2s .2s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 5px solid var(--green);
+  border-radius: inherit;
+  z-index: -2;
+  animation: pulse 3s infinite;
+}
+
+#toggle-btn.shown:before {
+  animation: none;
+  border: none;
+}
+
+#toggle-btn:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+nav {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  //z-index: 200;
+  pointer-events: none;
+
+  z-index: -100;
+}
+
+nav ul {
+  margin: auto;
+  pointer-events: auto;
+  text-align: center;
+}
+
+nav li {
+  font-size: 30px;
+  user-select: none;
+  transform: translate(-20px, 20px) scale(.9);
+  transition: 0s;
+  opacity: 0.0001;
+  visibility: hidden;
+  will-change: transform;
+}
+
+nav li + li {
+  margin-top: 30px;
+}
+
+#toggle-btn.shown ~ .wrapper nav {
+  z-index: 100;
+}
+
+#toggle-btn.shown ~ .wrapper nav li {
+  z-index: 100;
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  transition: .35s cubic-bezier(.4, 2.08, .55, 1);
+}
+
+#toggle-btn.shown ~ .wrapper nav li:nth-child(1) {
+  transition-delay: .15s;
+}
+
+#toggle-btn.shown ~ .wrapper nav li:nth-child(2) {
+  transition-delay: .125s;
+}
+
+#toggle-btn.shown ~ .wrapper nav li:nth-child(3) {
+  transition-delay: .1s;
+}
+
+/* ============
+LINK EFFECT
+============ */
+.link {
+  position: relative;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.link:before,
+.link:after {
+  position: absolute;
+  content: '';
+  height: 3px;
+  width: 50%;
+  background: var(--green);
+  top: calc(50% + 2px);
+  transition: transform .3s cubic-bezier(.5, .5, 0, 1);
+}
+
+.link:before {
+  left: 0;
+  transform: translateX(calc(-100% - 10px)) scaleX(0);
+  transform-origin: left;
+}
+
+.link:after {
+  right: 0;
+  transform: translateX(calc(100% + 10px)) scaleX(0);
+  transform-origin: right;
+}
+
+.link:hover:before {
+  transform: translateX(calc(-100% - 10px)) scaleX(1);
+  transform-origin: right;
+}
+
+.link:hover:after {
+  transform: translateX(calc(100% + 10px)) scaleX(1);
+  transform-origin: left;
+}
+
+
+a,
+a:visited,
+a:focus,
+a:active,
+a:link {
+  text-decoration: none;
+  outline: 0;
+}
+
+a {
+  transition: .2s ease-in-out;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
 }
