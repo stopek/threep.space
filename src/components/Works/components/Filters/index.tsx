@@ -35,23 +35,26 @@ export const Filters = () => {
 		});
 	}, []);
 
-	const changeFilter = useCallback((value: string, init?: boolean) => {
-		scrollToDiv("portfolio");
-		navigate("/portfolio/" + value);
-		handleSetValue(value);
+	const changeFilter = useCallback(
+		(value: string, init?: boolean) => {
+			scrollToDiv("portfolio");
+			navigate("/portfolio/" + value);
+			handleSetValue(value);
 
-		ReactGA.send({
-			hitType: "pageview",
-			page: document.location.href,
-			title: "works:" + value,
-		});
+			ReactGA.send({
+				hitType: "pageview",
+				page: document.location.href,
+				title: "works:" + value,
+			});
 
-		if (init) {
-			return;
-		}
+			if (init) {
+				return;
+			}
 
-		tap();
-	}, []);
+			tap();
+		},
+		[navigate, scrollToDiv, handleSetValue, tap],
+	);
 
 	useEffect(() => {
 		if (filterId) {
