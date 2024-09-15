@@ -40,7 +40,7 @@ export interface IWork {
 }
 
 interface ExpandMoreProps extends IconButtonProps {
-	expand: boolean;
+	expand: number;
 }
 
 const ExpandMore = styled((props: ExpandMoreProps) => {
@@ -89,7 +89,7 @@ export const Work = ({ name, image, description, about, stack = [], inside = {} 
 
 					{about?.en && (
 						<ExpandMore
-							expand={expanded}
+							expand={Number(expanded)}
 							onClick={handleExpandClick}
 							aria-expanded={expanded}
 							aria-label="show more"
