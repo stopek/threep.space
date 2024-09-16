@@ -124,7 +124,7 @@ export const Work = ({ name, image, description, about, stack = [], inside = {} 
 							mt={1}
 						>
 							{Object.entries(inside).map(([k, v]) =>
-								v.startsWith("/simple") ? (
+								v.startsWith("/") ? (
 									<Preview src={v} key={k}>
 										{t(`urls.${k}`)}
 									</Preview>

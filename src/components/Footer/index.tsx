@@ -10,21 +10,15 @@ const FooterText = styled(Typography)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	opacity: 0.3;
-	font-weight: 200;
+	font-weight: 100;
+	opacity: 0.5;
 `;
 
 const Footer = () => {
 	const { t } = useTranslation();
 
 	return (
-		<Box
-			alignItems="center"
-			justifyContent="center"
-			display="flex"
-			flexDirection="column"
-			mb={10}
-		>
+		<Box alignItems="center" justifyContent="center" display="flex" flexDirection="column">
 			<FooterText variant="subtitle2">
 				{t("txt.copyright", { year: new Date().getFullYear() })}
 			</FooterText>

@@ -12,7 +12,7 @@ const Logo = () => {
 	}, []);
 
 	return (
-		<Toolbar sx={{ justifyContent: "center" }}>
+		<Toolbar sx={{ justifyContent: "center", minHeight: "auto !important" }}>
 			<CodeOffIcon sx={{ display: { md: "flex" }, mr: 1 }} />
 			<Typography
 				variant="h6"

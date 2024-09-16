@@ -152,8 +152,8 @@ export const works_list: IWork[] = [
 		},
 		category: ["react", "createit"],
 		inside: {
-			preview: "/simple/mertegra",
-			storybook: "/simple/mertegra-storybook",
+			preview: "/mertegra",
+			storybook: "/mertegra-storybook",
 		},
 		image: "/static/works/mertegra.jpg",
 		slug: "mertegta",
@@ -296,7 +296,7 @@ export const works_list: IWork[] = [
 		image: "/static/works/createit.jpg",
 		slug: "createit-recruitment-task",
 		inside: {
-			preview: "/simple/taskcreateit",
+			preview: "/taskcreateit",
 			github: "https://github.com/stopek/task-create-it",
 		},
 		last: true,
@@ -329,7 +329,7 @@ export const works_list: IWork[] = [
 		image: "/static/works/szablony.jpg",
 		slug: "szablony-htmlcssjs",
 		inside: {
-			preview: "/simple/bioline",
+			preview: "/bioline",
 			github: "https://github.com/stopek/html-projects",
 		},
 	},

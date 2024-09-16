@@ -1,5 +1,8 @@
 RewriteEngine On
+RewriteBase /
 
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
 RewriteCond %{HTTP_HOST} ^threep\.space [NC]
 RewriteRule ^(createit|mediart|ventus)$ https://threep.space/portfolio/latest [NE,L,R=302]
@@ -15,6 +18,7 @@ RewriteRule ^([a-z]?)$ https://threep.space/portfolio/latest [NE,L,R=302]
 #
 RewriteCond %{HTTP_HOST} ^me\.threep\.space [NC]
 RewriteRule ^(.*)?$ https://threep.space/portfolio/%1 [NE,L,R=302]
+
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

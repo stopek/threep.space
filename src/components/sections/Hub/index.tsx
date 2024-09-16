@@ -20,7 +20,7 @@ const FooterContainer = styled(Box)`
 
 const Hub = () => (
 	<Box display="flex" alignItems="center" flexDirection="column">
-		<Box display="flex" flexDirection="column" alignItems="center">
+		<Box display="flex" flexDirection="column" alignItems="center" component="header">
 			<ProfilePicture size={100} />
 
 			<HubTitles />
@@ -28,7 +28,7 @@ const Hub = () => (
 			<HubMenu size="medium" />
 		</Box>
 
-		<FooterContainer>
+		<FooterContainer component="footer">
 			<Footer />
 		</FooterContainer>
 	</Box>

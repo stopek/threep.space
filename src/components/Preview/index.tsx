@@ -27,18 +27,11 @@ interface IPreview {
 }
 
 const simpleProjects: Record<string, string[]> = {
-	"/simple/bank-torun": ["index"],
-	"/simple/bioline": [
-		"index",
-		"cart",
-		"product_cart",
-		"products",
-		"products_ingredients",
-		"text",
-	],
-	"/simple/dominplus": ["index"],
-	"/simple/grant-studio": ["index", "about-us", "contact", "offer", "realized", "realized-step"],
-	"/simple/kwiaciarnia": [
+	"/bank-torun": ["index"],
+	"/bioline": ["index", "cart", "product_cart", "products", "products_ingredients", "text"],
+	"/dominplus": ["index"],
+	"/grant-studio": ["index", "about-us", "contact", "offer", "realized", "realized-step"],
+	"/kwiaciarnia": [
 		"index",
 		"koszyk",
 		"podstrona_dodatki",
@@ -48,8 +41,8 @@ const simpleProjects: Record<string, string[]> = {
 		"podstrona_textowa",
 		"podstrona_wyszukiwania",
 	],
-	"/simple/melimelo": ["index"],
-	"/simple/poltrade": [
+	"/melimelo": ["index"],
+	"/poltrade": [
 		"about_us",
 		"contact",
 		"index",
@@ -60,7 +53,7 @@ const simpleProjects: Record<string, string[]> = {
 		"use_text",
 		"use_image",
 	],
-	"/simple/pozyczkafm": [
+	"/pozyczkafm": [
 		"index",
 		"index-calculator",
 		"wnioski_kredytowe-01-weryfikacja",
@@ -72,7 +65,7 @@ const simpleProjects: Record<string, string[]> = {
 		"wnioski_kredytowe-wniosek",
 		"wnioski_kredytowe-wymogi",
 	],
-	"/simple/pozyczkowo": [
+	"/pozyczkowo": [
 		"index",
 		"index-calculator",
 		"wnioski_kredytowe-FAQ",
@@ -81,7 +74,7 @@ const simpleProjects: Record<string, string[]> = {
 		"wnioski_kredytowe-wniosek",
 		"wnioski_kredytowe-wymogi",
 	],
-	"/simple/salon": ["index"],
+	"/salon": ["index"],
 };
 
 const getNameFromSource = (src: string) => {

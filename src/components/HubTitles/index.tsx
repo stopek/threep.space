@@ -9,12 +9,12 @@ const HubTitles = () => {
 
 	return (
 		<Titles>
-			<Typography variant="h4" fontWeight={600} px={5}>
+			<Typography variant="h4" fontWeight={600} px={5} component="h1">
 				{t("welcome.first_line")}
 			</Typography>
 
-			<Divider>
-				<Typography variant="h6" fontWeight={200}>
+			<Divider component="div">
+				<Typography variant="h6" fontWeight={200} component="h2">
 					{t("welcome.second_line")}
 				</Typography>
 			</Divider>
