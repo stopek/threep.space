@@ -85,19 +85,19 @@ export const design_items: IDesignItem[] = [
 export const stages_list: IStage[] = [
 	{
 		name: "angular",
-		icon: "/static/stages/angular.png",
+		icon: "/stages/angular.png",
 	},
 	{
 		name: "scrum",
-		icon: "/static/stages/scrum.png",
+		icon: "/stages/scrum.png",
 	},
 	{
 		name: "react",
-		icon: "/static/stages/react.png",
+		icon: "/stages/react.png",
 	},
 	{
 		name: "symfony",
-		icon: "/static/stages/symfony.png",
+		icon: "/stages/symfony.png",
 	},
 ];
 
@@ -110,7 +110,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["angular", "createit"],
 		stack: ["angular", "prime", "ts", "tailwind", "jest"],
-		image: "/static/works/emercator.jpg",
+		image: "/works/emercator.jpg",
 		slug: "emercator",
 		inside: {
 			preview: "https://emercator.com",
@@ -120,7 +120,7 @@ export const works_list: IWork[] = [
 	{
 		order: 10,
 		name: "Deskou - Finding places to work",
-		image: "/static/works/deskou.jpg",
+		image: "/works/deskou.jpg",
 		description: {
 			pl: "<em>Portal, umożliwiający znalezienie obiektu noclegowego z naciskiem na komfort pracy</em><strong>Rola w projekcie:</strong><ol><li>Utworzenie portalu w oparciu o UI</li><li>Kontakt z klientem i zespołem</li><li>Późniejsza rozbudowa</li><li>Integracja z REST Laravel</li><li>Praca w 3-osobowym zespole</li></ol>",
 			en: "<em>Portal for finding accommodation with a focus on work comfort</em><strong>Role in the project:</strong><ol><li>Creating the portal based on the UI</li><li>Communication with the client and the team</li><li>Subsequent development</li><li>Integration with REST Laravel</li><li>Working in a 3-person team</li></ol>",
@@ -155,7 +155,7 @@ export const works_list: IWork[] = [
 			preview: "/mertegra",
 			storybook: "/mertegra-storybook",
 		},
-		image: "/static/works/mertegra.jpg",
+		image: "/works/mertegra.jpg",
 		slug: "mertegta",
 		last: true,
 	},
@@ -172,7 +172,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["react", "ventus"],
 		stack: ["react", "ts", "material", "storybook"],
-		image: "/static/works/localbini.jpg",
+		image: "/works/localbini.jpg",
 		slug: "localbini",
 		inside: {
 			preview: "https://localbini.com",
@@ -192,7 +192,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["symfony", "mediart"],
 		stack: ["symfony", "mysql", "js", "scss"],
-		image: "/static/works/saferfq.jpg",
+		image: "/works/saferfq.jpg",
 		slug: "saferfq",
 		inside: {
 			docs: "https://drive.google.com/file/d/1WjuB9B0OhO-7iBRDY9y5rlapGvJfow6w/view?usp=sharing",
@@ -213,7 +213,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["symfony", "mediart"],
 		stack: ["symfony", "mysql", "scss", "js"],
-		image: "/static/works/pactumwindykacja.jpg",
+		image: "/works/pactumwindykacja.jpg",
 		slug: "pactum-windykacja",
 		inside: {
 			docs: "https://docs.google.com/document/d/1I9qdYkCj_FAG3aUvCyrOwTo39_axka4O/edit?rtpof=true",
@@ -234,7 +234,7 @@ export const works_list: IWork[] = [
 			en: "<em>Portal for World of Tanks players</em><strong>Role in the project:</strong><ol><li>Developing the frontend application</li><li>Creating the API with Symfony</li><li>Integration with the Wargaming API</li><li>Data analysis from the game's API</li><li>VPS configuration and management</li></ol>",
 		},
 		category: ["symfony", "freelancer", "react"],
-		image: "/static/works/wotfans.jpg",
+		image: "/works/wotfans.jpg",
 		slug: "wotfansapi",
 		inside: {
 			github_backend: "https://github.com/stopek/symfony-wargaming-api",
@@ -255,7 +255,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["symfony", "freelancer"],
 		stack: ["symfony", "mysql", "scss", "js"],
-		image: "/static/works/kaszubskizakatek.jpg",
+		image: "/works/kaszubskizakatek.jpg",
 		slug: "kaszubski-zaktek",
 		inside: {
 			preview: "https://kaszubskizakatek.pl",
@@ -275,7 +275,7 @@ export const works_list: IWork[] = [
 			en: "<em>An e-commerce store selling gadgets</em><strong>Role in the project:</strong><ol><li>Building the store from scratch based on provided UI</li><li>Integration with Laravel REST API</li><li>Bug fixes and ongoing development</li></ol>",
 		},
 		category: ["react", "ventus"],
-		image: "/static/works/projektgadzet.jpg",
+		image: "/works/projektgadzet.jpg",
 		slug: "projekt-gadet",
 		inside: {
 			preview: "https://projekt-gadzet.pl/",
@@ -293,7 +293,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["react", "createit"],
 		stack: ["react", "ts", "styled"],
-		image: "/static/works/createit.jpg",
+		image: "/works/createit.jpg",
 		slug: "createit-recruitment-task",
 		inside: {
 			preview: "/taskcreateit",
@@ -310,7 +310,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["rest", "ventus"],
 		stack: ["php", "mysql", "css", "html", "legacy"],
-		image: "/static/works/salonobuwniczy.jpg",
+		image: "/works/salonobuwniczy.jpg",
 		slug: "salon-obuwniczy",
 		inside: {
 			preview: "https://www.salonobuwniczy.pl",
@@ -326,7 +326,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["ventus", "rest"],
 		stack: ["html", "css", "js", "jquery"],
-		image: "/static/works/szablony.jpg",
+		image: "/works/szablony.jpg",
 		slug: "szablony-htmlcssjs",
 		inside: {
 			preview: "/bioline",
@@ -346,7 +346,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["symfony", "freelancer"],
 		stack: ["symfony", "mysql", "scss", "js", "html"],
-		image: "/static/works/pokochajkampera.jpg",
+		image: "/works/pokochajkampera.jpg",
 		slug: "pokochaj-kampera",
 		inside: {
 			preview: "https://pokochajkampera.pl/",
@@ -365,7 +365,7 @@ export const works_list: IWork[] = [
 			en: "<em>Online art gallery</em><strong>Role in the project:</strong><ol><li>Developing the application according to UI specifications</li><li>Integration with Laravel REST API</li><li>Client communication, implementing adjustments</li></ol>",
 		},
 		category: ["react", "ventus"],
-		image: "/static/works/mkartgallery.jpg",
+		image: "/works/mkartgallery.jpg",
 
 		slug: "mkart-gallery",
 		inside: {
@@ -393,7 +393,7 @@ export const works_list: IWork[] = [
 		order: 7,
 		stack: ["python"],
 		name: "GreenHouse - Accelerating Plant Growth",
-		image: "/static/works/greenhouse.jpg",
+		image: "/works/greenhouse.jpg",
 		description: {
 			pl: "<em>Hobbystyczny projekt szklarni przyspieszającej wzrost roślin</em><strong>Wykonane prace:</strong><ol><li>Oprogramowanie układu ESP32-C zgodnie z opisem dostępnym w sekcji 'MULTIMEDIA'</li><li>Utworzenie narzędzia umożliwiającego zdalne zarządzanie szklarnią</li><li>Zmontowanie półki z paneli podłogowych oraz prętów z Castoramy</li><li>Utworzenie listw z profili mlecznych z Castoramy oraz taśmy RGB</li><li>Montaż całości i dalsza hodowla pomidorów i papryczek</li></ol>",
 			en: "<em>Hobby greenhouse project accelerating plant growth</em><strong>Completed tasks:</strong><ol><li>Programming ESP32-C system as described in the 'MULTIMEDIA' section</li><li>Creation of a tool enabling remote greenhouse management</li><li>Assembly of shelves from floor panels and rods from Castorama</li><li>Creation of strips from milky profiles from Castorama and RGB tape</li><li>Assembly of the entire structure and further cultivation of tomatoes and peppers</li></ol>",
@@ -416,7 +416,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "freelancer"],
 		stack: ["code_igniter", "php", "mysql", "scss", "html"],
-		image: "/static/works/kancelaria.jpg",
+		image: "/works/kancelaria.jpg",
 		slug: "kancelaria-prawna",
 		inside: {
 			preview: "https://kancelariadrozdowski.pl/",
@@ -432,7 +432,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["freelancer"],
 		stack: ["cpp"],
-		image: "/static/works/plantcare.jpg",
+		image: "/works/plantcare.jpg",
 		slug: "plantcare",
 	},
 	{
@@ -460,7 +460,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "scss", "css", "js", "jquery", "php", "mysql"],
-		image: "/static/works/hanplast.jpg",
+		image: "/works/hanplast.jpg",
 		slug: "hanplast-energy",
 		inside: {
 			preview: "https://hanplast.energy",
@@ -476,7 +476,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "scss", "js"],
-		image: "/static/works/silky24.jpg",
+		image: "/works/silky24.jpg",
 		slug: "silky24",
 		inside: {
 			archive: "https://web.archive.org/web/20180515005059/http://www.silky24.pl:80/",
@@ -492,7 +492,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["freelancer", "rest"],
 		stack: ["csharp", "php"],
-		image: "/static/works/printorder.jpg",
+		image: "/works/printorder.jpg",
 		slug: "drukarka-naklejek-zamwie",
 	},
 	{
@@ -508,7 +508,7 @@ export const works_list: IWork[] = [
 			en: "<em>A platform with courses for playwrights</em><strong>Role in the project:</strong><ol><li>Development of the tool according to the provided UI and specifications</li><li>Integration with Laravel REST API</li></ol>",
 		},
 		category: ["react", "ventus"],
-		image: "/static/works/dramatopisarze.jpg",
+		image: "/works/dramatopisarze.jpg",
 
 		slug: "klub-melpomeny",
 		inside: {
@@ -528,7 +528,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["react", "ventus"],
 		stack: ["react", "redux", "styled", "scss", "html"],
-		image: "/static/works/kursbox.jpg",
+		image: "/works/kursbox.jpg",
 
 		slug: "kursbox",
 		inside: {
@@ -560,7 +560,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["rest", "freelancer"],
 		stack: ["html", "css", "php", "photoshop"],
-		image: "/static/works/socialninja.jpg",
+		image: "/works/socialninja.jpg",
 		slug: "social-ninja",
 	},
 	{
@@ -573,7 +573,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "scss", "js"],
-		image: "/static/works/belma.jpg",
+		image: "/works/belma.jpg",
 
 		slug: "belma",
 		inside: {
@@ -593,7 +593,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["react", "ventus"],
 		stack: ["react", "js"],
-		image: "/static/works/besist.jpg",
+		image: "/works/besist.jpg",
 		slug: "besist-internetowe-centrum-rozrywki",
 		inside: {
 			preview: "https://besist.com",
@@ -609,7 +609,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "scss", "css", "js", "jquery", "php", "mysql"],
-		image: "/static/works/hypertectum.jpg",
+		image: "/works/hypertectum.jpg",
 		slug: "hypertectum",
 		inside: {
 			preview: "https://hypertectum.pl/",
@@ -625,7 +625,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "mysql", "php", "html", "js", "legacy"],
-		image: "/static/works/platformafinansowa.jpg",
+		image: "/works/platformafinansowa.jpg",
 		slug: "platforma-finansowa",
 		inside: {
 			preview: "https://www.platformafinansowa.pl/",
@@ -641,7 +641,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "css", "js", "php", "mysql", "legacy"],
-		image: "/static/works/rastsc.jpg",
+		image: "/works/rastsc.jpg",
 		slug: "rastsc",
 		inside: {
 			preview: "https://www.rastsc.pl",
@@ -660,7 +660,7 @@ export const works_list: IWork[] = [
 			en: "<em>Platform for aggregating public benefit organizations</em><strong>Role in the project:</strong><ol><li>Created the website according to provided UI designs</li><li>Bug fixes</li></ol>",
 		},
 		category: ["react", "ventus"],
-		image: "/static/works/organizacjepozytku.jpg",
+		image: "/works/organizacjepozytku.jpg",
 
 		slug: "organizacje-poytku-publicznego",
 		inside: {
@@ -680,7 +680,7 @@ export const works_list: IWork[] = [
 			en: "<em>2etaty.pl – online job marketplace</em><strong>Role in the project:</strong><ol><li>Designing and implementing features</li><li>Creating user interfaces</li><li>Client communication</li></ol>",
 		},
 		category: ["react", "ventus"],
-		image: "/static/works/2etaty.jpg",
+		image: "/works/2etaty.jpg",
 		slug: "dwa-etaty",
 		inside: {
 			ui: "https://drive.google.com/drive/u/2/folders/1oDgsEflTFaoAYkcocdK9Ke6bJU3ZxUGi",
@@ -697,7 +697,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "php", "mysql", "scss", "html"],
-		image: "/static/works/skrawmech.jpg",
+		image: "/works/skrawmech.jpg",
 		slug: "skrawmech",
 		inside: {
 			archive: "https://web.archive.org/web/20211224232936/https://skraw-mech.com.pl/",
@@ -713,7 +713,7 @@ export const works_list: IWork[] = [
 			en: "<em>Product system for a company specializing in fences and small architecture</em><strong>Role in the project:</strong><ol><li>Created the website based on provided UI designs</li><li>Implemented the company's CMS to manage textual content</li><li>Client liaison</li></ol>",
 		},
 		category: ["code_igniter", "mediart"],
-		image: "/static/works/cityspace.jpg",
+		image: "/works/cityspace.jpg",
 
 		slug: "cityspace",
 		inside: {
@@ -730,7 +730,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "css", "jquery", "php", "mysql"],
-		image: "/static/works/sprezmot.jpg",
+		image: "/works/sprezmot.jpg",
 		slug: "sprezmot",
 		inside: {
 			archive: "https://web.archive.org/web/20220817064434/https://sprez-mot.pl/",
@@ -748,14 +748,14 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "freelancer"],
 		stack: ["code_igniter", "php", "mysql", "scss", "html"],
-		image: "/static/works/sellie.jpg",
+		image: "/works/sellie.jpg",
 		slug: "sellie",
 		inside: {
 			preview: "https://sellie.pl/",
 		},
 	},
 	{
-		image: "/static/works/okuchnie.jpg",
+		image: "/works/okuchnie.jpg",
 		name: "Custom-made kitchen",
 		description: {
 			pl: "<em>Strona produktowa firmy tworzącej meble na wymiar</em><strong>Rola w projekcie:</strong><ol><li>Utworzenie projektu (Photoshop)</li><li>Utworzenie strony</li><li>Realizacja end-to-end, kontakt z klientem</li></ol>",
@@ -776,7 +776,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["rest", "ventus"],
 		stack: ["php", "css", "html", "legacy"],
-		image: "/static/works/wirtu.jpg",
+		image: "/works/wirtu.jpg",
 		slug: "wirtu",
 		inside: {
 			archive: "https://web.archive.org/web/20161031073805/https://wirtu.pl/",
@@ -794,7 +794,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["rest", "freelancer"],
 		stack: ["csharp", "php", "mysql", "html", "css"],
-		image: "/static/works/infokiosk.jpg",
+		image: "/works/infokiosk.jpg",
 
 		slug: "infokiosk",
 	},
@@ -810,7 +810,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["rest", "freelancer"],
 		stack: ["php", "html", "css", "photoshop"],
-		image: "/static/works/pesarena.jpg",
+		image: "/works/pesarena.jpg",
 		slug: "pesarena",
 		inside: {
 			archive: "https://web.archive.org/web/20140210082337/http://pesarena.pl/",
@@ -827,7 +827,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["react", "createit"],
 		stack: ["react", "webpack", "js", "legacy"],
-		image: "/static/works/nagm.jpg",
+		image: "/works/nagm.jpg",
 		slug: "nagm-automat-z-grami-losujcymi",
 	},
 	{
@@ -839,7 +839,7 @@ export const works_list: IWork[] = [
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "scss", "js"],
 		slug: "mediart",
-		image: "/static/works/mediart.jpg",
+		image: "/works/mediart.jpg",
 		inside: {
 			archive: "https://web.archive.org/web/20210404052103/https://www.mediart.pl/",
 		},
@@ -857,7 +857,7 @@ export const works_list: IWork[] = [
 		category: ["freelancer"],
 		stack: ["php", "html", "css"],
 		slug: "zs2rypin",
-		image: "/static/works/zs2rypin.jpg",
+		image: "/works/zs2rypin.jpg",
 		inside: {
 			preview: "https://zs2rypin.pl",
 		},
@@ -900,7 +900,7 @@ export const works_list: IWork[] = [
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "css", "js", "jquery", "centos", "php", "mysql"],
 		slug: "spare",
-		image: "/static/works/spare.jpg",
+		image: "/works/spare.jpg",
 		inside: {
 			archive: "https://web.archive.org/web/20231128143016/https://www.spare.com.pl/",
 		},
@@ -916,7 +916,7 @@ export const works_list: IWork[] = [
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "scss", "js", "jquery", "php", "mysql"],
 		slug: "abler",
-		image: "/static/works/abler.jpg",
+		image: "/works/abler.jpg",
 		inside: {
 			archive: "https://web.archive.org/web/20220124160051/https://www.abler.pl/",
 		},
@@ -932,7 +932,7 @@ export const works_list: IWork[] = [
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "css", "js", "jquery", "php", "mysql"],
 		slug: "prymus-dzia-klimatyzacji",
-		image: "/static/works/prymus.jpg",
+		image: "/works/prymus.jpg",
 		inside: {
 			archive: "https://web.archive.org/web/20220522135600/https://www.prymus24.pl/",
 		},
@@ -948,7 +948,7 @@ export const works_list: IWork[] = [
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "css", "php", "mysql"],
 		slug: "studio3d",
-		image: "/static/works/studio3d.jpg",
+		image: "/works/studio3d.jpg",
 		inside: {
 			preview: "https://www.studio3d.com.pl/",
 		},
@@ -964,7 +964,7 @@ export const works_list: IWork[] = [
 		},
 		category: ["code_igniter", "mediart"],
 		slug: "salonik-dla-pupila",
-		image: "/static/works/salonikdlapupila.jpg",
+		image: "/works/salonikdlapupila.jpg",
 		inside: {
 			preview: "https://www.salonik-dla-pupila.pl",
 		},
@@ -979,7 +979,7 @@ export const works_list: IWork[] = [
 			en: 'The "Soap Museum" project is a website for the Bydgoszcz Soap Museum, designed according to the client\'s guidelines. It is a classic website with the option to book tickets for a visit. The ticket booking system was...',
 		},
 		category: ["code_igniter", "mediart"],
-		image: "/static/works/muzeummydla.jpg",
+		image: "/works/muzeummydla.jpg",
 		slug: "muzeum-myda-i-historii-brudu",
 		inside: {
 			archive: "https://web.archive.org/web/20220425162720/https://muzeummydla.pl/",
@@ -1008,7 +1008,7 @@ export const works_list: IWork[] = [
 		category: ["code_igniter", "mediart"],
 		stack: ["code_igniter", "html", "scss", "css", "js", "jquery", "php", "mysql"],
 		slug: "bozka",
-		image: "/static/works/bozkaeu.jpg",
+		image: "/works/bozkaeu.jpg",
 		inside: {
 			archive: "https://web.archive.org/web/20211228084657/https://www.bozka.eu/",
 		},
@@ -1024,7 +1024,7 @@ export const works_list: IWork[] = [
 		category: ["php", "ventus"],
 		stack: ["php", "mysql", "css", "html", "centos"],
 		slug: "amb-perfumy",
-		image: "/static/works/ambperfumy.jpg",
+		image: "/works/ambperfumy.jpg",
 		inside: {
 			preview: "https://www.ambperfumy.pl/",
 		},
@@ -1040,7 +1040,7 @@ export const works_list: IWork[] = [
 		category: ["php", "ventus"],
 		stack: ["php", "mysql", "css", "html", "centos"],
 		slug: "amb-zabawki",
-		image: "/static/works/ambzabawki.jpg",
+		image: "/works/ambzabawki.jpg",
 		inside: {
 			preview: "https://www.ambzabawki.pl/",
 		},

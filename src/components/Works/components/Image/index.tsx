@@ -36,7 +36,7 @@ const HoverImage = styled("img")`
 export const Image = ({ image, title }: IImage) => (
 	<ImageContainer sx={{ width: { xs: "100%", sm: 500 } }} image={image?.toString()} elevation={2}>
 		{image ? (
-			<HoverImage src={image} alt={title} loading="lazy" />
+			<HoverImage src={process.env.R2 + image} alt={title} loading="lazy" />
 		) : (
 			<Box display="flex" alignItems="center" justifyContent="center" height="100%">
 				<ImagesearchRollerIcon />
