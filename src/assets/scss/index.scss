@@ -4,8 +4,8 @@ body {
 	overflow-x: hidden;
 	background: black;
 	overflow-y: auto;
-
 	-webkit-overflow-scrolling: touch;
+
 	&.dot-scroll {
 		&,
 		* {
@@ -18,19 +18,6 @@ body {
 		height: 100% !important;
 	}
 }
-
-/* hide page scrollbar */
-html {
-	scrollbar-width: none;
-} /* Firefox */
-body {
-	-ms-overflow-style: none;
-} /* IE and Edge */
-body::-webkit-scrollbar,
-body::-webkit-scrollbar-button {
-	display: none;
-} /* Chrome */
-/* end hide page scrollbar */
 
 body,
 html,

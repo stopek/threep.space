@@ -61,12 +61,14 @@ export const Filters = () => {
 		<>
 			{filterId && (
 				<Helmet>
-					<title>Projects » {t(`technologies.${filter.value}`)}</title>
+					<title>
+						Paweł Stopczyński · Frontend Developer · Portfolio ·{" "}
+						{t(`technologies.${filter.value}`)}
+					</title>
 				</Helmet>
 			)}
 
 			<Paper
-				component="ul"
 				elevation={1}
 				sx={{
 					position: "sticky",
@@ -79,7 +81,6 @@ export const Filters = () => {
 					mx: 0,
 					display: "flex",
 					alignItems: "center",
-					justifyContent: "center",
 				}}
 			>
 				<Box
@@ -91,7 +92,7 @@ export const Filters = () => {
 					<FilterAltIcon color="disabled" />
 				</Box>
 
-				<ListItem sx={{ gap: 1, flexWrap: "wrap", px: 0, py: 0 }}>
+				<Box sx={{ gap: 1, flexWrap: "wrap", px: 0, py: 0 }} gap={1} display="flex">
 					<Filter
 						name="latest"
 						icon={<AccessTimeFilledIcon />}
@@ -122,7 +123,7 @@ export const Filters = () => {
 						onClick={changeFilter}
 						activeName={filter.value}
 					/>
-				</ListItem>
+				</Box>
 			</Paper>
 		</>
 	);

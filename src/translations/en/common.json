@@ -20,16 +20,16 @@
 	},
 	"seo": {
 		"hub": {
-			"title": "Hi there!",
-			"description": ""
+			"title": "Paweł Stopczyński · Frontend Developer · Hub",
+			"description": "Hi! I’m Paweł, a frontend developer based in Poland currently looking for a full-time remote job. Most of the projects in my portfolio are implemented end-to-end, but I also have experience working with international large teams."
 		},
 		"not_found": {
 			"title": "Ups, page not found",
 			"description": "This page does not exists, sorry"
 		},
 		"portfolio": {
-			"title": "Paweł Stopczyński - Technologies & Portfolio",
-			"description": "FullStack Developer with technology stack: React, Symfony, Angular, PHP"
+			"title": "Paweł Stopczyński · Frontend Developer · Portfolio",
+			"description": "On this page you can find information about me and the projects I have completed and the technologies I have used, along with the source code and documentation used."
 		}
 	},
 	"cat": {
