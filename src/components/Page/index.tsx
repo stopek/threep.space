@@ -1,8 +1,6 @@
-import React, { PropsWithChildren, ReactNode, useEffect } from "react";
+import React, { PropsWithChildren, ReactNode } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import Dial from "../Dial";
-import ReactGA from "react-ga4";
-import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
 import Container from "@mui/material/Container";
@@ -33,17 +31,8 @@ export const Page = ({
 	seo,
 }: PropsWithChildren<IPage>): JSX.Element => {
 	const { t } = useTranslation();
-	const location = useLocation();
 
 	const { title, description } = translate(t, seo);
-
-	useEffect(() => {
-		ReactGA.send({
-			hitType: "pageview",
-			page: location.pathname,
-			title,
-		});
-	}, [location, title]);
 
 	const containedPage = container ? <Container maxWidth="xl">{children}</Container> : children;
 

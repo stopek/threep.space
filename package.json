@@ -10,11 +10,9 @@
 		"@mui/material": "^5.15.21",
 		"@mui/x-charts": "^7.8.0",
 		"@reduxjs/toolkit": "^2.2.6",
-		"howler": "^2.2.4",
 		"i18next": "^23.11.5",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
-		"react-ga4": "^2.1.0",
 		"react-helmet-async": "^2.0.5",
 		"react-i18next": "^14.1.2",
 		"react-redux": "^9.1.2",
@@ -23,12 +21,11 @@
 		"rxjs": "^7.8.1",
 		"sass": "^1.77.6",
 		"sass-loader": "^14.2.1",
-		"use-sound": "^4.0.3",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"build": "CI=false && react-scripts build",
+		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
@@ -58,7 +55,6 @@
 		"@testing-library/jest-dom": "^5.17.0",
 		"@testing-library/react": "^13.4.0",
 		"@testing-library/user-event": "^13.5.0",
-		"@types/howler": "^2.2.11",
 		"@types/jest": "^27.5.2",
 		"@types/node": "^16.18.101",
 		"@types/react": "^18.3.3",

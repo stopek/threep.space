@@ -7,7 +7,6 @@ import React, { useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Box from "@mui/material/Box";
-import ReactGA from "react-ga4";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import useSound from "../../../../hooks/useSound";
@@ -39,12 +38,6 @@ export const Filters = () => {
 		scrollToDiv("portfolio");
 		navigate("/portfolio/" + value);
 		handleSetValue(value);
-
-		ReactGA.send({
-			hitType: "pageview",
-			page: document.location.href,
-			title: "works:" + value,
-		});
 
 		if (init) {
 			return;

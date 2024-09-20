@@ -16,12 +16,6 @@ import Root from "./components/Root";
 import "./i18n";
 import { store } from "./store";
 import { Provider } from "react-redux";
-import ReactGA from "react-ga4";
-
-const ga = process.env.REACT_APP_GA;
-if (ga) {
-	ReactGA.initialize(ga);
-}
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
