@@ -23,7 +23,7 @@ export const Stage = ({ icon, name }: IStage) => {
 				width: "100%",
 			}}
 		>
-			<img src={icon} alt={name} />
+			<img src={process.env.REACT_APP_R2 + icon} alt={name} />
 			<Box>
 				<Typography gutterBottom variant="h5" component="div">
 					{t(`technologies.${name}`)}
