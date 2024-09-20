@@ -21,6 +21,7 @@
 		"rxjs": "^7.8.1",
 		"sass": "^1.77.6",
 		"sass-loader": "^14.2.1",
+		"use-sound": "^4.0.3",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
