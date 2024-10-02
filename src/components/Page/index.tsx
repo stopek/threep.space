@@ -45,9 +45,9 @@ export const Page = ({
 					helmetJsonLdProp<Person>({
 						"@context": "https://schema.org",
 						"@type": "Person",
-						name: "Paweł",
-						alternateName: "Paweł - Fullstack Developer",
-						jobTitle: "Fullstack Developer",
+						name: t("about.name"),
+						alternateName: t("seo.portfolio.title"),
+						jobTitle: t("about.role"),
 						worksFor: {
 							"@type": "Organization",
 							name: "Purrfection IT",
