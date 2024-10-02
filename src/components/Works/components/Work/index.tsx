@@ -4,7 +4,7 @@ import { Collapse, Divider, Grid, IconButtonProps, Stack, styled } from "@mui/ma
 import Button from "@mui/material/Button";
 import { IStackItem } from "../StackItem";
 import { Stack as CStack } from "../Stack";
-import { Description } from "./styled";
+import { Description, ItemGrid } from "./styled";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import TurnSlightRightIcon from "@mui/icons-material/TurnSlightRight";
@@ -13,6 +13,7 @@ import Preview from "../../../Preview";
 import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
+import { useNavigate } from "react-router-dom";
 
 type PartialRecord<K extends keyof any, T> = {
 	[P in K]?: T;
@@ -29,7 +30,7 @@ export interface IWork {
 		en: string;
 		pl: string;
 	};
-	category?: string[];
+	category: string[];
 	stack: IStackItem["name"][];
 	order?: number;
 	slug: string;
@@ -37,6 +38,10 @@ export interface IWork {
 	last?: boolean;
 	old?: boolean;
 	urls?: boolean;
+}
+
+interface IWorkComponent extends IWork {
+	rounded?: boolean;
 }
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -55,18 +60,52 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 	}),
 }));
 
-const ProjectName = ({ name }: { name: string }) => {
-	return <span>{name}</span>;
+const ProjectName = ({
+	name,
+	slug,
+	category,
+}: {
+	name: string;
+	slug: string;
+	category: string[];
+}) => {
+	const navigate = useNavigate();
+
+	const onClickName = () => {
+		navigate("/portfolio/" + category[0] + "/" + slug);
+	};
+
+	return (
+		<span style={{ cursor: "pointer" }} onClick={onClickName}>
+			{name}
+		</span>
+	);
 };
 
-export const Work = ({ name, image, description, about, stack = [], inside = {} }: IWork) => {
+export const Work = ({
+	name,
+	image,
+	description,
+	about,
+	stack = [],
+	inside = {},
+	rounded,
+	category,
+	slug,
+}: IWorkComponent) => {
 	const { t } = useTranslation();
 	const [expanded, setExpanded] = React.useState(false);
 
 	const handleExpandClick = () => setExpanded(!expanded);
 
 	return (
-		<Grid container spacing={3} alignItems="center" sx={{ position: "relative" }}>
+		<ItemGrid
+			container
+			spacing={3}
+			alignItems="center"
+			sx={{ position: "relative" }}
+			rounded={Number(rounded)}
+		>
 			<Grid item xs={12} sm="auto">
 				<Image title={name} image={image} />
 			</Grid>
@@ -83,7 +122,7 @@ export const Work = ({ name, image, description, about, stack = [], inside = {} 
 						sx={{
 							"& .MuiTypography-root": { fontSize: "1.4rem", fontWeight: 700 },
 						}}
-						title={<ProjectName name={name} />}
+						title={<ProjectName slug={slug} category={category} name={name} />}
 						subheader={<CStack list={stack} />}
 					/>
 
@@ -146,6 +185,6 @@ export const Work = ({ name, image, description, about, stack = [], inside = {} 
 					)}
 				</CardContent>
 			</Grid>
-		</Grid>
+		</ItemGrid>
 	);
 };

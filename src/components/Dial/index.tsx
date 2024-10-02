@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import useSound from "../../hooks/useSound";
 import { NavBackground, ToggleButton } from "./styled";
 import { HubMenu } from "../HubMenu";
-import CvButton from "../CvButton";
+import CvButton from "../../ui/CvButton";
 import { Divider } from "@mui/material";
 import { scrollToDiv } from "../../common/utils";
 

@@ -1,69 +1,32 @@
 import { Filter } from "../Filter";
-import { ListItem, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import { filters_list } from "../../../../data";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { useFilter } from "../../../../store/filter";
-import React, { useCallback, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Box from "@mui/material/Box";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import useSound from "../../../../hooks/useSound";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import GradingIcon from "@mui/icons-material/Grading";
 
-const filters_list_combined = [...filters_list, "latest", "all", "old"];
+interface IFilters {
+	changeFilter: (value: string[], init?: boolean) => void;
+}
 
-export const Filters = () => {
+export const Filters = ({ changeFilter }: IFilters) => {
+	const { filter } = useFilter();
 	const { t } = useTranslation();
-	const { filter, handleSetValue } = useFilter();
-	const navigate = useNavigate();
 	const { filterId } = useParams();
-	const { tap } = useSound();
-
-	const scrollToDiv = useCallback((elementId: string) => {
-		const element = document.getElementById(elementId);
-		if (!element) {
-			return;
-		}
-
-		window.scroll({
-			top: element.offsetTop,
-			behavior: "smooth",
-		});
-	}, []);
-
-	const changeFilter = (value: string, init?: boolean) => {
-		scrollToDiv("portfolio");
-		navigate("/portfolio/" + value);
-		handleSetValue(value);
-
-		if (init) {
-			return;
-		}
-
-		tap();
-	};
-
-	useEffect(() => {
-		if (filterId) {
-			if (!filters_list_combined.includes(filterId)) {
-				changeFilter("latest", true);
-				return;
-			}
-
-			changeFilter(filterId, true);
-		}
-	}, []);
 
 	return (
 		<>
 			{filterId && (
 				<Helmet>
 					<title>
-						Paweł Stopczyński · Frontend Developer · Portfolio ·{" "}
-						{t(`technologies.${filter.value}`)}
+						{t("seo.portfolio.title")} · {t(`technologies.${filter.value}`)}
 					</title>
 				</Helmet>
 			)}
@@ -79,6 +42,7 @@ export const Filters = () => {
 					padding: 0.5,
 					margin: 0,
 					mx: 0,
+					mb: 5,
 					display: "flex",
 					alignItems: "center",
 				}}

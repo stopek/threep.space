@@ -1,10 +1,10 @@
 import React from "react";
 import { ErrorBoundarySuspense } from "../ErrorBoundarySuspense/ErrorBoundarySuspense";
-import Cursor from "../Cursor";
-import { Background } from "../Background";
-import ScrollToTop from "../ScrollToTop";
+import Cursor from "../../ui/Cursor";
+import { Background } from "../../ui/Background";
+import ScrollToTop from "../../ui/ScrollToTop";
 import { Outlet } from "react-router-dom";
-import { ThemeButton } from "../ThemeButton";
+import { ThemeButton } from "../../ui/ThemeButton";
 
 export const Layout = () => (
 	<ErrorBoundarySuspense>

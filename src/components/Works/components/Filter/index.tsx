@@ -8,7 +8,7 @@ export interface IFilter {
 	icon?: ReactElement;
 	activeName?: string | null;
 	filter?: boolean;
-	onClick: (name: string) => any;
+	onClick: (name: string[]) => any;
 }
 
 export const Filter = ({ name, icon, activeName, filter, onClick }: IFilter) => {
@@ -21,7 +21,7 @@ export const Filter = ({ name, icon, activeName, filter, onClick }: IFilter) => 
 			sx={{ px: 2 }}
 			color={activeName === name ? "primary" : "default"}
 			clickable
-			onClick={() => onClick(name)}
+			onClick={() => onClick([name])}
 		/>
 	);
 };

@@ -1,10 +1,10 @@
-import { ProfilePicture } from "../../ProfilePicture";
-import HubTitles from "../../../components/HubTitles";
-import { HubMenu } from "../../HubMenu";
+import { ProfilePicture } from "../../ui/ProfilePicture";
+import HubTitles from "../../ui/HubTitles";
+import { HubMenu } from "../HubMenu";
 import Box from "@mui/material/Box";
 import React from "react";
 import { styled } from "@mui/material";
-import Footer from "../../Footer";
+import Footer from "../Footer";
 
 const FooterContainer = styled(Box)`
 	position: absolute;

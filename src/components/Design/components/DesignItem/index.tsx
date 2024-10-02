@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 
-import { BorderLinearProgress } from "../../../BorderLinearProgress";
+import { BorderLinearProgress } from "../../../../ui/BorderLinearProgress";
 
 export interface IDesignItem {
 	name: string;

@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { Grid, styled } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 export const Description = styled(Typography)`
@@ -23,3 +23,16 @@ export const Description = styled(Typography)`
 		padding-left: 16px;
 	}
 `;
+
+export const ItemGrid = styled(Grid)<{ rounded?: number }>(({ rounded, theme }) =>
+	rounded
+		? {
+				background: "rgba(0, 0, 0, 0.3)",
+				paddingTop: theme.spacing(0),
+				paddingBottom: theme.spacing(3),
+			}
+		: {
+				paddingTop: theme.spacing(0),
+				paddingBottom: theme.spacing(3),
+			},
+);

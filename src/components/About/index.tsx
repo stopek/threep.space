@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { ProfilePicture } from "../ProfilePicture";
+import { ProfilePicture } from "../../ui/ProfilePicture";
 import { Animation, Description } from "./styled";
 
 export const About = () => {

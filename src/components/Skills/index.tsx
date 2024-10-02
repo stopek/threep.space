@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderTitle } from "../HeaderTitle";
+import { HeaderTitle } from "../../ui/HeaderTitle";
 import { Skill } from "./components/Skill";
 import { Grid } from "@mui/material";
 import { skillsData } from "../../data";

@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderTitle } from "../HeaderTitle";
+import { HeaderTitle } from "../../ui/HeaderTitle";
 import { Grid } from "@mui/material";
 import { DesignItem } from "./components/DesignItem";
 import { design_items } from "../../data";

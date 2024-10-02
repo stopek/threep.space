@@ -1,14 +1,15 @@
-import React from "react";
-import { HeaderTitle } from "../HeaderTitle";
+import React, { useCallback, useEffect } from "react";
+import { HeaderTitle } from "../../ui/HeaderTitle";
 import { Filters } from "./components/Filters";
-import { Work } from "./components/Work";
+import { IWork, Work } from "./components/Work";
 import Box from "@mui/material/Box";
-import { works_list } from "../../data";
+import { filters_list, works_list } from "../../data";
 import { useFilter } from "../../store/filter";
 import { useTranslation } from "react-i18next";
-import { Grid } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import useSound from "../../hooks/useSound";
 
-const filterWorks = (filter: string) => {
+const filterWorks = (filter: string): IWork[] => {
 	const list = works_list.sort((a, b) => (a?.order && b?.order ? b?.order - a?.order : 0));
 
 	if (filter === "latest") {
@@ -22,23 +23,83 @@ const filterWorks = (filter: string) => {
 	return list;
 };
 
+const filters_list_combined = [...filters_list, "latest", "all", "old"];
+
+const redirectFilter = (filterId?: string, projectName?: string): string[] | null => {
+	if (!filterId) {
+		return null;
+	}
+
+	if (filters_list_combined.includes(filterId)) {
+		if (projectName) {
+			return [filterId, projectName];
+		}
+
+		return [filterId];
+	}
+
+	return ["latest"];
+};
+
 export const Works = () => {
 	const { t } = useTranslation();
-	const { filter } = useFilter();
+	const { filter, handleSetValue } = useFilter();
+	const navigate = useNavigate();
+	const { filterId, projectName } = useParams();
+	const { tap } = useSound();
 	const list = filterWorks(filter.value);
 
-	return (
-		<Box mt={5} mb={10} id="portfolio">
-			<HeaderTitle title={t("txt.portfolio")} />
-			<Filters />
+	const scrollToDiv = useCallback((elementId: string) => {
+		const element = document.getElementById(elementId);
+		if (!element) {
+			return;
+		}
 
-			<Grid container spacing={8} mt={1}>
-				{list.map((item, x) => (
-					<Grid item xs={12} key={x}>
-						<Work {...item} />
-					</Grid>
-				))}
-			</Grid>
+		window.scroll({
+			top: element.offsetTop,
+			behavior: "smooth",
+		});
+	}, []);
+
+	const changeFilter = (value: string[], init?: boolean) => {
+		const idDiv = ["portfolio", ...value];
+		const redirect = "/portfolio/" + value.join("/");
+
+		handleSetValue(value[0]);
+
+		if (init) {
+			const project = document.getElementById(idDiv.join("_"));
+			if (project) {
+				scrollToDiv(idDiv.join("_"));
+				return;
+			}
+			scrollToDiv(idDiv[0]);
+			return;
+		}
+		navigate(redirect);
+		scrollToDiv(idDiv[0]);
+		tap();
+	};
+
+	useEffect(() => {
+		const redirect = redirectFilter(filterId, projectName);
+		if (null === redirect) {
+			return;
+		}
+
+		changeFilter(redirect, true);
+	}, []);
+
+	return (
+		<Box mt={0} mb={0} id="portfolio">
+			<HeaderTitle title={t("txt.portfolio")} />
+			<Filters changeFilter={changeFilter} />
+
+			{list.map((item, x) => (
+				<Box key={x} id={`portfolio_${item.stack[0]}_${item.slug}`} mb={2}>
+					<Work {...item} rounded={item.slug === projectName} />
+				</Box>
+			))}
 		</Box>
 	);
 };

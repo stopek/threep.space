@@ -145,7 +145,7 @@ export const works_list: IWork[] = [
 		},
 		order: 8,
 		stack: ["react", "ts", "material", "storybook", "jest"],
-		name: "MERTEGTA - Diagnostic tool",
+		name: "MERTEGRA - Diagnostic tool",
 		description: {
 			pl: "<em>Narzędzie diagnostyczne, monitorujące ruch komunikatów pomiędzy różnymi ERP a głównym Hubem</em><strong>Rola w projekcie:</strong><ol><li>Utworzenie narzędzia połączonego z API NestJS</li><li>Ustalanie działania z zespołem UI/UX</li><li>Utworzenie narzędzia bez backendu</li><li>Tworzenie testów</li><li>Tworzenie Storybooka</li><li>Poprawki i dalszy rozwój</li><li>Silne typowanie z TypeScript</li></ol>",
 			en: "<em>Diagnostic tool monitoring message traffic between various ERPs and the main Hub</em><strong>Role in the project:</strong><ol><li>Creating a tool connected to the NestJS API</li><li>Collaborating with the UI/UX team</li><li>Developing the tool without backend</li><li>Writing tests</li><li>Creating a Storybook</li><li>Fixing bugs and further development</li><li>Strongly typed with TypeScript</li></ol>",
@@ -156,7 +156,7 @@ export const works_list: IWork[] = [
 			storybook: "/mertegra-storybook",
 		},
 		image: "/works/mertegra.jpg",
-		slug: "mertegta",
+		slug: "mertegra",
 		last: true,
 	},
 	{

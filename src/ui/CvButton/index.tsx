@@ -19,7 +19,7 @@ const CvButton = () => {
 			disableElevation
 			disableFocusRipple
 			onClick={() => {
-				document.location.href = "/static/pdf/cv.pdf";
+				document.location.href = "../../../public/static/pdf/cv.pdf";
 			}}
 		>
 			{t("txt.get_cv")}

@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import { useSettings } from "../../store/settings";
 import { NotFoundContainer } from "../../containers/NotFoundContainer";
-import { Loader } from "../Loader";
+import { Loader } from "../../ui/Loader";
 
 const router = createBrowserRouter([
 	{
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
 				},
 			},
 			{
-				path: "/portfolio/:filterId?",
+				path: "/portfolio/:filterId?/:projectName?",
 				async lazy() {
 					const { PortfolioContainer } = await import(
 						"../../containers/PortfolioContainer"
