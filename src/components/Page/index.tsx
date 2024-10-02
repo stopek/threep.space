@@ -4,6 +4,8 @@ import Dial from "../Dial";
 import { useTranslation } from "react-i18next";
 import { TFunction } from "i18next";
 import Container from "@mui/material/Container";
+import { Person } from "schema-dts";
+import { helmetJsonLdProp } from "react-schemaorg";
 
 interface IPage {
 	elements?: ReactNode;
@@ -38,7 +40,33 @@ export const Page = ({
 
 	return (
 		<HelmetProvider>
-			<Helmet>
+			<Helmet
+				script={[
+					helmetJsonLdProp<Person>({
+						"@context": "https://schema.org",
+						"@type": "Person",
+						name: "Paweł",
+						alternateName: "Paweł - Fullstack Developer",
+						jobTitle: "Fullstack Developer",
+						worksFor: {
+							"@type": "Organization",
+							name: "Purrfection IT",
+						},
+						url: "https://threep.space",
+						sameAs: [
+							"https://www.linkedin.com/in/threep",
+							"https://github.com/stopek",
+							"https://www.facebook.com/pawel.stopek",
+						],
+						email: "mailto:pawel@threep.space",
+						address: {
+							"@type": "PostalAddress",
+							addressLocality: "Bydgoszcz",
+							addressCountry: "PL",
+						},
+					}),
+				]}
+			>
 				<meta name="description" content={description} />
 				<title>{title}</title>
 				<meta property="og:title" content={title} />
