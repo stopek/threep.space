@@ -7,6 +7,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
 import { TMenuItem } from "./components/HubMenu";
 
 export const filters_list: string[] = ["react", "angular", "symfony", "code_igniter", "rest"];
@@ -1075,15 +1076,16 @@ export const hub_urls: TMenuItem[] = [
 		to: "/portfolio",
 		Icon: BusinessCenterIcon,
 		label: "Portfolio",
+		margin: 20,
 	},
-	// {
-	// 	url: "https://stopekpawel.myportfolio.com",
-	// 	Icon: LinkedCameraIcon,
-	// 	label: "Photography",
-	// },
 	{
 		url: "https://www.facebook.com/pawel.stopek",
 		Icon: FacebookIcon,
 		label: "Facebook",
+	},
+	{
+		url: "https://znanyfotograf.com/pawel-stopczynski",
+		Icon: LinkedCameraIcon,
+		label: "Photography",
 	},
 ];

@@ -14,6 +14,7 @@ interface IHubMenu {
 interface IBaseMenuItem {
 	Icon: OverridableComponent<SvgIconTypeMap>;
 	label: string;
+	margin?: number;
 }
 
 export type TMenuItem =
@@ -39,12 +40,12 @@ export const HubMenu = ({ size = "inherit", onClick }: IHubMenu) => {
 				background: "transparent",
 				display: "flex",
 				flexWrap: "wrap",
-				mt: 2,
+				mt: 5,
 				gap: 1,
 			}}
 			showLabels
 		>
-			{hub_urls.map(({ label, Icon, url, to }, key) =>
+			{hub_urls.map(({ label, Icon, url, to, margin }, key) =>
 				url ? (
 					<BottomNavigationAction
 						key={key}
@@ -53,6 +54,8 @@ export const HubMenu = ({ size = "inherit", onClick }: IHubMenu) => {
 						style={{
 							display: "flex",
 							flex: 0,
+							marginLeft: margin,
+							marginRight: margin,
 						}}
 						icon={<Icon fontSize={size} />}
 						onClick={onButtonClick}
@@ -69,6 +72,8 @@ export const HubMenu = ({ size = "inherit", onClick }: IHubMenu) => {
 						style={{
 							display: "flex",
 							flex: 0,
+							marginLeft: margin,
+							marginRight: margin,
 						}}
 						icon={<Icon fontSize={size} />}
 						onClick={onButtonClick}
