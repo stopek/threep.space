@@ -14,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
+import { useFilter } from "../../../../store/filter";
 
 type PartialRecord<K extends keyof any, T> = {
 	[P in K]?: T;
@@ -70,9 +71,11 @@ const ProjectName = ({
 	category: string[];
 }) => {
 	const navigate = useNavigate();
+	const { handleSetValue } = useFilter();
 
 	const onClickName = () => {
 		navigate("/portfolio/" + category[0] + "/" + slug);
+		handleSetValue(category[0]);
 	};
 
 	return (

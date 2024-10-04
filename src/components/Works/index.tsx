@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import { filters_list, works_list } from "../../data";
 import { useFilter } from "../../store/filter";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useSound from "../../hooks/useSound";
 
 const filterWorks = (filter: string): IWork[] => {
@@ -45,18 +45,20 @@ export const Works = () => {
 	const { t } = useTranslation();
 	const { filter, handleSetValue } = useFilter();
 	const navigate = useNavigate();
+	const { pathname } = useLocation();
 	const { filterId, projectName } = useParams();
 	const { tap } = useSound();
 	const list = filterWorks(filter.value);
 
 	const scrollToDiv = useCallback((elementId: string) => {
+		console.log({ scrollTo: elementId });
 		const element = document.getElementById(elementId);
 		if (!element) {
 			return;
 		}
 
 		window.scroll({
-			top: element.offsetTop,
+			top: element.offsetTop - 50,
 			behavior: "smooth",
 		});
 	}, []);
@@ -66,6 +68,7 @@ export const Works = () => {
 		const redirect = "/portfolio/" + value.join("/");
 
 		handleSetValue(value[0]);
+		console.log({ value, idDiv });
 
 		if (init) {
 			const project = document.getElementById(idDiv.join("_"));
@@ -76,8 +79,9 @@ export const Works = () => {
 			scrollToDiv(idDiv[0]);
 			return;
 		}
+
 		navigate(redirect);
-		scrollToDiv(idDiv[0]);
+		scrollToDiv(idDiv.join("_"));
 		tap();
 	};
 
@@ -88,7 +92,7 @@ export const Works = () => {
 		}
 
 		changeFilter(redirect, true);
-	}, []);
+	}, [pathname]);
 
 	return (
 		<Box mt={0} mb={0} id="portfolio">
