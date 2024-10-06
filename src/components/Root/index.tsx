@@ -31,6 +31,13 @@ const router = createBrowserRouter([
 				},
 			},
 			{
+				path: "/music",
+				async lazy() {
+					const { MusicContainer } = await import("../../containers/MusicContainer");
+					return { Component: MusicContainer };
+				},
+			},
+			{
 				path: "*",
 				element: <NotFoundContainer />,
 			},
