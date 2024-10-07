@@ -20,3 +20,8 @@ export const scrollToDiv = (elementId: string) => {
 		behavior: "smooth",
 	});
 };
+
+export const isStackFilter = (filterId: string | undefined) => filterId?.startsWith("stack:");
+
+export const stackValue = (filterId: string | undefined): string =>
+	filterId?.replace("stack:", "") || "";

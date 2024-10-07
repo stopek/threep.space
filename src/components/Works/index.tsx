@@ -8,11 +8,14 @@ import { useFilter } from "../../store/filter";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import useSound from "../../hooks/useSound";
+import { isStackFilter, stackValue } from "../../common/utils";
 
 const filterWorks = (filter: string): Type.IWork[] => {
 	const list = works_list.sort((a, b) => (a?.order && b?.order ? b?.order - a?.order : 0));
 
-	if (filter === "latest") {
+	if (isStackFilter(filter)) {
+		return list.filter(w => w.stack?.includes(stackValue(filter)));
+	} else if (filter === "latest") {
 		return list.filter(w => w?.last);
 	} else if (filter === "old") {
 		return list.filter(w => w?.old);
@@ -38,6 +41,10 @@ const redirectFilter = (filterId?: string, projectName?: string): string[] | nul
 		return [filterId];
 	}
 
+	if (isStackFilter(filterId)) {
+		return [filterId];
+	}
+
 	return ["latest"];
 };
 
@@ -50,7 +57,6 @@ export const Works = () => {
 	const list = filterWorks(filter.value);
 
 	const scrollToDiv = useCallback((elementId: string) => {
-		console.log({ scrollTo: elementId });
 		const element = document.getElementById(elementId);
 		if (!element) {
 			return;

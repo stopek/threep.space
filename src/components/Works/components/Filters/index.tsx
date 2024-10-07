@@ -1,16 +1,17 @@
 import { Filter } from "../Filter";
-import { Paper } from "@mui/material";
+import { Chip, Paper } from "@mui/material";
 import { filters_list } from "../../../../data";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { useFilter } from "../../../../store/filter";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Box from "@mui/material/Box";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import GradingIcon from "@mui/icons-material/Grading";
+import { isStackFilter, stackValue } from "../../../../common/utils";
 
 interface IFilters {
 	changeFilter: (value: string[], init?: boolean) => void;
@@ -20,6 +21,11 @@ export const Filters = ({ changeFilter }: IFilters) => {
 	const { filter } = useFilter();
 	const { t } = useTranslation();
 	const { filterId } = useParams();
+
+	const navigate = useNavigate();
+	const clearStackFiltering = () => navigate("/portfolio/latest");
+
+	const isStack = isStackFilter(filterId);
 
 	return (
 		<>
@@ -56,16 +62,22 @@ export const Filters = ({ changeFilter }: IFilters) => {
 					<FilterAltIcon color="disabled" />
 				</Box>
 
-				<Box sx={{ gap: 1, flexWrap: "wrap", px: 0, py: 0 }} gap={1} display="flex">
+				<Box
+					sx={{ gap: 1, flexWrap: "wrap", px: 0, py: 0, width: "100%" }}
+					gap={1}
+					display="flex"
+				>
 					<Filter
+						disabled={isStack}
 						name="latest"
 						icon={<AccessTimeFilledIcon />}
-						activeName={filter.value || "latest"}
+						activeName={isStack ? "" : filter.value || "latest"}
 						onClick={changeFilter}
 					/>
 
 					{filters_list.map((f, x) => (
 						<Filter
+							disabled={isStack}
 							key={x}
 							name={f}
 							activeName={filter.value}
@@ -75,6 +87,7 @@ export const Filters = ({ changeFilter }: IFilters) => {
 					))}
 
 					<Filter
+						disabled={isStack}
 						name="all"
 						icon={<GradingIcon />}
 						onClick={changeFilter}
@@ -82,11 +95,24 @@ export const Filters = ({ changeFilter }: IFilters) => {
 					/>
 
 					<Filter
+						disabled={isStack}
 						name="old"
 						icon={<CatchingPokemonIcon />}
 						onClick={changeFilter}
 						activeName={filter.value}
 					/>
+
+					{isStack && (
+						<Chip
+							label={t(`technologies.${stackValue(filterId)}`)}
+							sx={{ px: 2 }}
+							onDelete={clearStackFiltering}
+							style={{ marginLeft: "auto" }}
+							color="primary"
+							variant="outlined"
+							clickable
+						/>
+					)}
 				</Box>
 			</Paper>
 		</>

@@ -1,9 +1,9 @@
 import React from "react";
-import { Chip } from "@mui/material";
+import { Chip, ChipProps } from "@mui/material";
 import { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
 
-export interface IFilter {
+export interface IFilter extends Omit<ChipProps, "name" | "onClick"> {
 	name: string;
 	icon?: ReactElement;
 	activeName?: string | null;
@@ -11,7 +11,7 @@ export interface IFilter {
 	onClick: (name: string[]) => any;
 }
 
-export const Filter = ({ name, icon, activeName, filter, onClick }: IFilter) => {
+export const Filter = ({ name, icon, activeName, filter, onClick, ...rest }: IFilter) => {
 	const { t } = useTranslation();
 
 	return (
@@ -22,6 +22,7 @@ export const Filter = ({ name, icon, activeName, filter, onClick }: IFilter) => 
 			color={activeName === name ? "primary" : "default"}
 			clickable
 			onClick={() => onClick([name])}
+			{...rest}
 		/>
 	);
 };
