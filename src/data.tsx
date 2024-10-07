@@ -1041,6 +1041,24 @@ export const works_list: Type.IWork[] = [
 			archive: "https://web.archive.org/web/20220519042431/https://satellcad.pl/",
 		},
 	},
+	{
+		name: "threep.space - Portfolio",
+		description: {
+			pl: "",
+			en: "",
+		},
+		category: ["react", "freelancer"],
+		stack: ["react", "material", "ts"],
+		image: "/works/threep.jpg",
+		slug: "threep",
+		inside: {
+			preview: "https://threep.space",
+			// @todo - after complete api
+			// github_backend: "",
+			github_front: "https://github.com/stopek/threep.space",
+		},
+		last: true,
+	},
 ];
 
 export const hub_urls: TMenuItem[] = [
