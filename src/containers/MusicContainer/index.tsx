@@ -262,6 +262,8 @@ import {
 	Select,
 	SelectChangeEvent,
 	Slider,
+	Stack,
+	TextField,
 	Typography,
 } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -283,7 +285,17 @@ interface Config {
 	downLineColor: string;
 	effect: string;
 	step: number;
+	matrix: [string, string, string, string];
 }
+
+const gradient = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
+	const fromTop = canvas.height / 2;
+	const grad = ctx.createLinearGradient(0, fromTop - 200, 0, fromTop + 200);
+	grad.addColorStop(0, "rgb(251, 100, 0)");
+	grad.addColorStop(1, "transparent");
+	ctx.fillStyle = grad;
+	ctx.fillRect(0, fromTop - 10, canvas.width, 500);
+};
 
 export const MusicContainer = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -302,7 +314,18 @@ export const MusicContainer = () => {
 		downLineColor: "#000",
 		effect: "goo",
 		step: 1,
+		matrix: ["1 0 0 0 0", "0 1 0 0 0", "0 0 1 0 0", "0 0 0 18 -7"],
 	});
+
+	const setMatrix = (value: string, index: number) =>
+		setConfig(prev => {
+			const matrix = prev.matrix;
+			matrix[index] = value;
+			return {
+				...prev,
+				matrix,
+			};
+		});
 
 	const configRef = useRef<Config>(config);
 	const start = () => {
@@ -329,6 +352,7 @@ export const MusicContainer = () => {
 
 		const fbcArray = new Uint8Array(analyser.frequencyBinCount);
 		analyser.getByteFrequencyData(fbcArray);
+
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		const data: {
@@ -340,17 +364,16 @@ export const MusicContainer = () => {
 		}[] = [];
 
 		const total = Math.ceil(configRef.current.bars / configRef.current.step);
+		const documentWidth = document.body.offsetWidth;
+		const documentHeight = document.body.offsetHeight;
 
-		for (
-			let i = 0;
-			i < configRef.current.bars * configRef.current.step;
-			i += configRef.current.step
-		) {
-			const width = document.body.offsetWidth / total;
+		const forTo = configRef.current.bars * configRef.current.step;
+		for (let i = 0; i < forTo; i += configRef.current.step) {
+			const width = documentWidth / total;
 			const barX = i * width + width / 2;
 			const circleSize = fbcArray[i];
-			const yPos = document.body.offsetHeight / 2;
-			const opacity = Math.round(Math.min(1, Math.max(0, 15 / circleSize)) * 100) / 100;
+			const yPos = documentHeight / 2;
+			const opacity = Math.round(Math.min(1, Math.max(0, 5 / circleSize)) * 100) / 100;
 
 			data[i] = {
 				barX,
@@ -363,50 +386,43 @@ export const MusicContainer = () => {
 
 		gradient(ctx, canvas);
 
-		data.forEach(({ barX, yPos, circleSize }) => {
-			ctx.beginPath();
-			ctx.arc(barX, yPos, circleSize / getRandomInt(100, 500) / 100, 0, 2 * Math.PI);
-			ctx.fillStyle = `rgb(193, 34, 0)`;
-			ctx.fill();
-		});
-
-		data.forEach(({ barX, yPos }) => {
-			ctx.beginPath();
-			ctx.arc(barX, yPos, 1, 0, 2 * Math.PI);
-			ctx.fillStyle = `rgba(255, 255, 255, 0.9)`;
-			ctx.fill();
-		});
-
 		if (configRef.current.circleEnabled) {
 			data.forEach(({ barX, yPos, opacity, circleSize }) => {
 				ctx.beginPath();
-				ctx.arc(barX, yPos, circleSize, 0, 2 * Math.PI);
 				ctx.fillStyle = `rgba(251, 100, 0, ${opacity})`;
+				ctx.arc(barX, yPos - 10, circleSize, 0, 2 * Math.PI);
 				ctx.fill();
 			});
 		}
 
 		if (configRef.current.upLineEnabled) {
+			ctx.beginPath();
+			ctx.fillStyle = configRef.current.upLineColor;
+			ctx.globalAlpha = 0.4;
 			data.forEach(({ barX, yPos, width, circleSize }) => {
-				ctx.beginPath();
-				ctx.fillStyle = configRef.current.upLineColor;
-				ctx.globalAlpha = 0.4;
 				ctx.roundRect(barX - width / 4, yPos - 1, width / 2, -circleSize, 25);
-				ctx.fill();
-				ctx.globalAlpha = 1;
 			});
+			ctx.fill();
+			ctx.globalAlpha = 1;
 		}
 
 		if (configRef.current.downLineEnabled) {
+			ctx.beginPath();
+			ctx.fillStyle = configRef.current.downLineColor;
+			ctx.globalAlpha = 0.4;
 			data.forEach(({ barX, yPos, width, circleSize }) => {
-				ctx.beginPath();
-				ctx.fillStyle = configRef.current.downLineColor;
-				ctx.globalAlpha = 0.4;
 				ctx.roundRect(barX - width / 4, yPos + 1, width / 2, circleSize / 3, 25);
-				ctx.fill();
-				ctx.globalAlpha = 1;
 			});
+			ctx.fill();
+			ctx.globalAlpha = 1;
 		}
+
+		ctx.beginPath();
+		ctx.fillStyle = `rgba(255, 255, 255, 0.9)`;
+		data.forEach(({ barX, yPos }) => {
+			ctx.arc(barX, yPos, 1, 0, 2 * Math.PI);
+		});
+		ctx.fill();
 	};
 
 	const init = (): void => {
@@ -416,15 +432,6 @@ export const MusicContainer = () => {
 			.then(() => {
 				console.log("Start playing");
 			});
-	};
-
-	const gradient = (ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) => {
-		const fromTop = canvas.height / 2;
-		const grad = ctx.createLinearGradient(0, fromTop - 200, 0, fromTop + 200);
-		grad.addColorStop(0, "rgb(251, 100, 0)");
-		grad.addColorStop(1, "transparent");
-		ctx.fillStyle = grad;
-		ctx.fillRect(0, fromTop - 10, canvas.width, 500);
 	};
 
 	useEffect(() => {
@@ -467,125 +474,19 @@ export const MusicContainer = () => {
 
 	return (
 		<>
-			<div id="mp3_player" style={{ display: "none" }}>
-				<audio
-					ref={audioRef}
-					crossOrigin="anonymous"
-					src="/static/audio/metallica.mp3"
-					controls
-					loop
-					onPlaying={start}
-				/>
-			</div>
-
-			<div style={{ filter: `url(#${config.effect})` }} id="canvas-container">
-				<canvas ref={canvasRef} id="analyser-render" />
-			</div>
-
-			<svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
+			<svg xmlns="http://www.w3.org/2000/svg" className="svg-filter">
 				<defs>
 					<filter id="goo">
 						<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-						<feColorMatrix
-							in="blur"
-							values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
-							result="goo"
-						/>
+						<feColorMatrix in="blur" values={config.matrix.join("  ")} result="goo" />
 						<feBlend in="SourceGraphic" in2="goo" />
 					</filter>
 				</defs>
 			</svg>
 
-			<svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
-				<defs>
-					<filter id="liquid">
-						<feGaussianBlur in="SourceGraphic" stdDeviation="28" result="blur" />
-						<feTurbulence
-							type="fractalNoise"
-							baseFrequency="1.02"
-							numOctaves="23"
-							result="turbulence"
-						/>
-						<feDisplacementMap in="blur" in2="turbulence" scale="30" />
-					</filter>
-				</defs>
-			</svg>
-
-			<svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
-				<defs>
-					<filter id="particles">
-						<feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-						<feTurbulence
-							type="turbulence"
-							baseFrequency="0.05"
-							numOctaves="2"
-							result="turbulence"
-						/>
-						<feDisplacementMap
-							in="blur"
-							in2="turbulence"
-							scale="50"
-							xChannelSelector="R"
-							yChannelSelector="G"
-						/>
-						<feMorphology operator="erode" radius="25" />
-						<feComponentTransfer>
-							<feFuncA type="table" tableValues="0 1" />
-						</feComponentTransfer>
-					</filter>
-				</defs>
-			</svg>
-
-			<svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
-				<defs>
-					<filter id="wave">
-						<feTurbulence
-							type="turbulence"
-							baseFrequency="0.02"
-							numOctaves="2"
-							result="waveNoise"
-						/>
-						<feDisplacementMap in="SourceGraphic" in2="waveNoise" scale="15" />
-						<feGaussianBlur stdDeviation="2" />
-					</filter>
-				</defs>
-			</svg>
-
-			<svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
-				<defs>
-					<filter id="ripple">
-						<feTurbulence
-							type="fractalNoise"
-							baseFrequency="0.03"
-							numOctaves="3"
-							result="noise"
-						/>
-						<feDisplacementMap in="SourceGraphic" in2="noise" scale="20" />
-						<feGaussianBlur stdDeviation="3" />
-					</filter>
-				</defs>
-			</svg>
-
-			<svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
-				<defs>
-					<filter id="advancedgoo">
-						<feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
-						<feColorMatrix
-							in="blur"
-							values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 30 -10"
-							result="goo"
-						/>
-						<feTurbulence
-							type="fractalNoise"
-							baseFrequency="0.03"
-							numOctaves="2"
-							result="turbulence"
-						/>
-						<feDisplacementMap in="goo" in2="turbulence" scale="20" />
-						<feBlend in="SourceGraphic" in2="goo" mode="normal" />
-					</filter>
-				</defs>
-			</svg>
+			<div style={{ filter: `url(#${config.effect})` }} id="canvas-container">
+				<canvas ref={canvasRef} id="analyser-render" />
+			</div>
 
 			<Card
 				sx={{ position: "fixed", width: "100%", bottom: 0, zIndex: 100 }}
@@ -593,13 +494,27 @@ export const MusicContainer = () => {
 			>
 				<CardHeader
 					action={
-						<IconButton onClick={init}>
-							<PlayArrowIcon />
-						</IconButton>
+						<>
+							<IconButton onClick={init}>
+								<PlayArrowIcon />
+							</IconButton>
+							<div id="mp3_player" style={{ display: "none" }}>
+								<audio
+									ref={audioRef}
+									crossOrigin="anonymous"
+									src="/static/audio/metallica.mp3"
+									controls
+									loop
+									onPlaying={start}
+									onPlay={init}
+								/>
+							</div>
+						</>
 					}
 					title={
 						<div style={{ display: "flex", gap: "4px", alignItems: "center" }}>
 							<Checkbox
+								size="small"
 								checked={config.circleEnabled}
 								onChange={e =>
 									setConfig(prev => ({
@@ -611,6 +526,7 @@ export const MusicContainer = () => {
 							<Typography>Show Circle</Typography>
 
 							<Checkbox
+								size="small"
 								checked={config.upLineEnabled}
 								onChange={e =>
 									setConfig(prev => ({
@@ -622,6 +538,7 @@ export const MusicContainer = () => {
 							<Typography>Show Line Up</Typography>
 
 							<Checkbox
+								size="small"
 								checked={config.downLineEnabled}
 								onChange={e =>
 									setConfig(prev => ({
@@ -662,30 +579,6 @@ export const MusicContainer = () => {
 				/>
 
 				<CardContent>
-					<FormControl fullWidth>
-						<InputLabel id="demo-simple-select-label">Effect</InputLabel>
-						<Select
-							labelId="demo-simple-select-label"
-							id="demo-simple-select"
-							value={config.effect}
-							label="Effect"
-							onChange={(event: SelectChangeEvent) => {
-								setConfig(prev => ({
-									...prev,
-									effect: event.target.value as string,
-								}));
-							}}
-						>
-							<MenuItem value=""></MenuItem>
-							<MenuItem value="goo">Goo</MenuItem>
-							<MenuItem value="liquid">Liquid</MenuItem>
-							<MenuItem value="particles">Particles</MenuItem>
-							<MenuItem value="wave">Wave</MenuItem>
-							<MenuItem value="ripple">Ripple</MenuItem>
-							<MenuItem value="advancedgoo">Advanced Goo</MenuItem>
-						</Select>
-					</FormControl>
-
 					<Box display="flex" gap={3}>
 						<Slider
 							step={1}
@@ -699,6 +592,7 @@ export const MusicContainer = () => {
 							}
 							min={1}
 							max={1024}
+							size="small"
 						/>
 
 						<Slider
@@ -713,7 +607,77 @@ export const MusicContainer = () => {
 							}
 							min={1}
 							max={10}
+							size="small"
 						/>
+					</Box>
+
+					<Box display="flex" gap={3}>
+						<FormControl>
+							<InputLabel id="demo-simple-select-label">Effect</InputLabel>
+							<Select
+								size="small"
+								labelId="demo-simple-select-label"
+								id="demo-simple-select"
+								value={config.effect}
+								label="Effect"
+								onChange={(event: SelectChangeEvent) => {
+									setConfig(prev => ({
+										...prev,
+										effect: event.target.value as string,
+									}));
+								}}
+							>
+								<MenuItem value="">Disabled</MenuItem>
+								<MenuItem value="goo">Goo</MenuItem>
+							</Select>
+						</FormControl>
+
+						{config.effect && (
+							<Stack
+								component="form"
+								direction="row"
+								spacing={2}
+								noValidate
+								autoComplete="off"
+							>
+								<TextField
+									label="Matrix[1]"
+									variant="outlined"
+									size="small"
+									value={config.matrix[0]}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+										setMatrix(event.target.value, 0);
+									}}
+								/>
+								<TextField
+									label="Matrix[2]"
+									variant="outlined"
+									size="small"
+									value={config.matrix[1]}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+										setMatrix(event.target.value, 1);
+									}}
+								/>
+								<TextField
+									label="Matrix[3]"
+									variant="outlined"
+									size="small"
+									value={config.matrix[2]}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+										setMatrix(event.target.value, 2);
+									}}
+								/>
+								<TextField
+									label="Matrix[4]"
+									variant="outlined"
+									size="small"
+									value={config.matrix[3]}
+									onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+										setMatrix(event.target.value, 3);
+									}}
+								/>
+							</Stack>
+						)}
 					</Box>
 				</CardContent>
 			</Card>

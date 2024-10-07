@@ -1,3 +1,4 @@
+// @todo - move data to api
 import { ISkill } from "./components/Skills/components/Skill";
 import { IStage } from "./components/Stages/components/Stage";
 import { IKnowItem } from "./components/Knowledge/components/KnowItem";

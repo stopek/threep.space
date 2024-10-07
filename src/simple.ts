@@ -1,3 +1,4 @@
+// @todo - move data to api
 export const simpleProjects: Record<string, string[]> = {
 	"/bank-torun": ["index"],
 	"/bioline": ["index", "cart", "product_cart", "products", "products_ingredients", "text"],

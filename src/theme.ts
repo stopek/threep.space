@@ -1,6 +1,7 @@
 import { ThemeOptions } from "@mui/material/styles/createTheme";
 import { responsiveFontSizes } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
+import { orange } from "@mui/material/colors";
 
 const general: ThemeOptions = {
 	typography: {
@@ -34,11 +35,11 @@ export const dark = responsiveFontSizes(
 		...general,
 		palette: {
 			background: {
-				default: "#000000",
+				default: "#000",
 			},
 			mode: "dark",
 			primary: {
-				main: "#fb6400",
+				main: orange[900],
 			},
 		},
 	}),
@@ -48,9 +49,12 @@ export const light = responsiveFontSizes(
 	createTheme({
 		...general,
 		palette: {
+			background: {
+				default: "#fff",
+			},
 			mode: "light",
 			primary: {
-				main: "#fb6400",
+				main: orange[900],
 			},
 		},
 	}),
