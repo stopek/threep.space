@@ -11,7 +11,12 @@ import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import GradingIcon from "@mui/icons-material/Grading";
-import { isStackFilter, stackValue } from "../../../../common/utils";
+import {
+	getMultipleStack,
+	isMultipleStack,
+	isStackFilter,
+	stackValue,
+} from "../../../../common/utils";
 
 interface IFilters {
 	changeFilter: (value: string[], init?: boolean) => void;
@@ -26,6 +31,14 @@ export const Filters = ({ changeFilter }: IFilters) => {
 	const clearStackFiltering = () => navigate("/portfolio/latest");
 
 	const isStack = isStackFilter(filterId);
+	const isMultiple = isMultipleStack(filterId);
+	const multipleStack = getMultipleStack(filterId);
+
+	const clearFromMultiple = (name: string): void => {
+		const filtered = multipleStack.filter(v => v !== name);
+
+		navigate(`/portfolio/stack:${filtered.join(",")}`);
+	};
 
 	return (
 		<>
@@ -102,17 +115,32 @@ export const Filters = ({ changeFilter }: IFilters) => {
 						activeName={filter.value}
 					/>
 
-					{isStack && (
-						<Chip
-							label={t(`technologies.${stackValue(filterId)}`)}
-							sx={{ px: 2 }}
-							onDelete={clearStackFiltering}
-							style={{ marginLeft: "auto" }}
-							color="primary"
-							variant="outlined"
-							clickable
-						/>
-					)}
+					{isStack &&
+						(isMultiple ? (
+							<Box marginLeft="auto" display="flex" gap={1}>
+								{multipleStack.map((element, index) => (
+									<Chip
+										key={index}
+										label={t(`technologies.${element}`)}
+										sx={{ px: 1 }}
+										onDelete={() => clearFromMultiple(element)}
+										color="primary"
+										variant="outlined"
+										clickable
+									/>
+								))}
+							</Box>
+						) : (
+							<Chip
+								label={t(`technologies.${stackValue(filterId)}`)}
+								sx={{ px: 1 }}
+								onDelete={clearStackFiltering}
+								style={{ marginLeft: "auto" }}
+								color="primary"
+								variant="outlined"
+								clickable
+							/>
+						))}
 				</Box>
 			</Paper>
 		</>

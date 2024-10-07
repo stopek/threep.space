@@ -21,7 +21,35 @@ export const scrollToDiv = (elementId: string) => {
 	});
 };
 
-export const isStackFilter = (filterId: string | undefined) => filterId?.startsWith("stack:");
+export const isStackFilter = (filterId: string | undefined): boolean =>
+	filterId?.startsWith("stack:") || false;
 
 export const stackValue = (filterId: string | undefined): string =>
 	filterId?.replace("stack:", "") || "";
+
+export const getMultipleStack = (filterId: string | undefined): string[] =>
+	stackValue(filterId).split(",");
+
+export const isMultipleStack = (filterId: string | undefined): boolean =>
+	isStackFilter(filterId) && getMultipleStack(filterId).length > 1;
+
+export const isCurrentStack = (filterId: string | undefined, stackName: string): boolean => {
+	if (!filterId) {
+		return false;
+	}
+
+	const isStack = isStackFilter(filterId);
+	const currentStack = stackValue(filterId);
+	const isMultiple = isMultipleStack(filterId);
+	const multipleStack = getMultipleStack(filterId);
+
+	if (!isStack) {
+		return false;
+	}
+
+	if (isMultiple) {
+		return multipleStack.includes(stackName);
+	}
+
+	return currentStack === stackName;
+};
