@@ -42,7 +42,7 @@
 			"src": "/static/favicons/screenshot.jpg",
 			"sizes": "1903x919",
 			"type": "image/jpeg",
-            "form_factor": "wide"
+			"form_factor": "wide"
 		}
 	],
 	"display_override": ["window-controls-overlay"]

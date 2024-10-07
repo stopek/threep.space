@@ -1,5 +1,4 @@
-import React from "react";
-import { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import AppBar from "@mui/material/AppBar";
@@ -11,6 +10,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { simpleProjects } from "../../simple";
 
 const Transition = React.forwardRef(function Transition(
 	props: TransitionProps & {
@@ -25,60 +25,6 @@ interface IPreview {
 	children: ReactNode;
 	src: string;
 }
-
-const simpleProjects: Record<string, string[]> = {
-	"/bank-torun": ["index"],
-	"/bioline": ["index", "cart", "product_cart", "products", "products_ingredients", "text"],
-	"/dominplus": ["index"],
-	"/mertegra": ["index"],
-	"/mertegra-storybook": ["index"],
-	"/taskcreateit": ["index"],
-	"/grant-studio": ["index", "about-us", "contact", "offer", "realized", "realized-step"],
-	"/kwiaciarnia": [
-		"index",
-		"koszyk",
-		"podstrona_dodatki",
-		"podstrona_dodatki_karta",
-		"podstrona_kwiaty",
-		"podstrona_kwiaty_karta",
-		"podstrona_textowa",
-		"podstrona_wyszukiwania",
-	],
-	"/melimelo": ["index"],
-	"/poltrade": [
-		"about_us",
-		"contact",
-		"index",
-		"menu_with_tabs",
-		"offer",
-		"offer_text",
-		"realized",
-		"use_text",
-		"use_image",
-	],
-	"/pozyczkafm": [
-		"index",
-		"index-calculator",
-		"wnioski_kredytowe-01-weryfikacja",
-		"wnioski_kredytowe-02-niepowodzenie",
-		"wnioski_kredytowe-03-pozytywna",
-		"wnioski_kredytowe-FAQ",
-		"wnioski_kredytowe-kontakt",
-		"wnioski_kredytowe-pozyczka",
-		"wnioski_kredytowe-wniosek",
-		"wnioski_kredytowe-wymogi",
-	],
-	"/pozyczkowo": [
-		"index",
-		"index-calculator",
-		"wnioski_kredytowe-FAQ",
-		"wnioski_kredytowe-kontakt",
-		"wnioski_kredytowe-pozyczka",
-		"wnioski_kredytowe-wniosek",
-		"wnioski_kredytowe-wymogi",
-	],
-	"/salon": ["index"],
-};
 
 const getNameFromSource = (src: string) => {
 	const split = src.split("/");
