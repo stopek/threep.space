@@ -110,7 +110,7 @@ export const works_list: Type.IWork[] = [
 			en: "<em>eMercator Product Store</em><strong>Role in the project:</strong><ol><li>Working in a 12-person team using SCRUM methodology</li><li>Main frontend developer for the project (Angular)</li><li>Developing the project according to business requirements</li><li>Complete refactoring of the code for SSR (Server-Side Rendering)</li><li>Implementing Angular SSR</li><li>Performance optimization</li></ol>",
 		},
 		category: ["angular", "createit"],
-		stack: ["angular", "prime", "ts", "tailwind", "jest"],
+		stack: ["angular", "prime", "ts", "tailwind", "jest", "legacy"],
 		image: "/works/emercator.jpg",
 		slug: "emercator",
 		inside: {
@@ -285,7 +285,6 @@ export const works_list: Type.IWork[] = [
 		last: true,
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 8,
 		name: "createIT - Recruitment Task",
 		description: {
@@ -318,7 +317,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 7,
 		name: "Templates HTML/CSS/JS",
 		description: {
@@ -374,7 +372,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 7,
 		name: "CentOS 8 - VPS management tool",
 		description: {
@@ -390,7 +387,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 7,
 		stack: ["python"],
 		name: "GreenHouse - Accelerating Plant Growth",
@@ -408,7 +404,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 3,
 		name: "Witold Drozdowski - Law Company",
 		description: {
@@ -424,7 +419,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 7,
 		name: "PlantCare - Houseplant Care",
 		description: {
@@ -452,7 +446,6 @@ export const works_list: Type.IWork[] = [
 		slug: "esa",
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 7,
 		name: "Hanplast Energy - Photovoltaic Company",
 		description: {
@@ -468,7 +461,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 6,
 		name: "Silky24 - Store with wood saws",
 		description: {
@@ -484,7 +476,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 6,
 		name: "Zooleszcz - Order Printer",
 		description: {
@@ -552,7 +543,6 @@ export const works_list: Type.IWork[] = [
 		slug: "nocleg-pielgzyma",
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 6,
 		name: "Social-Ninja - SEO Company Site",
 		description: {
@@ -565,7 +555,6 @@ export const works_list: Type.IWork[] = [
 		slug: "social-ninja",
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 6,
 		name: "Belma - Product System",
 		description: {
@@ -573,7 +562,7 @@ export const works_list: Type.IWork[] = [
 			en: "<em>Belma product system</em><strong>Role in the project:</strong><ol><li>Refreshing the website based on the provided UI, building upon the previous version</li></ol>",
 		},
 		category: ["code_igniter", "mediart"],
-		stack: ["code_igniter", "html", "scss", "js"],
+		stack: ["code_igniter", "html", "scss", "js", "legacy"],
 		image: "/works/belma.jpg",
 
 		slug: "belma",
@@ -601,7 +590,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 5,
 		name: "Hypertectum - Waterproofing systems",
 		description: {
@@ -617,7 +605,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 5,
 		name: "Financial Platform with loans",
 		description: {
@@ -633,7 +620,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 5,
 		name: "RastSC - Fishing Wholesaler",
 		description: {
@@ -689,7 +675,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 5,
 		name: "SkrawMech - CNC services",
 		description: {
@@ -705,7 +690,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 5,
 		stack: ["code_igniter", "html", "css", "js", "jquery", "php", "jquery", "mysql"],
 		name: "CitySpace - Small Architecture",
@@ -722,7 +706,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 5,
 		name: "SprezMot - Manufacturing Springs ",
 		description: {
@@ -819,7 +802,6 @@ export const works_list: Type.IWork[] = [
 		},
 	},
 	{
-		about: { pl: "", en: "" },
 		order: 0,
 		name: "N.A.G.M - Slot Games",
 		description: {
@@ -856,7 +838,7 @@ export const works_list: Type.IWork[] = [
 			en: "Is the main page of the technical school attended by the author. This project was one of the first ones he executed, and it has remained unchanged to this day.",
 		},
 		category: ["freelancer"],
-		stack: ["php", "html", "css"],
+		stack: ["php", "html", "css", "legacy"],
 		slug: "zs2rypin",
 		image: "/works/zs2rypin.jpg",
 		inside: {
@@ -866,7 +848,7 @@ export const works_list: Type.IWork[] = [
 	{
 		order: 0,
 		old: true,
-		stack: ["code_igniter", "html", "scss", "js", "php", "mysql", "jquery"],
+		stack: ["code_igniter", "html", "scss", "js", "php", "mysql", "jquery", "legacy"],
 		name: "Hotel Słoneczny Młyn",
 		description: {
 			pl: 'Projekt "Sloneczny.eu" to klasyczna strona hotelowa, stworzona dla hotelu o spersonalizowanym wyglądzie. Strona zawiera podstawowe informacje o hotelu oraz oferowane usługi. Moja rola w projekcie polegała na utworzeniu systemu w oparciu o dostarczoną dokumentację oraz projekt graficzny.',
@@ -881,7 +863,7 @@ export const works_list: Type.IWork[] = [
 	{
 		order: 0,
 		old: true,
-		name: "Psychological tests tool for UKW",
+		name: "Psychological tests tool",
 		description: {
 			pl: 'Projekt "BBCLAB TESTS" to platforma do przeprowadzania spersonalizowanych badań przez instytut psychologii. Projekt dostępny jedynie na GitHub’ie. Moja rola w projekcie polegała na ustaleniu wymagań z klientem i utworzeniu systemu do przeprowadzania, gromadzenia i analizowania wyników badań ankietowych.',
 			en: 'The "BBCLAB TESTS" project is a platform for conducting personalized research by the psychology institute. The project is available only on GitHub. My role in the project was to determine requirements with the client and create a system for conducting, collecting, and analyzing survey results.',
@@ -915,7 +897,7 @@ export const works_list: Type.IWork[] = [
 			en: 'The "Abler.pl" project is a standard advertising website with a store connected to ERP Symfonia. My role in the project involved modifying the existing system and fixing bugs.',
 		},
 		category: ["code_igniter", "mediart"],
-		stack: ["code_igniter", "html", "scss", "js", "jquery", "php", "mysql"],
+		stack: ["code_igniter", "html", "scss", "js", "jquery", "php", "mysql", "legacy"],
 		slug: "abler",
 		image: "/works/abler.jpg",
 		inside: {
@@ -931,7 +913,7 @@ export const works_list: Type.IWork[] = [
 			en: 'The "Prymus24.pl" project is a wholesaler website for electronic and household appliances parts, integrated with ERP Subiekt. My role in the project was to update the user interface while maintaining the current functionality.',
 		},
 		category: ["code_igniter", "mediart"],
-		stack: ["code_igniter", "html", "css", "js", "jquery", "php", "mysql"],
+		stack: ["code_igniter", "html", "css", "js", "jquery", "php", "mysql", "legacy"],
 		slug: "prymus-dzia-klimatyzacji",
 		image: "/works/prymus.jpg",
 		inside: {
@@ -947,7 +929,7 @@ export const works_list: Type.IWork[] = [
 			en: 'The "Studio3d.com.pl" project is a store for a company selling engraved figurines. My role in the project was to implement changes, expand the store, and fix errors.',
 		},
 		category: ["code_igniter", "mediart"],
-		stack: ["code_igniter", "html", "css", "php", "mysql"],
+		stack: ["code_igniter", "html", "css", "php", "mysql", "legacy"],
 		slug: "studio3d",
 		image: "/works/studio3d.jpg",
 		inside: {
@@ -963,7 +945,7 @@ export const works_list: Type.IWork[] = [
 			pl: 'Projekt "Salonik-dla-pupila.pl" to strona sklepu z produktami dla kotów/psów, połączona z ERP Subiekt’a. Moja rola w projekcie polegała na wymianie interfejsu użytkownika przy zachowaniu aktualnych funkcjonalności.',
 			en: 'The "Salonik-dla-pupila.pl" project is a website for a store selling products for cats/dogs, integrated with ERP Subiekt. My role in the project was to update the user interface while maintaining the current functionality.',
 		},
-		category: ["code_igniter", "mediart"],
+		category: ["code_igniter", "mediart", "legacy"],
 		slug: "salonik-dla-pupila",
 		image: "/works/salonikdlapupila.jpg",
 		inside: {
@@ -973,7 +955,7 @@ export const works_list: Type.IWork[] = [
 	{
 		order: 0,
 		old: true,
-		stack: ["code_igniter", "html", "css", "js", "jquery", "centos", "php", "mysql"],
+		stack: ["code_igniter", "html", "css", "js", "jquery", "centos", "php", "mysql", "legacy"],
 		name: "Muzeum Mydła i Historii Brudu",
 		description: {
 			pl: 'Projekt "Muzeum Mydła" to strona internetowa Bydgoskiego Muzeum Mydła, zaprojektowana zgodnie z wytycznymi klienta. Jest to klasyczna strona z możliwością rezerwacji biletów na wizytę. System rezerwacji biletów zosta...',
@@ -1007,7 +989,7 @@ export const works_list: Type.IWork[] = [
 			en: 'The "Bozka.eu" project is a website of a lady with a nice voice who sold hats. My role in the project involved working on the existing system, fixing bugs, and making modifications.',
 		},
 		category: ["code_igniter", "mediart"],
-		stack: ["code_igniter", "html", "scss", "css", "js", "jquery", "php", "mysql"],
+		stack: ["code_igniter", "html", "scss", "css", "js", "jquery", "php", "mysql", "legacy"],
 		slug: "bozka",
 		image: "/works/bozkaeu.jpg",
 		inside: {
