@@ -1,9 +1,9 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { IStackItem, StackItem } from "../StackItem";
+import { StackItem } from "../StackItem";
 
 export interface IStack {
-	list: IStackItem["name"][];
+	list: Type.IStackItem["name"][];
 }
 
 export const Stack = ({ list }: IStack) => (

@@ -267,9 +267,10 @@ import {
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Box from "@mui/material/Box";
 
-function getRandomInt(min: number, max: number) {
+function getRandomInt(min: number, max: number): number {
 	const minCeiled = Math.ceil(min);
 	const maxFloored = Math.floor(max);
+
 	return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
@@ -284,7 +285,7 @@ interface Config {
 	step: number;
 }
 
-export const MusicContainer: React.FC = () => {
+export const MusicContainer = () => {
 	const audioRef = useRef<HTMLAudioElement | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -408,7 +409,7 @@ export const MusicContainer: React.FC = () => {
 		}
 	};
 
-	const init = () => {
+	const init = (): void => {
 		audioRef.current
 			?.play()
 			.catch()
@@ -462,7 +463,7 @@ export const MusicContainer: React.FC = () => {
 			ctx.fillStyle = `rgba(255, 255, 255, 0.9)`;
 			ctx.fill();
 		}
-	}, [audioRef, canvasRef, configRef.current]);
+	}, [audioRef, canvasRef, configRef]);
 
 	return (
 		<>

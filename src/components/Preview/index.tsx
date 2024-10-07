@@ -26,7 +26,7 @@ interface IPreview {
 	src: string;
 }
 
-const getNameFromSource = (src: string) => {
+const getNameFromSource = (src: string): string => {
 	const split = src.split("/");
 	return split[split.length - 1];
 };

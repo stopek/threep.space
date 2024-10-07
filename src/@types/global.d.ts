@@ -19,4 +19,34 @@ declare namespace Type {
 		| "github_front"
 		| "archive"
 		| "github";
+
+	export interface IStackItem {
+		name: string;
+		url?: string;
+	}
+
+	type PartialRecord<K extends keyof any, T> = {
+		[P in K]?: T;
+	};
+
+	export interface IWork {
+		name: string;
+		image?: string;
+		description: {
+			en: string;
+			pl: string;
+		};
+		about?: {
+			en: string;
+			pl: string;
+		};
+		category: string[];
+		stack: IStackItem["name"][];
+		order?: number;
+		slug: string;
+		inside?: PartialRecord<TInsideUrls, string>;
+		last?: boolean;
+		old?: boolean;
+		urls?: boolean;
+	}
 }

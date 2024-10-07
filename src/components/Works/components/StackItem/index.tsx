@@ -2,12 +2,7 @@ import React from "react";
 import { Chip } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-export interface IStackItem {
-	name: string;
-	url?: string;
-}
-
-export const StackItem = ({ name }: IStackItem) => {
+export const StackItem = ({ name }: Type.IStackItem) => {
 	const { t } = useTranslation();
 
 	return (

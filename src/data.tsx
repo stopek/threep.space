@@ -1,5 +1,4 @@
 import { ISkill } from "./components/Skills/components/Skill";
-import { IWork } from "./components/Works/components/Work";
 import { IStage } from "./components/Stages/components/Stage";
 import { IKnowItem } from "./components/Knowledge/components/KnowItem";
 import { IDesignItem } from "./components/Design/components/DesignItem";
@@ -102,7 +101,7 @@ export const stages_list: IStage[] = [
 	},
 ];
 
-export const works_list: IWork[] = [
+export const works_list: Type.IWork[] = [
 	{
 		name: "eMERCATOR - Product Store",
 		description: {

@@ -1,89 +1,21 @@
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import { Collapse, Divider, Grid, IconButtonProps, Stack, styled } from "@mui/material";
+import { Collapse, Divider, Grid, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
-import { IStackItem } from "../StackItem";
 import { Stack as CStack } from "../Stack";
-import { Description, ItemGrid } from "./styled";
+import { Description, ExpandMore, ItemGrid } from "./styled";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import TurnSlightRightIcon from "@mui/icons-material/TurnSlightRight";
 import { Image } from "../Image";
 import Preview from "../../../Preview";
-import IconButton from "@mui/material/IconButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom";
-import { useFilter } from "../../../../store/filter";
+import ProjectName from "../ProjectName";
 
-type PartialRecord<K extends keyof any, T> = {
-	[P in K]?: T;
-};
-
-export interface IWork {
-	name: string;
-	image?: string;
-	description: {
-		en: string;
-		pl: string;
-	};
-	about?: {
-		en: string;
-		pl: string;
-	};
-	category: string[];
-	stack: IStackItem["name"][];
-	order?: number;
-	slug: string;
-	inside?: PartialRecord<Type.TInsideUrls, string>;
-	last?: boolean;
-	old?: boolean;
-	urls?: boolean;
-}
-
-interface IWorkComponent extends IWork {
+interface IWorkComponent extends Type.IWork {
 	rounded?: boolean;
 }
-
-interface ExpandMoreProps extends IconButtonProps {
-	expand: number;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-	return <IconButton {...props} />;
-})(({ theme, expand }) => ({
-	position: "absolute",
-	right: 0,
-	transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-	marginLeft: "auto",
-	transition: theme.transitions.create("transform", {
-		duration: theme.transitions.duration.shortest,
-	}),
-}));
-
-const ProjectName = ({
-	name,
-	slug,
-	category,
-}: {
-	name: string;
-	slug: string;
-	category: string[];
-}) => {
-	const navigate = useNavigate();
-	const { handleSetValue } = useFilter();
-
-	const onClickName = () => {
-		navigate("/portfolio/" + category[0] + "/" + slug);
-		handleSetValue(category[0]);
-	};
-
-	return (
-		<span style={{ cursor: "pointer" }} onClick={onClickName}>
-			{name}
-		</span>
-	);
-};
 
 export const Work = ({
 	name,

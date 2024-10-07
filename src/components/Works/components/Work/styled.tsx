@@ -1,5 +1,7 @@
-import { Grid, styled } from "@mui/material";
+import { Grid, IconButtonProps, styled } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import React from "react";
 
 export const Description = styled(Typography)`
 	em {
@@ -36,3 +38,19 @@ export const ItemGrid = styled(Grid)<{ rounded?: number }>(({ rounded, theme }) 
 				paddingBottom: theme.spacing(3),
 			},
 );
+
+interface ExpandMoreProps extends IconButtonProps {
+	expand: number;
+}
+
+export const ExpandMore = styled((props: ExpandMoreProps) => {
+	return <IconButton {...props} />;
+})(({ theme, expand }) => ({
+	position: "absolute",
+	right: 0,
+	transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+	marginLeft: "auto",
+	transition: theme.transitions.create("transform", {
+		duration: theme.transitions.duration.shortest,
+	}),
+}));
