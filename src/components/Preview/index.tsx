@@ -30,6 +30,9 @@ const simpleProjects: Record<string, string[]> = {
 	"/bank-torun": ["index"],
 	"/bioline": ["index", "cart", "product_cart", "products", "products_ingredients", "text"],
 	"/dominplus": ["index"],
+	"/mertegra": ["index"],
+	"/mertegra-storybook": ["index"],
+	"/taskcreateit": ["index"],
 	"/grant-studio": ["index", "about-us", "contact", "offer", "realized", "realized-step"],
 	"/kwiaciarnia": [
 		"index",
@@ -135,26 +138,28 @@ export default function Preview({ children, src }: IPreview) {
 							</Select>
 						</FormControl>
 
-						{currentSrc && simpleProjects[currentSrc] && (
-							<FormControl sx={{ ml: 2, flex: 2, m: 1 }}>
-								<InputLabel id="demo-simple-select-helper-label2">
-									Template
-								</InputLabel>
-								<Select
-									labelId="demo-simple-select-helper-label2"
-									id="demo-simple-select-helper2"
-									value={template}
-									label="Template"
-									onChange={handleChangeTemplate}
-								>
-									{simpleProjects[currentSrc].map((template, x) => (
-										<MenuItem key={x} value={template}>
-											{template}
-										</MenuItem>
-									))}
-								</Select>
-							</FormControl>
-						)}
+						{currentSrc &&
+							simpleProjects[currentSrc] &&
+							simpleProjects[currentSrc].length > 1 && (
+								<FormControl sx={{ ml: 2, flex: 2, m: 1 }}>
+									<InputLabel id="demo-simple-select-helper-label2">
+										Template
+									</InputLabel>
+									<Select
+										labelId="demo-simple-select-helper-label2"
+										id="demo-simple-select-helper2"
+										value={template}
+										label="Template"
+										onChange={handleChangeTemplate}
+									>
+										{simpleProjects[currentSrc].map((template, x) => (
+											<MenuItem key={x} value={template}>
+												{template}
+											</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							)}
 
 						<IconButton
 							edge="end"
@@ -170,7 +175,7 @@ export default function Preview({ children, src }: IPreview) {
 				<iframe
 					key={currentSrc}
 					title={`preview ${template}`}
-					src={`https://inside.threep.space${currentSrc}/${template}`}
+					src={`https://inside.threep.space${currentSrc}/${template === "index" ? "" : template}`}
 					style={{
 						width: "100%",
 						height: "100%",
