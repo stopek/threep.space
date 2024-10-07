@@ -2,7 +2,7 @@ import React from "react";
 import { Chip } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import { isCurrentStack, isStackFilter, stackValue } from "../../../../common/utils";
+import { isCurrentStack } from "../../../../common/utils";
 
 export const StackItem = ({ name }: Type.IStackItem) => {
 	const { t } = useTranslation();

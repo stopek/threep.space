@@ -110,7 +110,7 @@ export const works_list: Type.IWork[] = [
 			en: "<em>eMercator Product Store</em><strong>Role in the project:</strong><ol><li>Working in a 12-person team using SCRUM methodology</li><li>Main frontend developer for the project (Angular)</li><li>Developing the project according to business requirements</li><li>Complete refactoring of the code for SSR (Server-Side Rendering)</li><li>Implementing Angular SSR</li><li>Performance optimization</li></ol>",
 		},
 		category: ["angular", "createit"],
-		stack: ["angular", "prime", "ts", "tailwind", "jest", "legacy"],
+		stack: ["angular", "prime", "ts", "tailwind", "jest", "legacy", "scrum"],
 		image: "/works/emercator.jpg",
 		slug: "emercator",
 		inside: {
@@ -172,7 +172,7 @@ export const works_list: Type.IWork[] = [
 			en: "<strong>Main functions:</strong><ol><li>Reservations, reviews, browsing offers</li><li>Comprehensive data management</li><li>Admin panel and customer panels</li><li>AWS-based backend</li></ol>",
 		},
 		category: ["react", "ventus"],
-		stack: ["react", "ts", "material", "storybook"],
+		stack: ["react", "ts", "material", "storybook", "scrum"],
 		image: "/works/localbini.jpg",
 		slug: "localbini",
 		inside: {
@@ -292,7 +292,7 @@ export const works_list: Type.IWork[] = [
 			en: "<em>Recruitment task for a company I had the pleasure to collaborate with <small>Project showcased as an example of my GitHub workflow</small></em>",
 		},
 		category: ["react", "createit"],
-		stack: ["react", "ts", "styled"],
+		stack: ["react", "ts", "redux", "styled"],
 		image: "/works/createit.jpg",
 		slug: "createit-recruitment-task",
 		inside: {
