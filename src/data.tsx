@@ -286,7 +286,7 @@ export const works_list: Type.IWork[] = [
 	{
 		about: { pl: "", en: "" },
 		order: 8,
-		name: "Task - Recruitment Task",
+		name: "createIT - Recruitment Task",
 		description: {
 			pl: "<em>Zadanie rekrutacyjne do firmy, z którą miałem przyjemność współpracować<small>Projekt prezentowany jako przykład stosowanego przeze mnie flow GitHuba</small></em>",
 			en: "<em>Recruitment task for a company I had the pleasure to collaborate with <small>Project showcased as an example of my GitHub workflow</small></em>",

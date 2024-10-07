@@ -100,7 +100,7 @@ export const Works = () => {
 	}, [setOnLoad]);
 
 	return (
-		<Box mt={0} mb={0} id="portfolio">
+		<Box mt={0} mb={5} id="portfolio">
 			<HeaderTitle title={t("txt.portfolio")} />
 			<Filters changeFilter={changeFilter} />
 
