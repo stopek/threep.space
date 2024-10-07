@@ -8,6 +8,7 @@ export const Description = styled(Typography)`
 		display: block;
 		margin-bottom: 10px;
 	}
+
 	small {
 		display: block;
 	}
@@ -29,9 +30,13 @@ export const Description = styled(Typography)`
 export const ItemGrid = styled(Grid)<{ rounded?: number }>(({ rounded, theme }) =>
 	rounded
 		? {
-				background: "rgba(0, 0, 0, 0.3)",
+				backgroundImage: `repeating-linear-gradient(45deg, transparent, ${theme.palette.mode === "light" ? "rgba(128,128,128,0.4)" : "rgba(0,0,0,0.4)"} 30px, transparent 10px, transparent 20px)`,
 				paddingTop: theme.spacing(0),
 				paddingBottom: theme.spacing(3),
+				borderRadius: 20,
+				boxShadow: "inset 0px 0px 120px -120px rgba(255, 170, 0, 0.4)",
+				transform: "scale(1.05)",
+				position: "relative",
 			}
 		: {
 				paddingTop: theme.spacing(0),

@@ -227,13 +227,13 @@ export const works_list: Type.IWork[] = [
 		},
 		order: 7,
 
-		stack: ["symfony", "react", "mysql", "lemp", "bash"],
+		stack: ["react", "symfony", "mysql", "lemp", "bash"],
 		name: "WotFans - World of Tanks Statistics Platform",
 		description: {
 			pl: "<em>Portal dla graczy World of Tanks</em><strong>Rola w projekcie:</strong><ol><li>Tworzenie aplikacji frontendowej</li><li>Tworzenie API w Symfony</li><li>Integracja z API Wargaming</li><li>Analiza danych z API twórcy gry</li><li>Konfiguracja i zarządzanie VPS</li></ol>",
 			en: "<em>Portal for World of Tanks players</em><strong>Role in the project:</strong><ol><li>Developing the frontend application</li><li>Creating the API with Symfony</li><li>Integration with the Wargaming API</li><li>Data analysis from the game's API</li><li>VPS configuration and management</li></ol>",
 		},
-		category: ["symfony", "freelancer", "react"],
+		category: ["react", "symfony", "freelancer"],
 		image: "/works/wotfans.jpg",
 		slug: "wotfansapi",
 		inside: {

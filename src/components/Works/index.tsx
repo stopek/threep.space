@@ -68,7 +68,6 @@ export const Works = () => {
 			const redirect = "/portfolio/" + value.join("/");
 
 			handleSetValue(value[0]);
-			console.log({ value, idDiv });
 
 			if (init) {
 				const project = document.getElementById(idDiv.join("_"));
