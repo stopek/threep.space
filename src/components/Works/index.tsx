@@ -3,35 +3,14 @@ import { HeaderTitle } from "../../ui/HeaderTitle";
 import { Filters } from "./components/Filters";
 import { Work } from "./components/Work";
 import Box from "@mui/material/Box";
-import { filters_list, works_list } from "../../data";
+import { filters_list } from "../../data";
 import { useFilter } from "../../store/filter";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import useSound from "../../hooks/useSound";
 import { getMultipleStack, isMultipleStack, isStackFilter, stackValue } from "../../common/utils";
-
-const filterWorks = (filter: string): Type.IWork[] => {
-	const list = works_list.sort((a, b) => (a?.order && b?.order ? b?.order - a?.order : 0));
-
-	if (isStackFilter(filter)) {
-		if (isMultipleStack(filter)) {
-			const multipleStackValue = getMultipleStack(filter);
-			return list.filter(w =>
-				w.stack?.some(stackItem => multipleStackValue.includes(stackItem)),
-			);
-		}
-
-		return list.filter(w => w.stack?.includes(stackValue(filter)));
-	} else if (filter === "latest") {
-		return list.filter(w => w?.last);
-	} else if (filter === "old") {
-		return list.filter(w => w?.old);
-	} else if (filter !== "all") {
-		return list.filter(w => w.category?.includes(filter));
-	}
-
-	return list;
-};
+import { fetchWorks, useApi } from "../../store/api";
+import { useAppDispatch } from "../../store/helpers";
 
 const filters_list_combined = [...filters_list, "latest", "all", "old"];
 
@@ -60,20 +39,65 @@ export const Works = () => {
 	const { filter, handleSetValue } = useFilter();
 	const navigate = useNavigate();
 	const { filterId, projectName } = useParams();
+	const { api } = useApi();
 	const { tap } = useSound();
+
+	const dispatch = useAppDispatch();
+
+	const filterWorks = useCallback(
+		(filter: string): Type.IWork[] => {
+			const works = api.works;
+
+			if (works.length === 0) {
+				return [];
+			}
+
+			if (isStackFilter(filter)) {
+				if (isMultipleStack(filter)) {
+					const multipleStackValue = getMultipleStack(filter);
+					return works.filter(w =>
+						w.stack?.some(stackItem => multipleStackValue.includes(stackItem)),
+					);
+				}
+
+				return works.filter(w => w.stack?.includes(stackValue(filter)));
+			} else if (filter === "latest") {
+				return works.filter(w => w?.last);
+			} else if (filter === "old") {
+				return works.filter(w => w?.old);
+			} else if (filter !== "all") {
+				return works.filter(w => w.category?.includes(filter));
+			}
+
+			return works;
+		},
+		[api.works],
+	);
+
 	const list = filterWorks(filter.value);
 
-	const scrollToDiv = useCallback((elementId: string) => {
-		const element = document.getElementById(elementId);
-		if (!element) {
-			return;
-		}
-
-		window.scroll({
-			top: element.offsetTop - 50,
-			behavior: "smooth",
-		});
+	useEffect(() => {
+		dispatch<any>(fetchWorks());
 	}, []);
+
+	const scrollToDiv = useCallback(
+		(elementId: string) => {
+			const element = document.getElementById(elementId);
+			if (!element) {
+				return;
+			}
+
+			if (api.loading || api.error) {
+				return;
+			}
+
+			window.scroll({
+				top: element.offsetTop - 50,
+				behavior: "smooth",
+			});
+		},
+		[api.loading],
+	);
 
 	const changeFilter = useCallback(
 		(value: string[], init?: boolean) => {
@@ -111,6 +135,9 @@ export const Works = () => {
 	useEffect(() => {
 		setOnLoad();
 	}, [setOnLoad]);
+
+	if (api.loading) return <div>Loading...</div>;
+	if (api.error) return <div>Error: {api.error}</div>;
 
 	return (
 		<Box mt={0} mb={5} id="portfolio">

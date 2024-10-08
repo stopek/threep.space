@@ -1,7 +1,8 @@
 import { IWorkDTO } from "../types";
 
-export const workDTO = (integration: IWorkDTO): Type.IWork => ({
-	...integration,
+export const workDTO = (work: IWorkDTO): Type.IWork => ({
+	// @todo - types
+	...(work as Type.IWork),
 });
 
-export const worksDTO = (works: IWorkDTO[]): Type.IWork[] => works.map(integrationDTO);
+export const worksDTO = (works: IWorkDTO[]): Type.IWork[] => works.map(workDTO);

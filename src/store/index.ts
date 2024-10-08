@@ -8,6 +8,7 @@ import {
 import { catchError, Observable } from "rxjs";
 import { filterEpic, filterSlice } from "./filter";
 import { settingsSlice } from "./settings";
+import { apiSlice } from "./api";
 
 // https://redux-observable.js.org/docs/basics/SettingUpTheMiddleware.html#adding-global-error-handler
 const rootEpic = (
@@ -29,6 +30,7 @@ export const store = configureStore({
 	reducer: {
 		filter: filterSlice.reducer,
 		settings: settingsSlice.reducer,
+		api: apiSlice.reducer,
 	},
 });
 
