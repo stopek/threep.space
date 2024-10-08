@@ -1,13 +1,12 @@
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 import { Layout } from "../Layout/Layout";
 import { ThemeProvider } from "@mui/material/styles";
-import { dark, light } from "../../theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import { useSettings } from "../../store/settings";
 import { NotFoundContainer } from "../../containers/NotFoundContainer";
-import { Loader } from "../../ui/Loader";
+import { Loading } from "../../ui/Loading/Loading";
 
 const router = createBrowserRouter([
 	{
@@ -46,16 +45,16 @@ const router = createBrowserRouter([
 ]);
 
 const Root = () => {
-	const { settings } = useSettings();
+	const { getTheme } = useSettings();
 
 	return (
 		<ErrorBoundary>
-			<ThemeProvider theme={settings.theme === "dark" ? dark : light}>
+			<ThemeProvider theme={getTheme}>
 				<CssBaseline />
 				<RouterProvider
 					router={router}
 					future={{ v7_startTransition: true }}
-					fallbackElement={<Loader />}
+					fallbackElement={<Loading />}
 				/>
 			</ThemeProvider>
 		</ErrorBoundary>

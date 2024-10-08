@@ -12,7 +12,8 @@
 		"home": "Home",
 		"go_homepage": "Ho to homepage",
 		"my_projects": "Works",
-		"about_me": "About"
+		"about_me": "About",
+		"reload": "Reload"
 	},
 	"welcome": {
 		"first_line": "Hello, I'm Paweł",
@@ -113,5 +114,8 @@
 		"linux_bash": "Configured and managed VPS servers, created scripts for multiple projects, and developed an installer for CentOS.",
 		"symfony": "Finished 7 custom software solutions while maintaining constant client communication.",
 		"python": "Single attempts to work with Python, mainly for hobby work with microcircuits ESP32/ESP8266."
+	},
+	"messages": {
+		"error": "We encountered a problem while performing this operation. Please press the button to try again."
 	}
 }
