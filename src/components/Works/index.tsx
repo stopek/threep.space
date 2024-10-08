@@ -9,8 +9,9 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import useSound from "../../hooks/useSound";
 import { getMultipleStack, isMultipleStack, isStackFilter, stackValue } from "../../common/utils";
-import { fetchWorks, useApi } from "../../store/api";
-import { useAppDispatch } from "../../store/helpers";
+import { useApi } from "../../store/api";
+import { Loading } from "../../ui/Loading/Loading";
+import { Error } from "../../ui/Error";
 
 const filters_list_combined = [...filters_list, "latest", "all", "old"];
 
@@ -39,10 +40,8 @@ export const Works = () => {
 	const { filter, handleSetValue } = useFilter();
 	const navigate = useNavigate();
 	const { filterId, projectName } = useParams();
-	const { api } = useApi();
+	const { api, isLoading, hasError, handleFetchWorks } = useApi();
 	const { tap } = useSound();
-
-	const dispatch = useAppDispatch();
 
 	const filterWorks = useCallback(
 		(filter: string): Type.IWork[] => {
@@ -77,7 +76,7 @@ export const Works = () => {
 	const list = filterWorks(filter.value);
 
 	useEffect(() => {
-		dispatch<any>(fetchWorks());
+		handleFetchWorks();
 	}, []);
 
 	const scrollToDiv = useCallback(
@@ -87,7 +86,7 @@ export const Works = () => {
 				return;
 			}
 
-			if (api.loading || api.error) {
+			if (isLoading || hasError) {
 				return;
 			}
 
@@ -96,7 +95,7 @@ export const Works = () => {
 				behavior: "smooth",
 			});
 		},
-		[api.loading],
+		[isLoading],
 	);
 
 	const changeFilter = useCallback(
@@ -136,19 +135,25 @@ export const Works = () => {
 		setOnLoad();
 	}, [setOnLoad]);
 
-	if (api.loading) return <div>Loading...</div>;
-	if (api.error) return <div>Error: {api.error}</div>;
+	console.log({ api });
 
 	return (
 		<Box mt={0} mb={5} id="portfolio">
 			<HeaderTitle title={t("txt.portfolio")} />
-			<Filters changeFilter={changeFilter} />
-
-			{list.map((item, x) => (
-				<Box key={x} id={`portfolio_${item.stack[0]}_${item.slug}`} mb={2}>
-					<Work {...item} rounded={item.slug === projectName} />
-				</Box>
-			))}
+			{hasError ? (
+				<Error />
+			) : isLoading ? (
+				<Loading />
+			) : (
+				<>
+					<Filters changeFilter={changeFilter} />
+					{list.map((item, x) => (
+						<Box key={x} id={`portfolio_${item.stack[0]}_${item.slug}`} mb={2}>
+							<Work {...item} rounded={item.slug === projectName} />
+						</Box>
+					))}
+				</>
+			)}
 		</Box>
 	);
 };
