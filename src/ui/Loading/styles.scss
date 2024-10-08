@@ -1,0 +1,122 @@
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes drop-left-top-anim {
+	0% {
+		transform: scale(1.1) translate(0, 0);
+	}
+	33% {
+		transform: scale(0.19) translate(-50px, 0);
+	}
+	57% {
+		transform: scale(0.7) translate(-50px, -50px);
+	}
+	94% {
+		transform: scale(1.1) translate(0, 0);
+	}
+}
+
+@keyframes drop-right-top-anim {
+	0% {
+		transform: scale(1.1) translate(0, 0);
+	}
+	33% {
+		transform: scale(0.69) translate(50px, 0);
+	}
+	64% {
+		transform: scale(0.5) translate(50px, -50px);
+	}
+	96% {
+		transform: scale(1.1) translate(0, 0);
+	}
+}
+
+@keyframes drop-left-bottom-anim {
+	0% {
+		transform: scale(1.1) translate(0, 0);
+	}
+	33% {
+		transform: scale(0.19) translate(-50px, 0);
+	}
+	69% {
+		transform: scale(0.4) translate(-50px, 50px);
+	}
+	98% {
+		transform: scale(1.1) translate(0, 0);
+	}
+}
+
+@keyframes drop-right-bottom-anim {
+	0% {
+		transform: scale(1.1) translate(0, 0);
+	}
+	33% {
+		transform: scale(0.29) translate(50px, 0);
+	}
+	40% {
+		transform: scale(0.5) translate(50px, 50px);
+	}
+	100% {
+		transform: scale(1.1) translate(0, 0);
+	}
+}
+
+@keyframes title-loading {
+}
+
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+
+	.drops {
+		filter: url("#goo");
+		animation: spin 3s linear infinite;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+
+		.drop {
+			position: absolute;
+			background: #ef6c00;
+			left: 50%;
+			top: 50%;
+			width: 100px;
+			height: 100px;
+			line-height: 100px;
+			text-align: center;
+			color: white;
+			font-size: 40px;
+			border-radius: 100%;
+			margin-top: -50px;
+			margin-left: -50px;
+			animation: drop-left-top-anim cubic-bezier(0.77, 0, 0.175, 1) 4s infinite;
+
+			&:nth-child(2) {
+				animation-name: drop-right-top-anim;
+			}
+
+			&:nth-child(3) {
+				animation-name: drop-left-bottom-anim;
+			}
+
+			&:nth-child(4) {
+				animation-name: drop-right-bottom-anim;
+			}
+		}
+	}
+
+	span {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
