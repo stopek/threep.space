@@ -6,7 +6,7 @@ export const instance = axios.create({
 
 instance.interceptors.response.use(
 	response => response,
-	error => {
+	async error => {
 		if (error.response.status === 401) {
 			const { config } = error;
 			const delayRetryRequest = new Promise<void>(resolve => {
@@ -15,7 +15,8 @@ instance.interceptors.response.use(
 				}, config.retryDelay || 1000);
 			});
 
-			return delayRetryRequest.then(() => instance(config));
+			await delayRetryRequest;
+			return await instance(config);
 		}
 
 		throw error;

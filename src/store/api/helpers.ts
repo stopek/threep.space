@@ -1,39 +1,29 @@
 import axios from "axios";
-import {
-	ActionReducerMapBuilder,
-	AsyncThunk,
-	createAsyncThunk,
-	Draft,
-	PayloadAction,
-} from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, createAsyncThunk, Draft } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../helpers";
-import { IErrorState, ILoadingState, ISingleErrorState, TIgnoreTypes } from "./types";
-import HttpStatusCode from "../../@types/HttpStatusCode";
+import { ILoadingState, ISingleErrorState } from "./types";
+
+type TAction = "pending" | "fulfilled" | "rejected";
 
 interface TypeAction {
 	type: string;
 	payload?: {
 		status?: number;
 	};
+	meta: {
+		arg: any;
+		requestId: string;
+		requestStatus: TAction;
+	};
 }
 
-const isPendingAction = (action: TypeAction) => action.type.endsWith("pending");
+const isPendingAction = (props: TypeAction): boolean =>
+	props?.meta?.requestStatus.endsWith("pending") || false;
 
-const isFulfilledAction = (action: TypeAction) => action.type.endsWith("fulfilled");
+const isFulfilledAction = (props: TypeAction): boolean =>
+	props?.meta?.requestStatus.endsWith("fulfilled");
 
-const isCrashedAction = (action: TypeAction) =>
-	action.type.endsWith("rejected") &&
-	action?.payload?.status === HttpStatusCode.INTERNAL_SERVER_ERROR;
-
-const isNotFoundAction = (action: TypeAction) =>
-	action.type.endsWith("rejected") && action?.payload?.status === HttpStatusCode.NOT_FOUND;
-
-const isRejectedErrorAction = (action: TypeAction) =>
-	action.type.endsWith("rejected") &&
-	(!action?.payload?.status ||
-		![HttpStatusCode.NOT_FOUND, HttpStatusCode.INTERNAL_SERVER_ERROR].includes(
-			action?.payload?.status,
-		));
+const isRejectedErrorAction = (props: TypeAction): boolean => props.type.endsWith("rejected");
 
 const resolveRejectedError = (error: unknown): ISingleErrorState => {
 	if (axios.isAxiosError(error)) {
@@ -78,48 +68,27 @@ const thunkWithReject = <Response, Params = undefined>(
 		}
 	});
 
-const setStateMatchers = <T extends ILoadingState>(
-	builder: ActionReducerMapBuilder<T>,
-	// @todo - ignoring preload types
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	ignoring: TIgnoreTypes,
-) =>
+const setStateMatchers = <T extends ILoadingState>(builder: ActionReducerMapBuilder<T>) =>
 	builder
-		.addMatcher(isPendingAction, (state: Draft<T>) => {
+		.addMatcher(isPendingAction, (state: Draft<T>, action: TypeAction) => {
 			state.state = {
 				error: false,
-				loadings: state.state.loadings,
+				loadings: {
+					...state.state.loadings,
+					[action.meta.requestId]: action.type,
+				},
 				crash: false,
 				not_found: false,
 			};
 		})
-		.addMatcher(isFulfilledAction, (state: Draft<T>) => {
-			state.state = { ...state.state };
-		})
-		.addMatcher(isCrashedAction, (state: Draft<T>) => {
-			state.state = { ...state.state, crash: true, loadings: {} };
+		.addMatcher(isFulfilledAction, (state: Draft<T>, action: TypeAction) => {
+			const loadings = state.state.loadings;
+			delete loadings?.[action.meta.requestId];
+
+			state.state = { ...state.state, loadings };
 		})
 		.addMatcher(isRejectedErrorAction, (state: Draft<T>) => {
 			state.state = { ...state.state, error: true, loadings: {} };
-		})
-		.addMatcher(isNotFoundAction, (state: Draft<T>) => {
-			state.state = { ...state.state, not_found: true, loadings: {} };
 		});
 
-const catchRejected = <T extends IErrorState>(
-	builder: ActionReducerMapBuilder<T>,
-	thunks: AsyncThunk<any, any, any>[],
-) =>
-	thunks.forEach(thunk =>
-		builder.addCase(thunk.rejected, (state: Draft<T>, action: PayloadAction<any>) => {
-			state.errors = [
-				{
-					...action.payload,
-					type: action.type,
-				},
-				...state.errors,
-			];
-		}),
-	);
-
-export { resolveRejectedError, setStateMatchers, thunkWithReject, catchRejected };
+export { resolveRejectedError, setStateMatchers, thunkWithReject };

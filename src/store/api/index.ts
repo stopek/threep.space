@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, useAppDispatch, useAppSelector } from "../helpers";
 import { IWorkDTO } from "../../services/api/types";
 import { worksDTO } from "../../services/api/dto/works";
-import { catchRejected, setStateMatchers } from "./helpers";
-import { EIgnoreTypes, ISingleErrorState, IUseApi } from "./types";
+import { setStateMatchers } from "./helpers";
+import { ISingleErrorState, IUseApi } from "./types";
 import { initialState } from "./config";
 import { fetchWorks } from "./thunks";
 
@@ -13,10 +13,8 @@ export const apiSlice = createSlice({
 			state.works = worksDTO(action.payload);
 		});
 
-		catchRejected(builder, []);
-		setStateMatchers(builder, {
-			[EIgnoreTypes.PENDING]: [],
-		});
+		// @todo - handle errors list
+		setStateMatchers(builder);
 	},
 	initialState,
 	name: "api",
