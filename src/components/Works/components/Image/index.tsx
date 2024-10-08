@@ -26,6 +26,7 @@ const HoverImage = styled("img")`
 	width: 100%;
 	transition: transform 1s ease-in-out;
 	z-index: 0;
+	object-fit: cover;
 
 	&:hover {
 		transform: translateY(calc(-100% + 350px));
