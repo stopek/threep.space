@@ -1,10 +1,10 @@
 import Logo from "../../ui/Logo";
-import React from "react";
+import React, { ReactElement } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
 
-const Footer = () => {
+const Footer = (): ReactElement => {
 	const { t } = useTranslation();
 
 	return (

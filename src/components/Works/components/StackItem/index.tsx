@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Chip } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { isCurrentStack } from "../../../../common/utils";
 
-export const StackItem = ({ name }: Type.IStackItem) => {
+export const StackItem = ({ name }: Type.IStackItem): ReactElement => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const { filterId } = useParams();

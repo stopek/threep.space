@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { HeaderTitle } from "../../ui/HeaderTitle";
 import { Stage } from "./components/Stage";
 import { Grid } from "@mui/material";
 import { stages_list } from "../../data";
 
-export const Stages = () => (
+export const Stages = (): ReactElement => (
 	<>
 		<HeaderTitle title="Stages" />
 

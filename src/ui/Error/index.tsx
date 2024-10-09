@@ -1,10 +1,10 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Alert } from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 
-export const Error = () => {
+export const Error = (): ReactElement => {
 	const { t } = useTranslation();
 
 	return (

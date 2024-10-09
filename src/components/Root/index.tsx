@@ -3,7 +3,7 @@ import { Layout } from "../Layout/Layout";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import React from "react";
+import React, { ReactElement } from "react";
 import { useSettings } from "../../store/settings";
 import { NotFoundContainer } from "../../containers/NotFoundContainer";
 import { Loading } from "../../ui/Loading/Loading";
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
 	},
 ]);
 
-const Root = () => {
+const Root = (): ReactElement => {
 	const { getTheme } = useSettings();
 
 	return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -6,7 +6,7 @@ interface IProfilePicture {
 	size: number;
 }
 
-export const ProfilePicture = ({ size }: IProfilePicture) => {
+export const ProfilePicture = ({ size }: IProfilePicture): ReactElement => {
 	const { t } = useTranslation();
 
 	return (

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Page } from "../../components/Page";
 import NotFound from "../../components/NotFound";
 
-export const NotFoundContainer = () => (
+export const NotFoundContainer = (): ReactElement => (
 	<Page
 		seo={{
 			title: "seo.not_found.title",

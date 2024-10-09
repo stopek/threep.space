@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useFilter } from "../../../../store/filter";
-import React from "react";
+import React, { ReactElement } from "react";
 
 const ProjectName = ({
 	name,
@@ -10,7 +10,7 @@ const ProjectName = ({
 	name: string;
 	slug: string;
 	category: string[];
-}) => {
+}): ReactElement => {
 	const navigate = useNavigate();
 	const { handleSetValue } = useFilter();
 

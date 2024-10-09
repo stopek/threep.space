@@ -6,6 +6,7 @@ import React, {
 	MutableRefObject,
 	ReactNode,
 	useCallback,
+	ReactElement,
 } from "react";
 
 import { useNavigate } from "react-router-dom";
@@ -16,7 +17,7 @@ import { NavBackground, ToggleButton } from "./styled";
 import { HubMenu } from "../HubMenu";
 import CvButton from "../../ui/CvButton";
 import { Divider } from "@mui/material";
-import { scrollToDiv } from "../../common/utils";
+import { scrollToDiv, scrollTop } from "../../helpers/scroll";
 
 interface IMenuItem {
 	url?: string;
@@ -30,7 +31,13 @@ interface IDial {
 	children: ReactNode;
 }
 
-const items = [
+interface IDialItem {
+	url?: string;
+	translation: string;
+	div?: string;
+}
+
+const items: IDialItem[] = [
 	{
 		url: "/",
 		translation: "txt.home",
@@ -45,7 +52,7 @@ const items = [
 	},
 ];
 
-const Dial = ({ children }: IDial) => {
+const Dial = ({ children }: IDial): ReactElement => {
 	const elemRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 	const [open, setOpen] = useState<boolean>(false);
 	const [scale, setScale] = useState<number>(1);
@@ -56,9 +63,9 @@ const Dial = ({ children }: IDial) => {
 	const { tap } = useSound();
 	const navigate = useNavigate();
 
-	const handleMenuToggle = (value: boolean) => setOpen(value);
+	const handleMenuToggle = (value: boolean): void => setOpen(value);
 
-	const calculateValues = () => {
+	const calculateValues = (): void => {
 		const elem = elemRef.current;
 		if (!elem) return;
 
@@ -88,7 +95,6 @@ const Dial = ({ children }: IDial) => {
 
 		document.body.classList.add("disable-scroll");
 
-		// elem.style.setProperty("--translate-x", `${offsetX}px`);
 		elem.style.setProperty("--translate-y", `-${offsetY}px`);
 		elem.style.setProperty("--scale", scale.toString());
 	}, [offsetY, scale]);
@@ -106,13 +112,13 @@ const Dial = ({ children }: IDial) => {
 		setOpen(false);
 	}, []);
 
-	const toggleMenu = () => setOpen(prevOpen => !prevOpen);
+	const toggleMenu = (): void => setOpen(prevOpen => !prevOpen);
 
-	const onClick = (target: IMenuItem) => {
+	const onClick = (target: IMenuItem): void => {
 		tap();
 
 		handleMenuToggle(false);
-		window.scrollTo(0, 0);
+		scrollTop();
 
 		if (target.external) {
 			document.location.href = target.external;

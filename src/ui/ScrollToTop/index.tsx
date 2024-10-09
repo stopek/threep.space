@@ -1,9 +1,9 @@
-import React, { useCallback } from "react";
+import React, { ReactElement, useCallback } from "react";
 import { Fab, useScrollTrigger, Zoom } from "@mui/material";
 import Box from "@mui/material/Box";
 import { KeyboardArrowUp } from "@mui/icons-material";
 
-const ScrollToTop = () => {
+const ScrollToTop = (): ReactElement => {
 	const trigger = useScrollTrigger({
 		threshold: 100,
 	});

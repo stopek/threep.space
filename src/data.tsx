@@ -8,7 +8,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
-import { TMenuItem } from "./components/HubMenu";
+import { TMenuItem } from "./components/HubMenu/types";
 
 export const filters_list: string[] = ["react", "angular", "symfony", "code_igniter", "rest"];
 

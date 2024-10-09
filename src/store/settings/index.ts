@@ -3,7 +3,6 @@ import { RootState, useAppDispatch, useAppSelector } from "../helpers";
 import { dark, light } from "../../theme";
 import { Theme } from "@mui/material";
 
-// Slice
 export const settingsSlice = createSlice({
 	extraReducers: () => {},
 	initialState: { theme: "dark" },
@@ -16,11 +15,12 @@ export const settingsSlice = createSlice({
 });
 const { setThemeValue } = settingsSlice.actions;
 
-// Hook
 export const useSettings = (): {
 	settings: { theme: string };
 	handleSetTheme: (value: string) => void;
 	getTheme: Theme;
+	isLight: boolean;
+	isDark: boolean;
 } => {
 	const dispatch = useAppDispatch();
 
@@ -29,5 +29,7 @@ export const useSettings = (): {
 		settings,
 		handleSetTheme: (value: string) => dispatch(setThemeValue(value)),
 		getTheme: settings.theme === "dark" ? dark : light,
+		isLight: settings.theme === "light",
+		isDark: settings.theme === "dark",
 	};
 };

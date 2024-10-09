@@ -9,18 +9,6 @@ export const lazyComponent = (
 		return { default: component[name] };
 	});
 
-export const scrollToDiv = (elementId: string) => {
-	const element = document.getElementById(elementId);
-	if (!element) {
-		return;
-	}
-
-	window.scroll({
-		top: element.offsetTop,
-		behavior: "smooth",
-	});
-};
-
 export const isStackFilter = (filterId: string | undefined): boolean =>
 	filterId?.startsWith("stack:") || false;
 

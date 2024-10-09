@@ -1,11 +1,11 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { HeaderTitle } from "../../ui/HeaderTitle";
 import { Grid } from "@mui/material";
 import { DesignItem } from "./components/DesignItem";
 import { design_items } from "../../data";
 import { useTranslation } from "react-i18next";
 
-export const Design = () => {
+export const Design = (): ReactElement => {
 	const { t } = useTranslation();
 
 	return (
