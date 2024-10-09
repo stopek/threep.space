@@ -5,7 +5,6 @@ import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { useFilter } from "../../../../store/filter";
 import React, { ReactElement } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Box from "@mui/material/Box";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
@@ -15,6 +14,7 @@ import {
 	getMultipleStack,
 	isMultipleStack,
 	isStackFilter,
+	stackArray,
 	stackValue,
 } from "../../../../common/utils";
 
@@ -50,6 +50,17 @@ export const Filters = ({ changeFilter }: IFilters): ReactElement => {
 				</Helmet>
 			)}
 
+			{isStack && (
+				<Helmet>
+					<title>
+						{t("seo.stack.title", {
+							stack: stackArray(filterId)
+								.map(s => t(`technologies.${s}`))
+								.join(","),
+						})}
+					</title>
+				</Helmet>
+			)}
 			<Paper
 				elevation={1}
 				sx={{

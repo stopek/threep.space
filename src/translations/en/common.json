@@ -31,6 +31,12 @@
 		"portfolio": {
 			"title": "Paweł Stopczyński · Fullstack Developer · Portfolio",
 			"description": "On this page you can find information about me and the projects I have completed and the technologies I have used, along with the source code and documentation used."
+		},
+		"preview": {
+			"title": "Paweł Stopczyński · {{name}} · {{category}}"
+		},
+		"stack": {
+			"title": "Paweł Stopczyński · {{stack}}"
 		}
 	},
 	"cat": {

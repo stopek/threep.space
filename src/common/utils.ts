@@ -21,6 +21,19 @@ export const getMultipleStack = (filterId: string | undefined): string[] =>
 export const isMultipleStack = (filterId: string | undefined): boolean =>
 	isStackFilter(filterId) && getMultipleStack(filterId).length > 1;
 
+export const stackArray = (filterId: string | undefined): string[] => {
+	if (isMultipleStack(filterId)) {
+		return getMultipleStack(filterId);
+	}
+
+	if (isStackFilter(filterId)) {
+		const stack = stackValue(filterId);
+		return [stack];
+	}
+
+	return [];
+};
+
 export const isCurrentStack = (filterId: string | undefined, stackName: string): boolean => {
 	if (!filterId) {
 		return false;

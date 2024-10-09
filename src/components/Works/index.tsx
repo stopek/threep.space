@@ -12,6 +12,7 @@ import { getMultipleStack, isMultipleStack, isStackFilter, stackValue } from "..
 import { useApi } from "../../store/api";
 import { Loading } from "../../ui/Loading/Loading";
 import { Error } from "../../ui/Error";
+import { Helmet } from "react-helmet-async";
 
 const filters_list_combined = [...filters_list, "latest", "all", "old"];
 
@@ -148,6 +149,19 @@ export const Works = (): ReactElement => {
 					<Filters changeFilter={changeFilter} />
 					{list.map((item, x) => (
 						<Box key={x} id={`portfolio_${item.stack[0]}_${item.slug}`} mb={2}>
+							{item.slug === projectName && (
+								<Helmet>
+									<title>
+										{t("seo.preview.title", {
+											name: item.name,
+											category: item.stack
+												.map(i => t(`technologies.${i}`))
+												.join(", "),
+										})}
+									</title>
+								</Helmet>
+							)}
+
 							<Work {...item} rounded={item.slug === projectName} />
 						</Box>
 					))}
