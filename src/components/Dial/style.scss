@@ -44,9 +44,6 @@
 #toggle-btn span {
 	position: relative;
 	width: 100%;
-}
-
-#toggle-btn span {
 	margin-top: -4px;
 }
 
@@ -168,7 +165,6 @@ nav {
 	left: 0;
 	overflow: hidden;
 	display: flex;
-	//z-index: 200;
 	pointer-events: none;
 
 	z-index: -100;

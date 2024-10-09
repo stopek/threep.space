@@ -4,9 +4,9 @@ import Typography from "@mui/material/Typography";
 
 import CodeOffIcon from "@mui/icons-material/CodeOff";
 import { Link } from "react-router-dom";
-import { useCallback } from "react";
+import { ReactElement, useCallback } from "react";
 
-const Logo = () => {
+const Logo = (): ReactElement => {
 	const scrollToTop = useCallback(() => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, []);

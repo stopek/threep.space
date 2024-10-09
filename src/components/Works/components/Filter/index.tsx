@@ -11,14 +11,21 @@ export interface IFilter extends Omit<ChipProps, "name" | "onClick"> {
 	onClick: (name: string[]) => any;
 }
 
-export const Filter = ({ name, icon, activeName, filter, onClick, ...rest }: IFilter) => {
+export const Filter = ({
+	name,
+	icon,
+	activeName,
+	filter,
+	onClick,
+	...rest
+}: IFilter): ReactElement => {
 	const { t } = useTranslation();
 
 	return (
 		<Chip
 			icon={icon}
 			label={filter ? t(`technologies.${name}`) : t(`txt.${name}`)}
-			sx={{ px: 2 }}
+			sx={{ px: 2, borderRadius: "11px" }}
 			color={activeName === name ? "primary" : "default"}
 			clickable
 			onClick={() => onClick([name])}

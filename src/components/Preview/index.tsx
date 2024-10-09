@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import AppBar from "@mui/material/AppBar";
@@ -31,7 +31,7 @@ const getNameFromSource = (src: string): string => {
 	return split[split.length - 1];
 };
 
-export default function Preview({ children, src }: IPreview) {
+export default function Preview({ children, src }: IPreview): ReactElement {
 	const [open, setOpen] = React.useState(false);
 	const [currentSrc, setCurrentSrc] = useState<string>(src);
 	const [template, setTemplate] = useState<string>("index");

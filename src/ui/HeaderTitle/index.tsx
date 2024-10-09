@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Typography from "@mui/material/Typography";
 import { TypographyOwnProps } from "@mui/material/Typography/Typography";
 import Box from "@mui/material/Box";
@@ -19,7 +19,7 @@ const Header = styled(Typography)`
 	}
 `;
 
-export const HeaderTitle = ({ title, variant = "h4" }: IHeaderTitle) => (
+export const HeaderTitle = ({ title, variant = "h4" }: IHeaderTitle): ReactElement => (
 	<Box mt={20} mb={5} display="flex" flexDirection="column" alignItems="center">
 		<Header variant={variant} fontWeight={900} textAlign="center">
 			{title}

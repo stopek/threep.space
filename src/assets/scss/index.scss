@@ -6,13 +6,6 @@ body {
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 
-	&.dot-scroll {
-		&,
-		* {
-			//cursor: none !important;
-		}
-	}
-
 	&.disable-scroll {
 		overflow-y: hidden;
 		height: 100% !important;

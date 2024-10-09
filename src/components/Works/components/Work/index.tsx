@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { Stack as CStack } from "../Stack";
 import { Description, ExpandMore, ItemGrid } from "./styled";
 import { useTranslation } from "react-i18next";
-import React from "react";
+import React, { ReactElement, useState } from "react";
 import TurnSlightRightIcon from "@mui/icons-material/TurnSlightRight";
 import { Image } from "../Image";
 import Preview from "../../../Preview";
@@ -27,11 +27,11 @@ export const Work = ({
 	rounded,
 	category,
 	slug,
-}: IWorkComponent) => {
+}: IWorkComponent): ReactElement => {
 	const { t } = useTranslation();
-	const [expanded, setExpanded] = React.useState(false);
+	const [expanded, setExpanded] = useState(false);
 
-	const handleExpandClick = () => setExpanded(!expanded);
+	const handleExpandClick = (): void => setExpanded(!expanded);
 
 	return (
 		<ItemGrid

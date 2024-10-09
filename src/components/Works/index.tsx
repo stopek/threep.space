@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { ReactElement, useCallback, useEffect } from "react";
 import { HeaderTitle } from "../../ui/HeaderTitle";
 import { Filters } from "./components/Filters";
 import { Work } from "./components/Work";
@@ -35,7 +35,7 @@ const redirectFilter = (filterId?: string, projectName?: string): string[] | nul
 	return ["latest"];
 };
 
-export const Works = () => {
+export const Works = (): ReactElement => {
 	const { t } = useTranslation();
 	const { filter, handleSetValue } = useFilter();
 	const navigate = useNavigate();
@@ -135,11 +135,10 @@ export const Works = () => {
 		setOnLoad();
 	}, [setOnLoad]);
 
-	console.log({ api });
-
 	return (
 		<Box mt={0} mb={5} id="portfolio">
 			<HeaderTitle title={t("txt.portfolio")} />
+
 			{hasError ? (
 				<Error />
 			) : isLoading ? (

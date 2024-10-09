@@ -1,11 +1,11 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ProfilePicture } from "../../ui/ProfilePicture";
-import { Animation, Description } from "./styled";
+import { Description, Hand } from "./styled";
 
-export const About = () => {
+export const About = (): ReactElement => {
 	const { t } = useTranslation();
 
 	return (
@@ -27,7 +27,7 @@ export const About = () => {
 			<Grid item md={8}>
 				<Typography variant="h3" fontWeight={900} textAlign="left" mb={3}>
 					{t("about.welcome")}
-					<Animation>{t("about.role")}</Animation>
+					<Hand>{t("about.role")}</Hand>
 				</Typography>
 
 				<Grid container spacing={3}>

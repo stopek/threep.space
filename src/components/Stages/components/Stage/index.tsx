@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -9,7 +9,7 @@ export interface IStage {
 	name: string;
 }
 
-export const Stage = ({ icon, name }: IStage) => {
+export const Stage = ({ icon, name }: IStage): ReactElement => {
 	const { t } = useTranslation();
 
 	return (

@@ -1,30 +1,14 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import useSound from "../../hooks/useSound";
-import { SvgIconOwnProps, SvgIconTypeMap } from "@mui/material/SvgIcon/SvgIcon";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { hub_urls } from "../../data";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
+import { IHubMenu } from "./types";
 
-interface IHubMenu {
-	size?: SvgIconOwnProps["fontSize"];
-	onClick?: () => void;
-}
-
-interface IBaseMenuItem {
-	Icon: OverridableComponent<SvgIconTypeMap>;
-	label: string;
-	margin?: number;
-}
-
-export type TMenuItem =
-	| (IBaseMenuItem & { url: string; to?: never })
-	| (IBaseMenuItem & { to: string; url?: never });
-
-export const HubMenu = ({ size = "inherit", onClick }: IHubMenu) => {
+export const HubMenu = ({ size = "inherit", onClick }: IHubMenu): ReactElement => {
 	const { tap } = useSound();
 
-	const onButtonClick = () => {
+	const onButtonClick = (): void => {
 		tap();
 
 		if (onClick) {

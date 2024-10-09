@@ -1,10 +1,10 @@
 import Typography from "@mui/material/Typography";
-import React from "react";
+import React, { ReactElement } from "react";
 import { useTranslation } from "react-i18next";
 import { Titles } from "./styled";
 import { Divider } from "@mui/material";
 
-const HubTitles = () => {
+const HubTitles = (): ReactElement => {
 	const { t } = useTranslation();
 
 	return (

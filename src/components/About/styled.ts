@@ -1,22 +1,18 @@
 import { styled } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-export const Description = styled(Typography)(
-	({ theme }) => `
-  line-height: 1.9;
- 
-  a {
-    text-decoration: none;
-    padding: 2px 5px;
-    font-weight: 500;
-    margin: 0 3px;
-    color: ${theme.palette.mode === "light" ? "black" : "white"}
-  }
-`,
-);
+export const Description = styled(Typography)(({ theme }) => ({
+	lineHeight: 1.9,
+	a: {
+		color: theme.palette.mode === "light" ? "black" : "white",
+		padding: theme.spacing(1),
+		fontWeight: 600,
+	},
+}));
 
-export const Animation = styled("span")`
-	display: block;
-	font-size: 50%;
-	font-weight: 400;
-`;
+export const Hand = styled(Box)(() => ({
+	display: "block",
+	fontSize: "50%",
+	fontWeight: 400,
+}));

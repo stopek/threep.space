@@ -1,6 +1,7 @@
 import { default as useSoundPlugin } from "use-sound";
+import { ReturnedValue } from "use-sound/dist/types";
 
-const useRegistered = (name: string) =>
+const useRegistered = (name: string): ReturnedValue =>
 	useSoundPlugin(`/static/audio/${name}.mp3`, {
 		volume: 0.25,
 	});

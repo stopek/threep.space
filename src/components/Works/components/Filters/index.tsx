@@ -3,7 +3,7 @@ import { Chip, Paper } from "@mui/material";
 import { filters_list } from "../../../../data";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { useFilter } from "../../../../store/filter";
-import React from "react";
+import React, { ReactElement } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Box from "@mui/material/Box";
@@ -22,7 +22,7 @@ interface IFilters {
 	changeFilter: (value: string[], init?: boolean) => void;
 }
 
-export const Filters = ({ changeFilter }: IFilters) => {
+export const Filters = ({ changeFilter }: IFilters): ReactElement => {
 	const { filter } = useFilter();
 	const { t } = useTranslation();
 	const { filterId } = useParams();
@@ -54,10 +54,10 @@ export const Filters = ({ changeFilter }: IFilters) => {
 				elevation={1}
 				sx={{
 					position: "sticky",
-					top: 15,
+					top: 5,
 					zIndex: 1,
 					borderRadius: 3,
-					opacity: 1,
+					opacity: 0.96,
 					padding: 0.5,
 					margin: 0,
 					mx: 0,
@@ -66,15 +66,6 @@ export const Filters = ({ changeFilter }: IFilters) => {
 					alignItems: "center",
 				}}
 			>
-				<Box
-					p={1}
-					alignItems="center"
-					justifyContent="center"
-					sx={{ display: { xs: "none", sm: "flex" } }}
-				>
-					<FilterAltIcon color="disabled" />
-				</Box>
-
 				<Box
 					sx={{ gap: 1, flexWrap: "wrap", px: 0, py: 0, width: "100%" }}
 					gap={1}
@@ -122,7 +113,7 @@ export const Filters = ({ changeFilter }: IFilters) => {
 									<Chip
 										key={index}
 										label={t(`technologies.${element}`)}
-										sx={{ px: 1 }}
+										sx={{ px: 1, borderRadius: "11px" }}
 										onDelete={() => clearFromMultiple(element)}
 										color="primary"
 										variant="outlined"
@@ -133,7 +124,7 @@ export const Filters = ({ changeFilter }: IFilters) => {
 						) : (
 							<Chip
 								label={t(`technologies.${stackValue(filterId)}`)}
-								sx={{ px: 1 }}
+								sx={{ px: 1, borderRadius: "11px" }}
 								onDelete={clearStackFiltering}
 								style={{ marginLeft: "auto" }}
 								color="primary"
