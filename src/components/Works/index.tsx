@@ -56,9 +56,8 @@ export const Works = (): ReactElement => {
 
 			if (isStackFilter(filter)) {
 				if (isMultipleStack(filter)) {
-					const multipleStackValue = getMultipleStack(filter);
 					return works.filter(w =>
-						w.stack?.some(stackItem => multipleStackValue.includes(stackItem)),
+						w.stack?.some(stackItem => getMultipleStack(filter).includes(stackItem)),
 					);
 				}
 
@@ -80,21 +79,13 @@ export const Works = (): ReactElement => {
 		handleFetchWorks();
 	}, []);
 
-	const scrollToDiv = useCallback(
+	const scrollToDivCallback = useCallback(
 		(elementId: string) => {
-			const element = document.getElementById(elementId);
-			if (!element) {
-				return;
-			}
-
 			if (isLoading || hasError) {
 				return;
 			}
 
-			window.scroll({
-				top: element.offsetTop - 50,
-				behavior: "smooth",
-			});
+			scrollToDiv(elementId);
 		},
 		[isLoading],
 	);
@@ -109,18 +100,18 @@ export const Works = (): ReactElement => {
 			if (init) {
 				const project = document.getElementById(idDiv.join("_"));
 				if (project) {
-					scrollToDiv(idDiv.join("_"));
+					scrollToDivCallback(idDiv.join("_"));
 					return;
 				}
-				scrollToDiv(idDiv[0]);
+				scrollToDivCallback(idDiv[0]);
 				return;
 			}
 
 			navigate(redirect);
-			scrollToDiv(idDiv.join("_"));
+			scrollToDivCallback(idDiv.join("_"));
 			tap();
 		},
-		[navigate, scrollToDiv, handleSetValue, tap],
+		[navigate, scrollToDivCallback, handleSetValue, tap],
 	);
 
 	const setOnLoad = useCallback(() => {
