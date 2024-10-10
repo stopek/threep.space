@@ -127,7 +127,14 @@ export const Works = (): ReactElement => {
 		setOnLoad();
 	}, [setOnLoad]);
 
-	if (!!filterId && !isStackFilter(filterId) && !filters_list_combined.includes(filterId)) {
+	if (
+		(!!filterId && !isStackFilter(filterId) && !filters_list_combined.includes(filterId)) ||
+		(isStackFilter(filterId) &&
+			!isLoading &&
+			!hasError &&
+			list.length === 0 &&
+			api.works.length > 0)
+	) {
 		return <Navigate to={fillRoute(paths.PORTFOLIO_FILTER, { filterId: "latest" })} />;
 	}
 
