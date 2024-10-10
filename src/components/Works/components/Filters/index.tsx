@@ -7,7 +7,6 @@ import React, { ReactElement } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
-import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import GradingIcon from "@mui/icons-material/Grading";
 import {
 	getMultipleStack,
@@ -109,14 +108,6 @@ export const Filters = ({ changeFilter }: IFilters): ReactElement => {
 						disabled={isStack}
 						name="all"
 						icon={<GradingIcon />}
-						onClick={changeFilter}
-						activeName={filter.value}
-					/>
-
-					<Filter
-						disabled={isStack}
-						name="old"
-						icon={<CatchingPokemonIcon />}
 						onClick={changeFilter}
 						activeName={filter.value}
 					/>

@@ -16,7 +16,7 @@ import Helmet from "../Helmet";
 import { scrollToDiv } from "../../helpers/scroll";
 import { fillRoute, paths } from "../../routing";
 
-const filters_list_combined = [...filters_list, "latest", "all", "old"];
+const filters_list_combined = [...filters_list, "latest", "all"];
 
 const redirectFilter = (filterId?: string, projectName?: string): string[] | null => {
 	if (!filterId) {
@@ -65,8 +65,6 @@ export const Works = (): ReactElement => {
 				return works.filter(w => w.stack?.includes(stackValue(filter)));
 			} else if (filter === "latest") {
 				return works.filter(w => w?.last);
-			} else if (filter === "old") {
-				return works.filter(w => w?.old);
 			} else if (filter !== "all") {
 				return works.filter(w => w.category?.includes(filter));
 			}
