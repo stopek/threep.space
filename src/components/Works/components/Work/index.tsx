@@ -47,27 +47,19 @@ export const Work = ({
 			sx={{ position: "relative" }}
 			rounded={Number(rounded)}
 		>
-			<Grid item xs={12} sm="auto">
+			<Grid item sm={12} md="auto">
 				<Image title={name} image={image} />
 			</Grid>
 
-			<Grid item xs={12} md position="relative">
+			<Grid item sm={12} md position="relative">
 				<Box
 					display="flex"
 					justifyContent="space-between"
 					maxWidth="80%"
 					position="relative"
-					sx={{ maxWidth: { sm: "80%" } }}
+					sx={{ maxWidth: { md: "80%" } }}
 				>
 					<CardHeader
-						sx={{
-							a: {
-								fontSize: "1.4rem",
-								fontWeight: 700,
-								color: "white",
-								paddingRight: 4,
-							},
-						}}
 						title={<ProjectName slug={slug} category={category} name={name} />}
 						subheader={<CStack list={stack} />}
 					/>
@@ -85,7 +77,7 @@ export const Work = ({
 					)}
 				</Box>
 
-				<Divider sx={{ maxWidth: { sm: "80%" } }} />
+				<Divider sx={{ maxWidth: { md: "80%" } }} />
 
 				<CardContent>
 					{about?.en && (
