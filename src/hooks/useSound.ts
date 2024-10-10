@@ -1,18 +1,24 @@
 import { default as useSoundPlugin } from "use-sound";
-import { ReturnedValue } from "use-sound/dist/types";
+import { PlayFunction, ReturnedValue } from "use-sound/dist/types";
+import { createContext } from "react";
+
+export type TSounds = "tap" | "on" | "off" | "menu" | "check";
 
 const useRegistered = (name: string): ReturnedValue =>
 	useSoundPlugin(`/static/audio/${name}.mp3`, {
-		volume: 0.25,
+		volume: 0.5,
 	});
 
-const useSound = () => {
-	const [tap] = useRegistered("button");
+export const SoundContext = createContext<Record<TSounds, PlayFunction> | null>(null);
+
+const useSound = (): Record<TSounds, PlayFunction> => {
+	const [tap] = useRegistered("click5");
 	const [on] = useRegistered("on");
 	const [off] = useRegistered("off");
-	const [menu] = useRegistered("menu");
+	const [menu] = useRegistered("expand");
+	const [check] = useRegistered("click2");
 
-	return { tap, on, off, menu };
+	return { tap, on, off, menu, check };
 };
 
 export default useSound;

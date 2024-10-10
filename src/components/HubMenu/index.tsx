@@ -1,15 +1,15 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useContext } from "react";
 import { Link } from "react-router-dom";
-import useSound from "../../hooks/useSound";
 import { hub_urls } from "../../data";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { IHubMenu } from "./types";
+import { SoundContext } from "../../hooks/useSound";
 
 export const HubMenu = ({ size = "inherit", onClick }: IHubMenu): ReactElement => {
-	const { tap } = useSound();
+	const sound = useContext(SoundContext);
 
 	const onButtonClick = (): void => {
-		tap();
+		sound?.tap();
 
 		if (onClick) {
 			onClick();

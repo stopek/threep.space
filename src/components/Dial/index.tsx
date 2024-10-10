@@ -7,17 +7,19 @@ import React, {
 	ReactNode,
 	useCallback,
 	ReactElement,
+	useContext,
 } from "react";
 
 import { useNavigate } from "react-router-dom";
 import Link from "@mui/material/Link";
 import { useTranslation } from "react-i18next";
-import useSound from "../../hooks/useSound";
 import { NavBackground, ToggleButton } from "./styled";
 import { HubMenu } from "../HubMenu";
 import CvButton from "../../ui/CvButton";
 import { Divider } from "@mui/material";
 import { scrollToDiv, scrollTop } from "../../helpers/scroll";
+import { dialog_menu_list } from "../../data";
+import { SoundContext } from "../../hooks/useSound";
 
 interface IMenuItem {
 	url?: string;
@@ -31,26 +33,11 @@ interface IDial {
 	children: ReactNode;
 }
 
-interface IDialItem {
+export interface IDialItem {
 	url?: string;
 	translation: string;
 	div?: string;
 }
-
-const items: IDialItem[] = [
-	{
-		url: "/",
-		translation: "txt.home",
-	},
-	{
-		div: "about",
-		translation: "txt.about_me",
-	},
-	{
-		div: "portfolio",
-		translation: "txt.my_projects",
-	},
-];
 
 const Dial = ({ children }: IDial): ReactElement => {
 	const elemRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
@@ -60,7 +47,7 @@ const Dial = ({ children }: IDial): ReactElement => {
 	const [offsetY, setOffsetY] = useState<number>(0);
 
 	const { t } = useTranslation();
-	const { tap } = useSound();
+	const sound = useContext(SoundContext);
 	const navigate = useNavigate();
 
 	const handleMenuToggle = (value: boolean): void => setOpen(value);
@@ -97,6 +84,8 @@ const Dial = ({ children }: IDial): ReactElement => {
 
 		elem.style.setProperty("--translate-y", `-${offsetY}px`);
 		elem.style.setProperty("--scale", scale.toString());
+
+		sound?.menu();
 	}, [offsetY, scale]);
 
 	const closeMenu = useCallback(() => {
@@ -115,7 +104,7 @@ const Dial = ({ children }: IDial): ReactElement => {
 	const toggleMenu = (): void => setOpen(prevOpen => !prevOpen);
 
 	const onClick = (target: IMenuItem): void => {
-		tap();
+		sound?.tap();
 
 		handleMenuToggle(false);
 		scrollTop();
@@ -168,7 +157,7 @@ const Dial = ({ children }: IDial): ReactElement => {
 			<div className="wrapper">
 				<nav>
 					<ul>
-						{items.map((v, k) => (
+						{dialog_menu_list.map((v, k) => (
 							<li key={k}>
 								<Link
 									className="link"
@@ -199,94 +188,3 @@ const Dial = ({ children }: IDial): ReactElement => {
 };
 
 export default Dial;
-
-// const Dial: React.FC = () => {
-// 	const { t } = useTranslation();
-// 	const { tap } = useSound();
-// 	const navigate = useNavigate();
-//
-// 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-//
-// 	const closeMenu = () => setIsMenuOpen(false);
-// 	const handleMenuToggle = (value: boolean) => setIsMenuOpen(value);
-// 	const onClick = (target: IMenuItem) => {
-// 		tap();
-//
-// 		handleMenuToggle(false);
-//
-// 		window.scrollTo(0, 0);
-//
-// 		if (target.external) {
-// 			document.location.href = target.url;
-// 			return;
-// 		}
-//
-// 		navigate(target.url);
-// 	};
-//
-// 	const items = [
-// 		{
-// 			url: "/",
-// 			text: "Home",
-// 		},
-// 	];
-//
-// 	return (
-// 		<div className={`viewport ${isMenuOpen ? "open" : ""}`}>
-// 			<nav id="nav" className={`nav ${isMenuOpen ? "nav--open" : ""}`} role="navigation">
-// 				<List
-// 					sx={{
-// 						width: "100%",
-// 						textAlign: "center",
-// 						fontSize: "2rem",
-// 					}}
-// 					aria-label="menu"
-// 					hidden={!isMenuOpen}
-// 					className="nav__menu"
-// 				>
-// 					{Object.entries(items).map(([k, v]) => (
-// 						<ListItem divider key={k}>
-// 							<ListItemButton onClick={() => onClick(v)}>
-// 								<ListItemText
-// 									primary={v.text}
-// 									primaryTypographyProps={{
-// 										fontSize: "1.8rem",
-// 										fontWeight: "300",
-// 										textAlign: "center",
-// 									}}
-// 								/>
-// 							</ListItemButton>
-// 						</ListItem>
-// 					))}
-//
-// 					<ListItem
-// 						sx={{
-// 							alignItems: "center",
-// 							justifyContent: "center",
-// 							py: 2,
-// 						}}
-// 					>
-// 						<CvButton
-// 							variant="contained"
-// 							color="info"
-// 							disableElevation
-// 							disableFocusRipple
-// 							onClick={() => {
-// 								document.location.href = "/static/pdf/cv.pdf";
-// 							}}
-// 						>
-// 							{t("txt.get_cv")}
-// 						</CvButton>
-// 					</ListItem>
-// 				</List>
-//
-// 				<HubMenu onClick={closeMenu} />
-//
-// 				<MenuIcon open={isMenuOpen} onClick={handleMenuToggle} />
-// 				<Splash className="splash" />
-// 			</nav>
-// 		</div>
-// 	);
-// };
-//
-// export default Dial;

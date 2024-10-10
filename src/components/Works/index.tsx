@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useEffect } from "react";
+import React, { ReactElement, useCallback, useContext, useEffect } from "react";
 import { HeaderTitle } from "../../ui/HeaderTitle";
 import { Filters } from "./components/Filters";
 import { Work } from "./components/Work";
@@ -7,7 +7,6 @@ import { filters_list } from "../../data";
 import { useFilter } from "../../store/filter";
 import { useTranslation } from "react-i18next";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import useSound from "../../hooks/useSound";
 import { getMultipleStack, isMultipleStack, isStackFilter, stackValue } from "../../common/utils";
 import { useApi } from "../../store/api";
 import { Loading } from "../../ui/Loading/Loading";
@@ -15,6 +14,7 @@ import { Error } from "../../ui/Error";
 import Helmet from "../Helmet";
 import { scrollToDiv } from "../../helpers/scroll";
 import { fillRoute, paths } from "../../routing";
+import { SoundContext } from "../../hooks/useSound";
 
 const filters_list_combined = [...filters_list, "latest", "all"];
 
@@ -44,7 +44,7 @@ export const Works = (): ReactElement => {
 	const navigate = useNavigate();
 	const { filterId, projectName } = useParams();
 	const { api, isLoading, hasError, handleFetchWorks } = useApi();
-	const { tap } = useSound();
+	const sound = useContext(SoundContext);
 
 	const filterWorks = useCallback(
 		(filter: string): Type.IWork[] => {
@@ -87,7 +87,7 @@ export const Works = (): ReactElement => {
 
 			scrollToDiv(elementId);
 		},
-		[isLoading],
+		[isLoading, hasError],
 	);
 
 	const changeFilter = useCallback(
@@ -109,9 +109,9 @@ export const Works = (): ReactElement => {
 
 			navigate(redirect);
 			scrollToDivCallback(idDiv.join("_"));
-			tap();
+			sound?.tap();
 		},
-		[navigate, scrollToDivCallback, handleSetValue, tap],
+		[navigate, scrollToDivCallback, handleSetValue, sound?.tap],
 	);
 
 	const setOnLoad = useCallback(() => {

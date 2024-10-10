@@ -1,13 +1,13 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useContext } from "react";
 import { useSettings } from "../../store/settings";
 import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
 import Brightness3Icon from "@mui/icons-material/Brightness3";
-import useSound from "../../hooks/useSound";
 import { StyledButton } from "./styled";
+import { SoundContext } from "../../hooks/useSound";
 
 export const ThemeButton = (): ReactElement => {
 	const { handleSetTheme, isDark } = useSettings();
-	const { on, off } = useSound();
+	const sound = useContext(SoundContext);
 
 	const toggleTheme = () => handleSetTheme(isDark ? "light" : "dark");
 
@@ -18,9 +18,9 @@ export const ThemeButton = (): ReactElement => {
 			sx={{ borderRadius: "50%" }}
 			onClick={() => {
 				if (isDark) {
-					on();
+					sound?.on();
 				} else {
-					off();
+					sound?.off();
 				}
 
 				toggleTheme();
