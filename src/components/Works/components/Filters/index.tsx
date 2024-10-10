@@ -6,7 +6,6 @@ import { useFilter } from "../../../../store/filter";
 import React, { ReactElement } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
-import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import GradingIcon from "@mui/icons-material/Grading";
@@ -17,6 +16,7 @@ import {
 	stackArray,
 	stackValue,
 } from "../../../../common/utils";
+import Helmet from "../../../Helmet";
 
 interface IFilters {
 	changeFilter: (value: string[], init?: boolean) => void;
@@ -42,25 +42,27 @@ export const Filters = ({ changeFilter }: IFilters): ReactElement => {
 
 	return (
 		<>
-			{filterId && (
-				<Helmet>
-					<title>
-						{t("seo.portfolio.title")} · {t(`technologies.${filter.value}`)}
-					</title>
-				</Helmet>
-			)}
+			<Helmet
+				disabled={!filterId}
+				title="seo.filter.title"
+				description="seo.filter.description"
+				bindings={{
+					filter: t(`technologies.${filter.value}`),
+				}}
+				canonical="/projects/all"
+			/>
 
-			{isStack && (
-				<Helmet>
-					<title>
-						{t("seo.stack.title", {
-							stack: stackArray(filterId)
-								.map(s => t(`technologies.${s}`))
-								.join(","),
-						})}
-					</title>
-				</Helmet>
-			)}
+			<Helmet
+				disabled={!isStack}
+				title="seo.stack.title"
+				bindings={{
+					stack: stackArray(filterId)
+						.map(s => t(`technologies.${s}`))
+						.join(","),
+				}}
+				canonical="/projects/all"
+			/>
+
 			<Paper
 				elevation={1}
 				sx={{

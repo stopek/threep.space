@@ -26,6 +26,10 @@ i18n.use(initReactI18next)
 		defaultNS: "common",
 		lng: "en",
 		ns: ["common"],
+		interpolation: {
+			escapeValue: false,
+			formatSeparator: ".",
+		},
 	})
 	.then(() => {
 		console.log("Translations have been loaded");

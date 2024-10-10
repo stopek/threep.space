@@ -33,7 +33,12 @@
 			"description": "On this page you can find information about me and the projects I have completed and the technologies I have used, along with the source code and documentation used."
 		},
 		"preview": {
-			"title": "Paweł Stopczyński · {{name}} · {{category}}"
+			"title": "Paweł Stopczyński · \"{{name}}\" · {{category}}",
+			"description": "{{description}}"
+		},
+		"filter": {
+			"title": "Paweł Stopczyński · Works · {{filter}}",
+			"description": "List of projects using {{filter}}"
 		},
 		"stack": {
 			"title": "Paweł Stopczyński · {{stack}}"
@@ -47,6 +52,7 @@
 		"welcome": "Hi there \uD83D\uDC4B it's me, Paweł",
 		"role": "Fullstack Developer",
 		"name": "Paweł Stopczyński",
+		"company": "Purrfection IT",
 		"first": "My programming journey started back in high school when I realized that HTML alone wasn't sufficient while creating a Guest Book. At first, I learned about PHP by making websites for\n                my school's teachers. Eventually, I got into frameworks,\n                starting with Code Igniter and later Symfony. But all along, I\n                could see that this approach wasn't flawless.",
 		"second": "That's when I got the opportunity to work on a React project, and a few years later, on one with Angular. In both cases, I joined the project without prior knowledge of the framework. In\n                the near future, I plan to learn Vue, and further down the line,\n                I aim to explore Python by creating a more complex project.",
 		"hobby": "After hours, I'm an almost professional photographer, I ride a bike, I dance Cuban salsa, and sometimes I play the guitar. When it rains, I take care of plants and seek attention from my cat"

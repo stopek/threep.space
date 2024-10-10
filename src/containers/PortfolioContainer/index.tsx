@@ -13,6 +13,7 @@ export const PortfolioContainer = (): ReactElement => (
 		seo={{
 			title: "seo.portfolio.title",
 			description: "seo.portfolio.description",
+			canonical: "/portfolio/all",
 		}}
 		container
 	>

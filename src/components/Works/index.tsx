@@ -6,13 +6,13 @@ import Box from "@mui/material/Box";
 import { filters_list } from "../../data";
 import { useFilter } from "../../store/filter";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useSound from "../../hooks/useSound";
 import { getMultipleStack, isMultipleStack, isStackFilter, stackValue } from "../../common/utils";
 import { useApi } from "../../store/api";
 import { Loading } from "../../ui/Loading/Loading";
 import { Error } from "../../ui/Error";
-import { Helmet } from "react-helmet-async";
+import Helmet from "../Helmet";
 
 const filters_list_combined = [...filters_list, "latest", "all", "old"];
 
@@ -136,6 +136,10 @@ export const Works = (): ReactElement => {
 		setOnLoad();
 	}, [setOnLoad]);
 
+	if (!!filterId && !isStackFilter(filterId) && !filters_list_combined.includes(filterId)) {
+		return <Navigate to="/portfolio/latest" />;
+	}
+
 	return (
 		<Box mt={0} mb={5} id="portfolio">
 			<HeaderTitle title={t("txt.portfolio")} />
@@ -149,18 +153,19 @@ export const Works = (): ReactElement => {
 					<Filters changeFilter={changeFilter} />
 					{list.map((item, x) => (
 						<Box key={x} id={`portfolio_${item.stack[0]}_${item.slug}`} mb={2}>
-							{item.slug === projectName && (
-								<Helmet>
-									<title>
-										{t("seo.preview.title", {
-											name: item.name,
-											category: item.stack
-												.map(i => t(`technologies.${i}`))
-												.join(", "),
-										})}
-									</title>
-								</Helmet>
-							)}
+							<Helmet
+								disabled={item.slug !== projectName}
+								title="seo.preview.title"
+								description="seo.preview.description"
+								bindings={{
+									name: item.name,
+									description: item.description.en,
+									category: item.stack
+										.map(i => t(`technologies.${i}`))
+										.join(", "),
+								}}
+								canonical={`/projects/${item.stack[0]}`}
+							/>
 
 							<Work {...item} rounded={item.slug === projectName} />
 						</Box>

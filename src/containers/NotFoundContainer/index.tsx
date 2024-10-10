@@ -7,7 +7,6 @@ export const NotFoundContainer = (): ReactElement => (
 		seo={{
 			title: "seo.not_found.title",
 			description: "seo.not_found.description",
-			full: true,
 		}}
 		disableNav
 	>
