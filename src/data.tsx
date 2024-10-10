@@ -9,9 +9,25 @@ import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
 import { TMenuItem } from "./components/HubMenu/types";
-import { paths } from "./routing/paths";
+import { paths } from "./routing";
+import { IDialItem } from "./components/Dial";
 
 export const filters_list: string[] = ["react", "angular", "symfony", "code_igniter", "rest"];
+
+export const dialog_menu_list: IDialItem[] = [
+	{
+		url: paths.HUB,
+		translation: "txt.home",
+	},
+	{
+		div: "about",
+		translation: "txt.about_me",
+	},
+	{
+		div: "portfolio",
+		translation: "txt.my_projects",
+	},
+];
 
 export const skillsData: ISkill[] = [
 	{

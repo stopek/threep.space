@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { Stack as CStack } from "../Stack";
 import { Description, ExpandMore, ItemGrid } from "./styled";
 import { useTranslation } from "react-i18next";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import TurnSlightRightIcon from "@mui/icons-material/TurnSlightRight";
 import { Image } from "../Image";
 import Preview from "../../../Preview";
@@ -33,6 +33,12 @@ export const Work = ({
 
 	const handleExpandClick = (): void => setExpanded(!expanded);
 
+	useEffect(() => {
+		if (rounded) {
+			setExpanded(true);
+		}
+	}, [rounded]);
+
 	return (
 		<ItemGrid
 			container
@@ -49,13 +55,18 @@ export const Work = ({
 				<Box
 					display="flex"
 					justifyContent="space-between"
-					maxWidth="70%"
+					maxWidth="80%"
 					position="relative"
-					sx={{ maxWidth: { sm: "70%" } }}
+					sx={{ maxWidth: { sm: "80%" } }}
 				>
 					<CardHeader
 						sx={{
-							"& .MuiTypography-root": { fontSize: "1.4rem", fontWeight: 700 },
+							a: {
+								fontSize: "1.4rem",
+								fontWeight: 700,
+								color: "white",
+								paddingRight: 4,
+							},
 						}}
 						title={<ProjectName slug={slug} category={category} name={name} />}
 						subheader={<CStack list={stack} />}
@@ -74,7 +85,7 @@ export const Work = ({
 					)}
 				</Box>
 
-				<Divider sx={{ maxWidth: { sm: "70%" } }} />
+				<Divider sx={{ maxWidth: { sm: "80%" } }} />
 
 				<CardContent>
 					{about?.en && (

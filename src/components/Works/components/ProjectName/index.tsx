@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { useFilter } from "../../../../store/filter";
+import { Link } from "react-router-dom";
+
 import React, { ReactElement } from "react";
 import { paths, fillRoute } from "../../../../routing";
 
@@ -12,18 +12,13 @@ const ProjectName = ({
 	slug: string;
 	category: string[];
 }): ReactElement => {
-	const navigate = useNavigate();
-	const { handleSetValue } = useFilter();
-
-	const onClickName = () => {
-		navigate(fillRoute(paths.PORTFOLIO_PREVIEW, { filterId: category[0], projectName: slug }));
-		handleSetValue(category[0]);
-	};
-
 	return (
-		<span style={{ cursor: "pointer" }} onClick={onClickName}>
+		<Link
+			to={fillRoute(paths.PORTFOLIO_PREVIEW, { filterId: category[0], projectName: slug })}
+			style={{ cursor: "pointer" }}
+		>
 			{name}
-		</span>
+		</Link>
 	);
 };
 

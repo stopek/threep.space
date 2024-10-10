@@ -7,7 +7,7 @@ export const scrollToDiv = (elementId: string) => {
 	}
 
 	window.scroll({
-		top: element.offsetTop,
+		top: element.offsetTop - 50,
 		behavior: "smooth",
 	});
 };
