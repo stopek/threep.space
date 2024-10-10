@@ -12,7 +12,7 @@ const useRegistered = (name: string): ReturnedValue =>
 export const SoundContext = createContext<Record<TSounds, PlayFunction> | null>(null);
 
 const useSound = (): Record<TSounds, PlayFunction> => {
-	const [tap] = useRegistered("click5");
+	const [tap] = useRegistered("check");
 	const [on] = useRegistered("on");
 	const [off] = useRegistered("off");
 	const [menu] = useRegistered("expand");

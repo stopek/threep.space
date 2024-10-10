@@ -17,12 +17,14 @@ export const StackItem = ({ name }: Type.IStackItem): ReactElement => {
 
 	const existsInStackFilter = isCurrentStack(filterId, name);
 
-	const addStack = (): void =>
+	const addStack = (): void => {
+		sound?.check();
 		navigate(
 			fillRoute(paths.PORTFOLIO_STACK, {
 				stackName: Array.from(new Set(stackArray(filterId).concat(name))).join(","),
 			}),
 		);
+	};
 
 	const goToStack = (): void => {
 		if (!isLongPress.current) {
