@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useFilter } from "../../../../store/filter";
 import React, { ReactElement } from "react";
+import { paths, fillRoute } from "../../../../routing";
 
 const ProjectName = ({
 	name,
@@ -15,7 +16,7 @@ const ProjectName = ({
 	const { handleSetValue } = useFilter();
 
 	const onClickName = () => {
-		navigate("/portfolio/" + category[0] + "/" + slug);
+		navigate(fillRoute(paths.PORTFOLIO_PREVIEW, { filterId: category[0], projectName: slug }));
 		handleSetValue(category[0]);
 	};
 

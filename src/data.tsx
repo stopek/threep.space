@@ -9,6 +9,7 @@ import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
 import { TMenuItem } from "./components/HubMenu/types";
+import { paths } from "./routing/paths";
 
 export const filters_list: string[] = ["react", "angular", "symfony", "code_igniter", "rest"];
 
@@ -114,7 +115,7 @@ export const hub_urls: TMenuItem[] = [
 		label: "LinkedIn",
 	},
 	{
-		to: "/portfolio",
+		to: paths.PORTFOLIO,
 		Icon: BusinessCenterIcon,
 		label: "Portfolio",
 		margin: 20,

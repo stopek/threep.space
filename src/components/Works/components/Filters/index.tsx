@@ -17,6 +17,7 @@ import {
 	stackValue,
 } from "../../../../common/utils";
 import Helmet from "../../../Helmet";
+import { fillRoute, paths } from "../../../../routing";
 
 interface IFilters {
 	changeFilter: (value: string[], init?: boolean) => void;
@@ -28,7 +29,8 @@ export const Filters = ({ changeFilter }: IFilters): ReactElement => {
 	const { filterId } = useParams();
 
 	const navigate = useNavigate();
-	const clearStackFiltering = () => navigate("/portfolio/latest");
+	const clearStackFiltering = () =>
+		navigate(fillRoute(paths.PORTFOLIO_FILTER, { filterId: "latest" }));
 
 	const isStack = isStackFilter(filterId);
 	const isMultiple = isMultipleStack(filterId);
@@ -37,7 +39,7 @@ export const Filters = ({ changeFilter }: IFilters): ReactElement => {
 	const clearFromMultiple = (name: string): void => {
 		const filtered = multipleStack.filter(v => v !== name);
 
-		navigate(`/portfolio/stack:${filtered.join(",")}`);
+		navigate(fillRoute(paths.PORTFOLIO_STACK, { stackName: filtered.join(",") }));
 	};
 
 	return (

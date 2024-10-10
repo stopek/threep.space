@@ -13,6 +13,8 @@ import { useApi } from "../../store/api";
 import { Loading } from "../../ui/Loading/Loading";
 import { Error } from "../../ui/Error";
 import Helmet from "../Helmet";
+import { scrollToDiv } from "../../helpers/scroll";
+import { fillRoute, paths } from "../../routing";
 
 const filters_list_combined = [...filters_list, "latest", "all", "old"];
 
@@ -102,7 +104,7 @@ export const Works = (): ReactElement => {
 	const changeFilter = useCallback(
 		(value: string[], init?: boolean) => {
 			const idDiv = ["portfolio", ...value];
-			const redirect = "/portfolio/" + value.join("/");
+			const redirect = fillRoute(paths.PORTFOLIO) + "/" + value.join("/");
 
 			handleSetValue(value[0]);
 
@@ -137,7 +139,7 @@ export const Works = (): ReactElement => {
 	}, [setOnLoad]);
 
 	if (!!filterId && !isStackFilter(filterId) && !filters_list_combined.includes(filterId)) {
-		return <Navigate to="/portfolio/latest" />;
+		return <Navigate to={fillRoute(paths.PORTFOLIO_FILTER, { filterId: "latest" })} />;
 	}
 
 	return (
