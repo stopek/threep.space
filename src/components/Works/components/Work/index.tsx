@@ -47,7 +47,7 @@ export const Work = ({
 			sx={{ position: "relative" }}
 			rounded={Number(rounded)}
 		>
-			<Grid item sm={12} md="auto">
+			<Grid item xs={12} md="auto">
 				<Image title={name} image={image} />
 			</Grid>
 
@@ -57,7 +57,7 @@ export const Work = ({
 					justifyContent="space-between"
 					maxWidth="80%"
 					position="relative"
-					sx={{ maxWidth: { md: "80%" } }}
+					sx={{ maxWidth: { sm: "80%" } }}
 				>
 					<CardHeader
 						title={<ProjectName slug={slug} category={category} name={name} />}
@@ -77,7 +77,7 @@ export const Work = ({
 					)}
 				</Box>
 
-				<Divider sx={{ maxWidth: { md: "80%" } }} />
+				<Divider sx={{ maxWidth: { sm: "80%" } }} />
 
 				<CardContent>
 					{about?.en && (
