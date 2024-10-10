@@ -1,5 +1,4 @@
-import { CaseReducerActions } from "@reduxjs/toolkit";
-import { AppDispatch } from "../helpers";
+import { Action, CaseReducerActions } from "@reduxjs/toolkit";
 
 export interface IApiData extends ILoadingState, IErrorState {
 	works: Type.IWork[];
@@ -24,16 +23,10 @@ export interface IErrorState {
 	errors: ISingleErrorState[];
 }
 
-export enum EIgnoreTypes {
-	PENDING = "pending",
-}
-
-export type TIgnoreTypes = Partial<Record<EIgnoreTypes, string[]>>;
-
 export interface IUseApi {
 	api: IApiData;
 	actions: CaseReducerActions<any, any>;
-	handleFetchWorks: () => AppDispatch;
+	handleFetchWorks: () => Promise<Action>;
 	isLoading: boolean;
 	hasError: boolean;
 }

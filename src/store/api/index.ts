@@ -47,12 +47,13 @@ export const useApi = (): IUseApi => {
 	const isLoading = Object.values(api.state.loadings).length > 0;
 	const hasError = api.state.error;
 
+	const handleFetchWorks = () => dispatch(fetchWorks());
+
 	return {
-		api: useAppSelector((state: RootState) => state.api),
+		api,
 		actions,
 		isLoading,
 		hasError,
-		// @todo - dispatch typing
-		handleFetchWorks: () => dispatch<any>(fetchWorks()),
+		handleFetchWorks,
 	};
 };
