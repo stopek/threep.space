@@ -46,6 +46,16 @@ export default function Preview({ children, src }: IPreview): ReactElement {
 		setTemplate("index");
 	};
 
+	const getIframeSource = () => {
+		if (currentSrc.startsWith("http")) {
+			return currentSrc;
+		}
+
+		return `https://inside.threep.space${currentSrc}/${template === "index" ? "" : template}`;
+	};
+
+	const iframeSource = getIframeSource();
+
 	return (
 		<React.Fragment>
 			<Button
@@ -65,24 +75,28 @@ export default function Preview({ children, src }: IPreview): ReactElement {
 							{name}
 						</Typography>
 
-						<FormControl sx={{ ml: 2, flex: 2, m: 1, minWidth: 120 }}>
-							<InputLabel id="demo-simple-select-helper-label">Project</InputLabel>
-							<Select
-								labelId="demo-simple-select-helper-label"
-								id="demo-simple-select-helper"
-								value={currentSrc}
-								label="Project"
-								onChange={handleChange}
-							>
-								{Object.keys(simpleProjects).map((simple, k) => {
-									return (
-										<MenuItem value={simple} key={k}>
-											{getNameFromSource(simple)}
-										</MenuItem>
-									);
-								})}
-							</Select>
-						</FormControl>
+						{simpleProjects[currentSrc] && (
+							<FormControl sx={{ ml: 2, flex: 2, m: 1, minWidth: 120 }}>
+								<InputLabel id="demo-simple-select-helper-label">
+									Project
+								</InputLabel>
+								<Select
+									labelId="demo-simple-select-helper-label"
+									id="demo-simple-select-helper"
+									value={currentSrc}
+									label="Project"
+									onChange={handleChange}
+								>
+									{Object.keys(simpleProjects).map((simple, k) => {
+										return (
+											<MenuItem value={simple} key={k}>
+												{getNameFromSource(simple)}
+											</MenuItem>
+										);
+									})}
+								</Select>
+							</FormControl>
+						)}
 
 						{currentSrc &&
 							simpleProjects[currentSrc] &&
@@ -121,7 +135,7 @@ export default function Preview({ children, src }: IPreview): ReactElement {
 				<iframe
 					key={currentSrc}
 					title={`preview ${template}`}
-					src={`https://inside.threep.space${currentSrc}/${template === "index" ? "" : template}`}
+					src={iframeSource}
 					style={{
 						width: "100%",
 						height: "100%",
