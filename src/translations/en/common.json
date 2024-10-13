@@ -108,7 +108,8 @@
 		"github_backend": "GitHub (backend)",
 		"github_front": "GitHub (frontend)",
 		"archive": "Web Archive",
-		"github": "GitHub"
+		"github": "GitHub",
+		"window": "DEMO"
 	},
 	"stages": {
 		"angular": "Angular has shown me that best practices from Symfony can also be applied to frontend programming.",

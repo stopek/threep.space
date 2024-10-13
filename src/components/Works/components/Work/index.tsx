@@ -101,7 +101,7 @@ export const Work = ({
 							mt={1}
 						>
 							{Object.entries(inside).map(([k, v]) =>
-								v.startsWith("/") ? (
+								v.startsWith("/") || k === "window" ? (
 									<Preview src={v} key={k}>
 										{t(`urls.${k}`)}
 									</Preview>

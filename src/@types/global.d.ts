@@ -18,7 +18,8 @@ declare namespace Type {
 		| "github_backend"
 		| "github_front"
 		| "archive"
-		| "github";
+		| "github"
+		| "window";
 
 	export interface IStackItem {
 		name: string;
