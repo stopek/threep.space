@@ -1,29 +1,23 @@
 import React, { ReactElement } from "react";
-import Typography from "@mui/material/Typography";
-import { TypographyOwnProps } from "@mui/material/Typography/Typography";
+import Typography, { TypographyProps } from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Divider, styled } from "@mui/material";
+import { Divider } from "@mui/material";
 
-interface IHeaderTitle {
+interface IHeaderTitle extends TypographyProps {
 	title: string;
-	variant?: TypographyOwnProps["variant"];
 }
-
-const Header = styled(Typography)`
-	text-transform: uppercase;
-
-	small {
-		position: relative;
-		top: -5px;
-		padding: 0 15px;
-	}
-`;
 
 export const HeaderTitle = ({ title, variant = "h4" }: IHeaderTitle): ReactElement => (
 	<Box mt={20} mb={5} display="flex" flexDirection="column" alignItems="center">
-		<Header variant={variant} fontWeight={900} textAlign="center">
+		<Typography
+			variant={variant}
+			fontWeight={900}
+			component="h2"
+			textAlign="center"
+			sx={{ textTransform: "uppercase" }}
+		>
 			{title}
-		</Header>
+		</Typography>
 
 		<Divider
 			sx={{

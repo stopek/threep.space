@@ -148,13 +148,14 @@ const Dial = ({ children }: IDial): ReactElement => {
 				onClick={toggleMenu}
 				className={`btn ${open ? "shown" : ""}`}
 				sx={{ boxShadow: theme => theme.shadows[10] }}
+				component="aside"
 			>
 				<span></span>
 				<span></span>
 				<span></span>
 			</ToggleButton>
 
-			<div className="wrapper">
+			<main className="wrapper">
 				<nav>
 					<ul>
 						{dialog_menu_list.map((v, k) => (
@@ -182,7 +183,7 @@ const Dial = ({ children }: IDial): ReactElement => {
 				</nav>
 
 				<div id="content">{children}</div>
-			</div>
+			</main>
 		</>
 	);
 };

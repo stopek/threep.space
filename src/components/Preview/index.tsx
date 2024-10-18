@@ -60,9 +60,10 @@ export default function Preview({ children, src }: IPreview): ReactElement {
 		<React.Fragment>
 			<Button
 				variant="contained"
-				color="success"
+				color="secondary"
 				sx={{ borderRadius: 15 }}
-				startIcon={<ZoomInIcon />}
+				endIcon={<ZoomInIcon />}
+				size="small"
 				onClick={handleClickOpen}
 			>
 				{children}

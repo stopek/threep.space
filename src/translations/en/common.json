@@ -100,13 +100,13 @@
 		"legacy": "Legacy Code"
 	},
 	"urls": {
-		"preview": "Web",
+		"preview": "Demo",
 		"storybook": "Storybook",
 		"ui": "UI",
 		"docs": "Docs",
 		"multimedia": "Media",
-		"github_backend": "GitHub (backend)",
-		"github_front": "GitHub (frontend)",
+		"github_backend": "GitHub: back",
+		"github_front": "GitHub: front",
 		"archive": "Web Archive",
 		"github": "GitHub",
 		"window": "DEMO"

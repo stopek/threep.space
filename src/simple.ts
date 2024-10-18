@@ -3,9 +3,6 @@ export const simpleProjects: Record<string, string[]> = {
 	"/bank-torun": ["index"],
 	"/bioline": ["index", "cart", "product_cart", "products", "products_ingredients", "text"],
 	"/dominplus": ["index"],
-	"/mertegra": ["index"],
-	"/mertegra-storybook": ["index"],
-	"/taskcreateit": ["index"],
 	"/grant-studio": ["index", "about-us", "contact", "offer", "realized", "realized-step"],
 	"/kwiaciarnia": [
 		"index",

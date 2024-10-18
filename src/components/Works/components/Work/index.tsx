@@ -99,6 +99,7 @@ export const Work = ({
 							divider={<Divider orientation="vertical" flexItem />}
 							spacing={1}
 							mt={1}
+							flexWrap="wrap"
 						>
 							{Object.entries(inside).map(([k, v]) =>
 								v.startsWith("/") || k === "window" ? (
@@ -111,6 +112,7 @@ export const Work = ({
 										variant="contained"
 										color="primary"
 										href={v}
+										size="small"
 										endIcon={<TurnSlightRightIcon />}
 										target="_blank"
 										sx={{ borderRadius: 15 }}

@@ -13,7 +13,8 @@ const CvButton = (): ReactElement => {
 			disableElevation
 			disableFocusRipple
 			onClick={() => {
-				document.location.href = "../../../static/pdf/cv.pdf";
+				document.location.href =
+					process.env.REACT_APP_R2 + "/pdf/cv-pawel-stopczynski-dev.pdf";
 			}}
 		>
 			{t("txt.get_cv")}

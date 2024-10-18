@@ -14,18 +14,18 @@ const ProjectName = ({
 	slug: string;
 	category: string[];
 }): ReactElement => (
-	<Link
-		to={fillRoute(paths.PORTFOLIO_PREVIEW, { filterId: category[0], projectName: slug })}
-		component={RouterLink}
-		sx={{
-			color: ({ palette }) => palette.text.primary,
-			paddingRight: 3,
-		}}
-	>
-		<Typography variant="h5" component="span" fontWeight={700}>
+	<Typography variant="h5" component="h3" fontWeight={700}>
+		<Link
+			to={fillRoute(paths.PORTFOLIO_PREVIEW, { filterId: category[0], projectName: slug })}
+			component={RouterLink}
+			sx={{
+				color: ({ palette }) => palette.text.primary,
+				paddingRight: 3,
+			}}
+		>
 			{name}
-		</Typography>
-	</Link>
+		</Link>
+	</Typography>
 );
 
 export default ProjectName;

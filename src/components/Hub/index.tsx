@@ -13,7 +13,7 @@ const Hub = (): ReactElement => (
 
 			<HubTitles />
 
-			<HubMenu size="medium" />
+			<HubMenu size="small" />
 		</Box>
 
 		<FooterContainer component="footer">

@@ -1,7 +1,7 @@
 import { ThemeOptions } from "@mui/material/styles/createTheme";
 import { responsiveFontSizes } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { orange } from "@mui/material/colors";
+import { orange, purple } from "@mui/material/colors";
 
 const general: ThemeOptions = {
 	typography: {
@@ -41,6 +41,9 @@ export const dark = responsiveFontSizes(
 			primary: {
 				main: orange[900],
 			},
+			secondary: {
+				main: purple[800],
+			},
 		},
 	}),
 );
@@ -55,6 +58,9 @@ export const light = responsiveFontSizes(
 			mode: "light",
 			primary: {
 				main: orange[900],
+			},
+			secondary: {
+				main: purple[800],
 			},
 		},
 	}),

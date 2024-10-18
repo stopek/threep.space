@@ -150,7 +150,12 @@ export const Works = (): ReactElement => {
 				<>
 					<Filters changeFilter={changeFilter} />
 					{list.map((item, x) => (
-						<Box key={x} id={`portfolio_${item.stack[0]}_${item.slug}`} mb={2}>
+						<Box
+							key={x}
+							id={`portfolio_${item.stack[0]}_${item.slug}`}
+							mb={2}
+							component="article"
+						>
 							<Helmet
 								disabled={item.slug !== projectName}
 								title="seo.preview.title"
