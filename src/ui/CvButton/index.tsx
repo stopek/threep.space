@@ -6,7 +6,7 @@ import { StyledButton } from "./styled";
 const CvButton = (): ReactElement => {
 	const { t } = useTranslation();
 
-	return null;
+	return <span></span>;
 	return (
 		<StyledButton
 			variant="contained"
