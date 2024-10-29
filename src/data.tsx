@@ -134,16 +134,10 @@ export const hub_urls: TMenuItem[] = [
 		to: paths.PORTFOLIO,
 		Icon: BusinessCenterIcon,
 		label: "Portfolio",
-		margin: 3,
 	},
 	{
 		url: "https://www.facebook.com/pawel.stopek",
 		Icon: FacebookIcon,
 		label: "Facebook",
-	},
-	{
-		url: "https://znanyfotograf.com/pawel-stopczynski",
-		Icon: LinkedCameraIcon,
-		label: "Photography",
 	},
 ];
