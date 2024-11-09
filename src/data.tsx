@@ -7,7 +7,6 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import LinkedCameraIcon from "@mui/icons-material/LinkedCamera";
 import { TMenuItem } from "./components/HubMenu/types";
 import { paths } from "./routing";
 import { IDialItem } from "./components/Dial";

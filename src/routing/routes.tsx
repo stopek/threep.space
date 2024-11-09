@@ -24,7 +24,7 @@ export const routes: RouteObject[] = [
 				},
 			},
 			{
-				path: "/music",
+				path: "/ai",
 				async lazy() {
 					const { MusicContainer } = await import("../containers/MusicContainer");
 					return { Component: MusicContainer };
