@@ -15,11 +15,11 @@ import Container from "@mui/material/Container";
 import NotListedLocationIcon from "@mui/icons-material/NotListedLocation";
 import {
 	Alert,
+	CardActions,
 	FormControl,
 	Grid,
 	InputLabel,
 	MenuItem,
-	Paper,
 	Select,
 	SelectChangeEvent,
 	TableFooter,
@@ -32,6 +32,7 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import * as CompletionsAPI from "openai/src/resources/completions";
+import Link from "@mui/material/Link";
 
 const openai = new OpenAI({
 	organization: process.env.REACT_APP_GPT_ORG,
@@ -111,7 +112,7 @@ export const MusicContainer = () => {
 			.join("\n");
 
 	const productValidationRequest = (content: string): ChatCompletionCreateParamsNonStreaming => ({
-		model: "gpt-4",
+		model: "gpt-4o-mini",
 		messages: [
 			system,
 			{
@@ -300,7 +301,7 @@ export const MusicContainer = () => {
 									Usage
 								</Typography>
 								<Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-									1M tokens = $2.5
+									current model: <strong>gpt-4o-mini</strong>
 								</Typography>
 								<Typography variant="body2">
 									<ul style={{ padding: 0 }}>
@@ -319,6 +320,16 @@ export const MusicContainer = () => {
 									</ul>
 								</Typography>
 							</CardContent>
+							<CardActions>
+								<Button
+									component={Link}
+									href="https://openai.com/api/pricing"
+									target="_blank"
+									rel="noreferrer"
+								>
+									pricing
+								</Button>
+							</CardActions>
 						</Card>
 					</Grid>
 				</Grid>
