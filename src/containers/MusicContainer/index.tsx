@@ -329,10 +329,12 @@ export const MusicContainer = () => {
 			<Alert severity="info">
 				<strong>Current assumptions</strong>
 				<br />
-				**Position A**: Products in perfect condition with no blemishes or flaws, only used
-				but appear as new. <br />
-				**Position B**: Products in good condition with visible signs of use. <br />
-				**Position C**: Products damaged and unsuitable for sale.
+				- **Position A**: Electronics in perfect condition with no visible wear, used but
+				appears as if new.
+				<br />- **Position B**: Electronics in good working condition, showing visible signs
+				of use.
+				<br />- **Position C**: Electronics that are damaged, defective, or otherwise
+				unsuitable for regular use.
 			</Alert>
 		</Container>
 	);
