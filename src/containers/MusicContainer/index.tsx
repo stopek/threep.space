@@ -1,19 +1,37 @@
-import { useEffect, useState } from "react";
-
-import OpenAI from "openai";
-import { ChatCompletionCreateParamsNonStreaming } from "openai/src/resources/chat/completions";
-
+import React, { useEffect, useState } from "react";
+import {
+	ChatCompletionCreateParamsNonStreaming,
+	ChatCompletionMessageParam,
+} from "openai/src/resources/chat/completions";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import WarningIcon from "@mui/icons-material/Warning";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import Container from "@mui/material/Container";
-import { Alert } from "@mui/material";
+import NotListedLocationIcon from "@mui/icons-material/NotListedLocation";
+import {
+	Alert,
+	FormControl,
+	Grid,
+	InputLabel,
+	MenuItem,
+	Paper,
+	Select,
+	SelectChangeEvent,
+	TableFooter,
+	TextField,
+} from "@mui/material";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import OpenAI from "openai";
+import Typography from "@mui/material/Typography";
+import CardContent from "@mui/material/CardContent";
+import Card from "@mui/material/Card";
+import * as CompletionsAPI from "openai/src/resources/completions";
 
 const openai = new OpenAI({
 	organization: process.env.REACT_APP_GPT_ORG,
@@ -24,8 +42,9 @@ const openai = new OpenAI({
 
 interface IItem {
 	row: number;
-	position: "A" | "B" | "C";
+	position: string;
 	comment: string;
+	name?: string;
 }
 
 interface IResponse {
@@ -34,110 +53,276 @@ interface IResponse {
 	reason: string | undefined;
 }
 
+const system: ChatCompletionMessageParam = {
+	role: "system",
+	content: `You are a product validation assistant. Your task is to analyze if each electronic product is correctly categorized based on the "position" and "comment" fields and provide the output in JSON format as an array of objects.
+    
+    Each product falls into one of three categories:
+    - **Position A**: Electronics in perfect condition with no visible wear, used but appears as if new.
+    - **Position B**: Electronics in good working condition, showing visible signs of use.
+    - **Position C**: Electronics that are damaged, defective, or otherwise unsuitable for regular use.
+
+    Rules to follow:
+    - If the "comment" field is empty, assume the product is correctly categorized.
+    - Interpret any informal or positive phrases as an indication that the product is in acceptable working order.
+    - Ignore the language version of the comment and analyze it as if it were written in English.
+
+    The JSON output should always follow this strict format:
+    [
+      {
+        "row": <row_number>,
+        "status": true | false | null, 
+        "reason": "<explanation or null>"
+      }
+    ]
+    
+    For each entry:
+    - Use **true** if the position is correct based on the comment, **false** if the position does not match the comment, and **null** if unsure.
+    - If the status is true or the comment is empty, set the reason to null.
+    
+    Please return only the JSON array of results without additional explanations or text outside of the JSON.`,
+};
+
+const defaultRows: IItem[] = [
+	{ row: 1, position: "A", comment: "" },
+	{ row: 2, position: "A", comment: "Scratches on the screen" },
+	{ row: 3, position: "A", comment: "looks great" },
+];
+
 export const MusicContainer = () => {
-	const rows: IItem[] = [
-		{ row: 1, position: "C", comment: "The item has no scratches" },
-		{ row: 2, position: "A", comment: "Scratches on the screen" },
-		{ row: 4, position: "A", comment: "looks great" },
-	];
+	const [rows, setRows] = useState<IItem[]>(defaultRows);
+	const [check, setCheck] = useState<IResponse[]>([]);
 
-	const [check, setCheck] = useState<IResponse[]>();
+	const [position, setPosition] = React.useState("");
+	const [name, setName] = React.useState("");
+	const [comment, setComment] = React.useState("");
+	const [error, setError] = useState("");
 
-	const finalString = rows
-		.map(item => `Row: ${item.row}, Position: ${item.position}, Comment: "${item.comment}"`)
-		.join("\n");
+	const [usage, setUsage] = useState<CompletionsAPI.CompletionUsage>();
 
-	const productValidationRequest: ChatCompletionCreateParamsNonStreaming = {
+	const getCheck = (row: number): IResponse | undefined => check?.find(c => c.row === row);
+
+	const finalString = (): string =>
+		rows
+			.filter(item => !getCheck(item.row))
+			?.map(
+				item => `Row: ${item.row}, Position: ${item.position}, Comment: "${item.comment}"`,
+			)
+			.join("\n");
+
+	const productValidationRequest = (content: string): ChatCompletionCreateParamsNonStreaming => ({
 		model: "gpt-4",
 		messages: [
-			{
-				role: "system",
-				content: `You are a product validation assistant. Your task is to analyze if each product is correctly categorized based on the "position" and "comment" fields and provide the output in JSON format as an array of objects.
-                Each product falls into one of three categories:
-                - **Position A**: Products in perfect condition with no blemishes or flaws, only used but appear as new.
-                - **Position B**: Products in good condition with visible signs of use.
-                - **Position C**: Products damaged and unsuitable for sale.
-                
-                The JSON output should follow this format:
-                [
-                  {
-                    "row": <row_number>,
-                    "status": true | false, 
-                    "reason": "<explanation>"
-                  }
-                ]
-
-                For each entry:
-                - Use **true** if the position is correct based on the comment, **false** if the position does not match the comment, and **null** if unsure.
-                - Provide a reason only if the status is false; otherwise, without this column.
-                - Length of explanation: max 50 characters
-                
-                Please process each row individually and return an array of results.`,
-			},
+			system,
 			{
 				role: "user",
-				content: finalString,
+				content,
 			},
 		],
+	});
+
+	const handleChange = (event: SelectChangeEvent) => {
+		setPosition(event.target.value as string);
+	};
+
+	const load = () => {
+		const final = finalString();
+		if (!final) {
+			setError("Ups, there is no products");
+			return;
+		}
+
+		const prompt = productValidationRequest(final);
+		console.log(prompt);
+
+		openai.chat.completions
+			.create(prompt)
+			.then(response => {
+				console.log(response);
+				try {
+					const newItems = JSON.parse(response.choices[0].message.content ?? "");
+
+					setCheck(prev => [...prev, ...newItems]);
+					setUsage(response.usage);
+				} catch (e) {
+					setError(`Error: ${response.choices[0].message.content}`);
+					console.log(e);
+				}
+			})
+			.catch(error => console.error(error));
 	};
 
 	useEffect(() => {
-		openai.chat.completions
-			.create(productValidationRequest)
-			.then(response => {
-				try {
-					console.log(JSON.parse(response.choices[0].message.content ?? ""));
-					setCheck(JSON.parse(response.choices[0].message.content ?? ""));
-				} catch (e) {
-					console.log(e);
-				}
-				console.log(response);
-			})
-			.catch(error => console.error(error));
-	}, []);
+		load();
+	}, [rows]);
 
-	const getCheck = (row: number) => check?.find(c => c.row === row);
+	const submitHandler = (e: any) => {
+		e.preventDefault();
+
+		setRows(prev => [
+			...prev,
+			{
+				position,
+				comment,
+				name,
+				row: prev.length + 1,
+			},
+		]);
+
+		setName("");
+		setPosition("");
+		setComment("");
+		setError("");
+		setUsage(undefined);
+	};
 
 	return (
-		<Container>
-			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label="simple table">
-					<TableHead>
-						<TableRow>
-							<TableCell>Product Name</TableCell>
-							<TableCell>Position</TableCell>
-							<TableCell>User Comment</TableCell>
-							<TableCell align="right">AI:Status</TableCell>
-							<TableCell align="right">AI:Explanation</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{rows.map(row => {
-							const status = getCheck(row.row)?.status;
-							const reason = getCheck(row.row)?.reason;
+		<Container maxWidth="xl">
+			{error && (
+				<>
+					<Alert severity="error">{error}</Alert>
+					<br />
+				</>
+			)}
 
-							return (
-								<TableRow
-									key={row.row}
-									sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-								>
-									<TableCell component="th" scope="row">
-										Product Name #{row.row}
-									</TableCell>
-									<TableCell>{row.position}</TableCell>
-									<TableCell>{row.comment}</TableCell>
-									<TableCell align="right">
-										{status === false && <WarningIcon color="warning" />}
-										{status === true && <DoneAllIcon color="success" />}
-										{status === undefined && <em>loading...</em>}
-									</TableCell>
-									<TableCell align="right">{reason || "-"}</TableCell>
-								</TableRow>
-							);
-						})}
-					</TableBody>
-				</Table>
-			</TableContainer>
+			<Box component="form" onSubmit={submitHandler}>
+				<Grid container spacing={3}>
+					<Grid item xs={12} md={8}>
+						<TableContainer>
+							<Table sx={{ minWidth: 650 }} aria-label="simple table">
+								<TableHead>
+									<TableRow>
+										<TableCell>#</TableCell>
+										<TableCell>Product Name</TableCell>
+										<TableCell>Position</TableCell>
+										<TableCell>User Comment</TableCell>
+										<TableCell align="center">AI:Status</TableCell>
+										<TableCell align="right">AI:Explanation</TableCell>
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									{rows.map(row => {
+										const status = getCheck(row.row)?.status;
+										const reason = getCheck(row.row)?.reason;
+
+										return (
+											<TableRow key={row.row}>
+												<TableCell component="th" scope="row">
+													{row.row}
+												</TableCell>
+												<TableCell>
+													{row?.name || `Product Name #${row.row}`}
+												</TableCell>
+												<TableCell>{row.position}</TableCell>
+												<TableCell>{row.comment}</TableCell>
+												<TableCell align="center">
+													{status === false && (
+														<WarningIcon color="warning" />
+													)}
+													{status === true && (
+														<DoneAllIcon color="success" />
+													)}
+													{status === null && (
+														<NotListedLocationIcon color="info" />
+													)}
+													{status === undefined && <em>loading...</em>}
+												</TableCell>
+												<TableCell align="right">{reason || "-"}</TableCell>
+											</TableRow>
+										);
+									})}
+								</TableBody>
+								<TableFooter>
+									<TableRow>
+										<TableCell></TableCell>
+										<TableCell>
+											<TextField
+												required
+												variant="outlined"
+												size="small"
+												value={name}
+												label="Product Name"
+												onChange={event => setName(event.target.value)}
+											/>
+										</TableCell>
+
+										<TableCell>
+											<FormControl
+												fullWidth
+												size="small"
+												sx={{ minWidth: 200 }}
+												required
+											>
+												<InputLabel id="demo-simple-select-label">
+													Position
+												</InputLabel>
+												<Select
+													labelId="demo-simple-select-label"
+													id="demo-simple-select"
+													value={position}
+													label="Position"
+													onChange={handleChange}
+												>
+													<MenuItem value="A">A</MenuItem>
+													<MenuItem value="B">B</MenuItem>
+													<MenuItem value="C">C</MenuItem>
+												</Select>
+											</FormControl>
+										</TableCell>
+										<TableCell>
+											<TextField
+												variant="outlined"
+												size="small"
+												label="User Comment"
+												value={comment}
+												onChange={event => setComment(event.target.value)}
+											/>
+										</TableCell>
+										<TableCell colSpan={2}>
+											<Button
+												type="submit"
+												size="small"
+												variant="contained"
+												color="success"
+											>
+												Add New & Check
+											</Button>
+										</TableCell>
+									</TableRow>
+								</TableFooter>
+							</Table>
+						</TableContainer>
+					</Grid>
+					<Grid item md={4}>
+						<Card variant="outlined">
+							<CardContent>
+								<Typography variant="h5" component="div">
+									Usage
+								</Typography>
+								<Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+									1M tokens = $2.5
+								</Typography>
+								<Typography variant="body2">
+									<ul style={{ padding: 0 }}>
+										<li>
+											<strong>Completion Tokens</strong>:{" "}
+											{usage?.completion_tokens || "-"}
+										</li>
+										<li>
+											<strong>Prompt Tokens</strong>:{" "}
+											{usage?.prompt_tokens || "-"}
+										</li>
+										<li>
+											<strong>Total Tokens</strong>:{" "}
+											{usage?.total_tokens || "-"}
+										</li>
+									</ul>
+								</Typography>
+							</CardContent>
+						</Card>
+					</Grid>
+				</Grid>
+			</Box>
 
 			<br />
 
